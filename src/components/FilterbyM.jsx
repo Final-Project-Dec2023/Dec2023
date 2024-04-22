@@ -20,7 +20,6 @@ const OffCanvasButton = ({handleCheckboxChange,handleAvailabilityChange }) => {
             {isMenuOpen && <div className="backdrop" onClick={closeMenu}></div>}
             <div className={`offcanvas-menu ${isMenuOpen ? 'open' : ''}`}>
             <span className="close-button" onClick={closeMenu}>close</span>
-                {/* Your off-canvas menu content goes here */}
                 <div className="accord-offcanvas">
                   <Accord handleCheckboxChange={handleCheckboxChange} handleAvailabilityChange={handleAvailabilityChange}/>
                 </div>    

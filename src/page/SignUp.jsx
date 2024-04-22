@@ -1,9 +1,9 @@
 
 import  { useState } from 'react'
-import '../css/SignUp.css';
+import "../css/SignUp.css"
 import { toast } from 'react-toastify';
 import img1 from "../assets/images/Frame 579.png"
-import registerImg from "../assets/images/Frame 1171276207.png"
+import registerImg from "../assets/images/signin.png"
 import img2 from "../assets/images/download-removebg-preview.png"
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -87,13 +87,13 @@ const SignUp = () => {
   return (
     <div>
     <div className="container-milly">
-      <div className="left-side">
-    <div className= "top-section ">
+      <div className="left-side-milly">
+    <div className= "top-section-milly ">
     <img src={img1} alt="" />
-    <h2><b>Join Us To Discover The Perfect Scent For You!.</b></h2>
+    <p><b>Join Us To Discover The Perfect Scent For You!.</b></p>
     </div>
        
-    <div className="middle-section">
+    <div className="middle-section-milly">
     <p>Let's get started by filling the information below:</p>
     </div>
     <div className="">
@@ -153,12 +153,12 @@ const SignUp = () => {
             </div>
           </form>
 
-         <div className='hhh my-2'>
+         <div className='hhh-milly my-2'>
           <input type="checkbox" />
           <p>I agree to <span className='span-milly'>Terms of service</span> and <span className='span-milly'>Privacy policies</span></p>
          </div>
 
-         <div className='black'>
+         <div className='black-milly'>
          <button onClick={handleSubmit}>
          {loading ? (
             <>
@@ -183,7 +183,7 @@ const SignUp = () => {
          <div className='line'></div>
          </div>
          
-          <div className='white'>
+          <div className='white-milly'>
           <button>
             <img className='pic mx-2' src={img2}alt="" />
             <a href="https://www.google.com/">Continue with Google</a>
@@ -198,7 +198,7 @@ const SignUp = () => {
         </div>
       
       </div>
-      <div className="right-side">
+      <div className="right-side-milly">
         <img src={registerImg} className='image-fluid'/>
       </div>
       </div>

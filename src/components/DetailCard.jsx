@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-// import '../css/DetailCard.css'
-import Star from '../assets/images/Vector.png'
+import '../css/DetailCards.css'
+import Star from '../assets/images/Vector star.png'
 import Plus from '../assets/images/ic_sharp-plus.png'
 import Minus from '../assets/images/ic_sharp-minus.png'
 
 
 const DetailCard = ({product}) => {
+    let price = (product.priceCents/100).toLocaleString(undefined, {minimumFractionDigits: 2})
         const [selectedImage, setSelectedImage] = useState(product.imageUrl.two);
     
         const handleImageClick = (imageUrl) => {
@@ -48,35 +48,13 @@ const DetailCard = ({product}) => {
             </div>
         </div>
         <div className="productInfo p-3">
-        {/* <Card style={{ width: '25rem', height: '30rem'}} >
-      <Card.Body className='row d-flex justify-content-between align-items-center px-4'>
-        <Card.Title>
-             <h1 className='' >{product?.name}</h1> 
-        </Card.Title>
-        <Card.Text>
-        <p >{product?.description} </p>
-        
-        </Card.Text>
-        
-        <Card.Text>
-           
-        </Card.Text>
-        <Card.Text>
-        
-        </Card.Text>
-        <Card.Text>
-          
-        </Card.Text>
-        
-      </Card.Body>
-     </Card> */}
 
         
             <h1 className='hG'>{product?.name}</h1>
-            <p style={{fontSize:'1rem', fontWeight: '400'}}>{product?.description} <span>{product?.size}Oz</span> </p>
+            <p style={{fontSize:'1.13rem', fontWeight: '400'}}>{product?.description} <span>{product?.size}Oz</span> </p>
         
         <div style={{display: 'flex', alignItems:'center'}} className=''>
-        <div className='imgG d-flex' style={{ width:'90px', justifyContent:'space-between '}}>
+        <div className='imgG d-flex' style={{ width:'5.63rem', justifyContent:'space-between '}}>
             <img src={Star} />
             <img src={Star} />
             <img src={Star} />
@@ -84,35 +62,36 @@ const DetailCard = ({product}) => {
             <img src={Star} />
         </div>
         
-            <span style={{fontSize:'10px', fontWeight: '300', marginLeft:'20px' }}>4.7 (<span>40 Reviews</span>)</span>
+            <span style={{fontSize:'1.13rem', fontWeight: '300', marginLeft:'1.25rem' }}>4.7 (<span style={{fontSize: '1.13rem'}}>40 Reviews</span>)</span>
         
         </div>
-            <p className='my-2' style={{fontSize:'18px'}}>Price: <span className='' style={{fontSize:'26px', fontWeight:'500'}}>{product?.priceCents}</span></p>
-           <p className='mb-2' style={{fontSize:'18px'}}>Size: <span style={{fontSize:'14px'}}>2.3 Oz</span></p> 
-          <div> <button className='bg-dark text-light' style={{width:'59px', height:'39px', fontSize:'14px', fontWeight:'500', borderRadius:'4px'}}>2.3 Oz</button> <button className='bg-light text-dark border border-dark' style={{width:'59px', height:'39px', fontSize:'14px', fontWeight:'500', borderRadius:'4px'}}>6.3 Oz</button> </div>
+            <p className='my-2' style={{fontSize:'1.25rem'}}>Price: <span className='' style={{fontSize:'1.63rem', fontWeight:'500'}}>&#x20A6;{price}</span></p>
+           <p className='mb-2' style={{fontSize:'1.25rem'}}>Size: <span style={{fontSize:'1rem'}}>2.3 Oz</span></p> 
+          <div> <button className='bg-dark text-light' style={{width:'3.69rem', height:'2.44rem', fontSize:'0.88rem', fontWeight:'500', borderRadius:'4px'}}>2.3 Oz</button> <button className='bg-light text-dark border border-dark' style={{width:'3.69rem', height:'2.44rem', fontSize:'0.88rem', fontWeight:'500', borderRadius:'4px'}}>6.3 Oz</button> </div>
           
-          <div className="my-2" >
-            <span className='pe-4'style={{fontSize:'18px'}}>Quantity:</span>
-            <button className='btn  bg-transparent rounded-0 rounded-start'  onClick={handleDecrease}><img src={Minus} alt="" /></button>
-            <Button className='rounded-0 bg-transparent text-dark fw-bold' style={{width:'4rem', height:'2.5rem'}}>{count}</Button>
-            <button className='btn  bg-transparent rounded-0 rounded-end' onClick={handleIncrease}><img src={Plus} alt="" /></button>
+          <div className="d-flex my-2  align-items-center" >
+            <span className='pe-4'style={{fontSize:'1.25rem'}}>Quantity:</span>
+            <button className='btn1  bg-transparent rounded-0 rounded-start'  onClick={handleDecrease}><img src={Minus} alt="" /></button>
+            <Button className='btnGg rounded-0 bg-transparent text-dark fw-bold '>{count}</Button>
+            <button className='btn1  bg-transparent rounded-0 rounded-end' onClick={handleIncrease}><img src={Plus} alt="" /></button>
+            
         </div>
         
         <div className='d-flex'>
-            <p>Availability:</p> 
+            <p style={{fontSize:'1.25rem'}}>Availability:</p> 
             <ul className='d-flex' style={{listStyle:'none', paddingLeft:'1rem'}}>
-            <li style={{color: product.isAvailable ? '#009320' : '#E70000', fontWeight:'500', fontSize:'18px'}}>
-       <span style={{backgroundColor: product.isAvailable ? '#009320' : '#E70000',
+            <li style={{color: product.isavailability ? '#009320' : '#E70000', fontWeight:'500', fontSize:'1.13rem'}}>
+       <span style={{backgroundColor: product.isavailability ? '#009320' : '#E70000',
            width: '10px',
            height: '10px',
            borderRadius: '50%',
            display: 'inline-block',
            marginRight: '5px'}}></span>
-       {product.isAvailable ? 'In Stock' : 'Out of Stock'}
+       {product.isavailability ? 'In Stock' : 'Out of Stock'}
    </li> 
             </ul></div>
         
-        <div className=" ">
+        <div className="d-flex flex-column">
         <Button variant="dark" className='buttonG mb-3'>Buy Now</Button>
         <Button variant="light" className='buttonG  border border-dark' >Add to Cart</Button>
         </div>

@@ -1,14 +1,14 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
-// import '../css/AccordionG.css'
+import '../css/AccordionG.css'
 
 function Accordions({product}) {
   return (
-    <div className="accordionG">
+    <div className="accordionG ">
         <h3>Product Details</h3>
         <Accordion defaultActiveKey="0" alwaysOpen className='border border-0'>
       <Accordion.Item eventKey="0" >
-        <div className="ganiyat border-top border-2">
+        <div className="border-top border-2">
         <Accordion.Header ><span style={{fontSize:'24px', fontWeight:'500'}}>About The Product</span></Accordion.Header>
         <Accordion.Body>
         <p className='detailG'>{product?.about}</p>
@@ -16,7 +16,7 @@ function Accordions({product}) {
         </div>
       </Accordion.Item>
       <Accordion.Item eventKey="1" >
-        <div className="ganiyat border-top border-2">
+        <div className="border-top border-2">
         <Accordion.Header><span style={{fontSize:'24px', fontWeight:'500'}}>Scent Profile</span></Accordion.Header>
         <Accordion.Body>
         <p className='detailG'>{product?.scent_profile}</p>

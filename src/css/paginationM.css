@@ -37,7 +37,7 @@
     background-color: #c9c2c2;
   }
   
-  .pagination-btn button.active {
+  .pagination-btn button.active-m {
     background-color: black;
     color: white;
   }

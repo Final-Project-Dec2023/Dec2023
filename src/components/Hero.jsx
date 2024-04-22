@@ -20,18 +20,20 @@ function Hero() {
     <div className="hero">
       <Carousel className="main" activeIndex={index} onSelect={handleSelect} controls={false}>
         <Carousel.Item className="">
-          <img src={img1} text="First slide" width="100%" height="450px" />
+          <div className="img-pb">
+              <img src={img1} text="First slide" width="100%" height="450px" />
+          </div>
           <div className="main">
             <Carousel.Caption>
               <div className="text-body1">
                 <h1>Classic Elegance</h1>
                 <p className="hero-p">
-                  Discover timeless fragrances that exude sophistication and
-                  charm.
+                  <b>Discover timeless fragrances that exude sophistication and
+                  charm.</b>
                 </p>
               </div>
 
-              <button type="button" className="btn btn-dark ">
+              <button type="button" className="btn-pb btn-dark btn-p">
                 Shop Now
               </button>
               <button type="button" className="btn-mobile btn-dark ">
@@ -41,7 +43,10 @@ function Hero() {
           </div>
         </Carousel.Item>
         <Carousel.Item>
-          <img src={img2} text="Second slide" width="100%" height="450px" />
+          <div className="img-pb">
+            <img src={img2} text="Second slide" width="100%" height="450px" />
+          </div>
+          
           <Carousel.Caption>
             <div className="text-body2">
               <h1>Sensual & Seductive</h1>
@@ -50,7 +55,7 @@ function Hero() {
               </p>
             </div>
 
-            <button type="button" className="btn btn-dark">
+            <button type="button" className="btn-pb btn-dark">
               Shop Now
             </button>
             <button type="button" className="btn-mobile btn-dark ">
@@ -59,7 +64,10 @@ function Hero() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src={img3} text="Third slide" width="100%" height="450px" />
+          <div className="img-pb">
+              <img src={img3} text="Third slide" width="100%" height="450px" />
+          </div>
+          
           <Carousel.Caption>
             <div className="text-body3">
               <h1>Fresh & Crisp</h1>
@@ -69,7 +77,7 @@ function Hero() {
               </p>
             </div>
 
-            <button type="button" className="btn btn-dark">
+            <button type="button" className="btn-pb btn-dark">
               Shop Now
             </button>
             <button type="button" className="btn-mobile btn-dark ">
@@ -78,7 +86,10 @@ function Hero() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src={img4} text="Fourth slide" width="100%" height="450px" />
+          <div className="img-pb">
+              <img src={img4} text="Fourth slide" width="100%" height="450px" />
+          </div>
+          
           <Carousel.Caption>
             <div className="text-body4">
               <h1>Modern Chic</h1>
@@ -87,7 +98,7 @@ function Hero() {
               </p>
             </div>
 
-            <button type="button" className="btn btn-dark">
+            <button type="button" className="btn-pb btn-dark">
               Shop Now
             </button>
             <button type="button" className="btn-mobile btn-dark ">

@@ -41,7 +41,9 @@
 }
 .pagination{
     --bs-pagination-focus-box-shadow:none !important;
-    margin-left: 8rem !important;
+    margin-top:1rem !important;
+    margin-left: 3rem !important;
+    /* border: 1px solid red; */
 }
 
 @media (min-width: 768px) and (max-width: 900px) {
@@ -65,13 +67,13 @@
     }
     .pagination{
         --bs-pagination-focus-box-shadow:none !important;
-        margin-left: 20rem !important;
+        margin-left: 10rem !important;
     }
 }
 
 @media (min-width: 900px) {
     .card {
-        width: 18rem;
+        width: 16.35rem !important;
         height: 450px !important;
         text-align: left;
     }
@@ -82,14 +84,15 @@
     }
 
     .NA-card-title {
-        font-size: 1.15rem !important;
+        font-size: 0.95rem !important;
     }
 
     .NA-card-btn {
-        width: 15rem;
+        width: 14rem;
     }
     .pagination{
         --bs-pagination-focus-box-shadow:none !important;
-        margin-left: 22rem !important;
+        margin-left: 10rem !important;
+        
     }
 }

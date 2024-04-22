@@ -1,40 +1,40 @@
-.container-milly{
+.dan{
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     /* padding-left: 40px; */
 }
-.left-side-milly{
-    width: 35%;
-    height: 100%;
-    background-color: white;
-    display: block;
-    margin: 0 auto;
-}
-.top-section-milly{
+
+.top-section{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 18%;
+    justify-content: space-between;
+    width: 45%;
+    padding-left: 40px;
+    height: 80%;
+    padding-top: 20px;
+}
+.top-section h2{
+    font-size: 2rem;
+    margin-top: 20px;
+}
 
+.top-section p{
+    font-size: 15px;
 }
-.top-section-milly h2{
-    font-size: 25px;
-    width: 80%;
+.top-section img{
+    height: 80px;
+    width: 10rem
+    
 }
-
-.top-section-milly p{
-    font-size: 25px;
-}
-.top-section-milly img{
-    width: 30%;
-}
-.form-milly{
+.form-dan{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 13.72px;
+    padding: 0px;
+   
+    
 
 }
 .form-action{
@@ -47,6 +47,7 @@
     outline: none !important;
     box-shadow: none !important;
     border: 1px solid whitesmoke;
+    padding: 15px 20px !important;
 }
 .password-input-wrapper{
     position: relative;
@@ -59,35 +60,49 @@
   }
 
   
-.right-side-milly{
+.right-side{
     width: 50%;
     height: 100%;
     background-color: aliceblue;
 }
-.right-side-milly img{
+.right-side img{
     width: 100%;
-    height: 120%;
+    height: 100%;
 }
-.hhh-milly{
+.ddd{
     
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 2rem;
     width: 100%;
-    
+    margin-right: 10px;
    
 }
 
+.ddd .yp{
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.6rem;
+}
+.ddd .yp input{
+    margin-top: -0.4rem;
+}
 
-.hhh-milly .span-milly{
+
+.ddd .span-dan{
     color: rgba(0, 152, 184, 1);
 }
-.hhh-milly p{
+.ddd p{
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 10px;
+    color: red;
 }
-.hhh-milly input{
+.ddd a{
+    text-decoration: none;
+}
+.ddd input{
   
     
     border: 1px solid rgba(0, 152, 184, 1)r;
@@ -99,35 +114,38 @@
     height: 24px;
     
 }
-.black-milly button{
+.black button{
     width: 100%;
-    height: 6vh;
+    height: 8vh;
     border-radius: 5px;
     border: none;
     background-color: black;
     color: white;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
-.white-milly button{
+.white button{
     width: 100%;
-    height: 6vh;
+    height: 8vh;
     border-radius: 5px;
     border: 2px black solid;
     background-color: white;
     gap: 2rem;
+    margin-top: 20px;
     
 }
 
-.white-milly button a{
+.white button a{
     text-decoration: none;
     color: black;
     font-size: 18px;
     
 }
-.bb{
+.dd{
     margin-top: 10px;
 }
-.bb p a{
+.dd p a{
     text-decoration: none;
     color: rgba(0, 152, 184, 1);
     
@@ -135,39 +153,45 @@
 span{
     justify-content: center;
 }
-.dis{
+.dat{
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
-.line{
+.line1{
+    width: 40%;
+    height: 1px;
+    background-color: lightgrey;
+}
+.line2{
     width: 45%;
     height: 1px;
-    background-color: black;
+    background-color: lightgrey;
 }
-input[type="checkbox"]:checked{
-    accent-color: black;
+.icon{
+    padding-top: 9px !important;
 }
 
 
-@media ( max-width: 600px ) {
- .container-milly{
-        flex-direction: column-reverse;
-        /* overflow-y: scroll; */
-        justify-content: space-around;
+@media( max-width: 600px){
+    .logo{
+        display: none;
+    
     }
-    .left-side-milly{
-        width: 96%;
+    .top-section{
+        width: 100% !important;
+        padding-right: 40px !important;        
+    }
+    .top-section .ww{
+        width: 50% !important;
+    }
+    .top-section h2{
+        padding-top: 20px !important;
     }
     .right-side{
-        width: 96%;
-        height: 40vh;
-        display: none;
+        width: 1px;
     }
-    .right-side img{
-        width: 100%;
-        display: none;
-    }
+
    
 }

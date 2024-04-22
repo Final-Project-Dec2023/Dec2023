@@ -1,19 +1,37 @@
-import React from 'react'
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import "../css/NABreadcrumbs.css"
+import {Link, useLocation} from 'react-router-dom'
 
 function Breadcrumbs() {
-    return (
-        <div>
-            <Breadcrumb>
-                <Breadcrumb.Item href="#" className='new-top-text'>Home</Breadcrumb.Item>
-                <Breadcrumb.Item active className='text-decoration-none'>All Fragrance Perfumes</Breadcrumb.Item>
-            </Breadcrumb>
+    const {pathname} = useLocation();
+    const pathnames = pathname.split('/').filter((x)=> x);
+    console.log(pathname);
+    let breadcrumbPath = '';
+    if (pathname === 'new-arrival') {
+        pathname 
+    }
 
-            <div className="">
-                
+    return (
+        <>
+            <div className="bread-container">
+                <div className="breadscrumb-m">
+                {pathnames.length > 0 && <Link to='/'>Home</Link>}
+                {pathnames.map((name, index)=>{
+                    if (name === 'new-arrival') {
+                        name = 'New Arrival' 
+                    };
+                    if (name === 'all-fragrances') {
+                        name = 'All Featured Perfumes' 
+                    }
+                    breadcrumbPath += `/${name}`;
+                    const isLast = index === pathnames.length - 1
+
+                    return isLast ? <span className='gt' key={breadcrumbPath}> &gt; {name}</span> 
+                    :
+                    (<span className='gt' key={breadcrumbPath}> &gt;<Link to={breadcrumbPath}>{name}</Link></span>)  
+                })}
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

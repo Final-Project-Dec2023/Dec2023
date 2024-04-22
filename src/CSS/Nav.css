@@ -6,10 +6,7 @@
   
   .header {
     height: 160px;
-    /* position: fixed; */
-    left: 0;
-    right: 0;
-    z-index: 1000;
+    width: 100%;
   }
   
   .top-nav {
@@ -18,10 +15,10 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding-left: 2.7rem;
+    padding-left: 1.4rem;
    
   }
-  
+
   #bottom {
     height: 50%;
     background: #0098B8;
@@ -29,11 +26,12 @@
   
   .search{
     height: 41px;
-    width: 600px
+    width: 500px
   }
   
   .search-sec {
-    display: flex
+    display: flex;
+    padding-left: 1rem;
   }
   
   .search-sec button {
@@ -48,13 +46,14 @@
     height: 50%;
     display:flex;
     align-items: center;
-    gap: 8px;
+    gap: 20px;
    
   }
   
   .profile {
     display: flex;
     align-items: center;
+    
   }
   
   .search-sec select {
@@ -77,8 +76,6 @@
     padding-left: 4px;
     height: 42px;
     width: 150px;
-  
-   
   } 
   
   select option{
@@ -103,7 +100,6 @@
     gap: 8px;
     margin-top: 4px;
     padding-left: 4px;
-   
   }
   
   .cart-sec p {
@@ -121,4 +117,9 @@
   
   .active {
     background-color: inherit !important;
+  }
+
+  .btn-light:hover {
+  background-color: inherit !important;
+  border: none !important;
   }

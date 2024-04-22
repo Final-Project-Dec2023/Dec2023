@@ -36,11 +36,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Adidas",
-        availability:{
-            inStock : true,
-            
-        },
-        price: "100, 000.00",
+        availability:true,
+        price: 1000000
 
     },
     {
@@ -52,8 +49,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Armaf",
-        inStock: true,
-        price: "99, 000.00",
+        availability:true,
+        price: 990000,
 
     },
     {
@@ -65,8 +62,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Armani",
-        inStock: true,
-        price: "96, 000.00",
+        availability:false,
+        price: 9600000,
 
     },
     {
@@ -78,8 +75,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Calvin Klein",
-        inStock: true,
-        price: "95, 000.00",
+        availability:true,
+        price: 950000,
 
     },
     {
@@ -91,8 +88,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dior",
-        inStock: false,
-        price: "90, 000.00",
+        availability:true,
+        price: 900000,
 
     },
     {
@@ -101,11 +98,11 @@ export const data = [
         gender: "female",
         name: "Faison Francis Kurkdjian Paris",
         fragranceType: "Eau de cologne",
-        scentType: "false",
+        scentType: "fresh",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "80, 000.00",
+        availability:true,
+        price: 8000000,
 
     },
     {
@@ -117,8 +114,8 @@ export const data = [
         scentType: "citrus",
         weight: "2.3 Oz",
         brand: "Essenza",
-        inStock: false,
-        price: "85, 000.00",
+        availability:true,
+        price: 850000,
 
     },
     {
@@ -130,8 +127,8 @@ export const data = [
         scentType: "floral",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "80, 000.00",
+        availability:true,
+        price: 800000,
 
     },
     {
@@ -139,12 +136,12 @@ export const data = [
         image: image9,
         gender: "female",
         name: "Iaison Francis Kurkdjian Paris",
-        fragranceType: "Eau de Toilet",
+        fragranceType: "Eau de Toilette",
         scentType: "Lemon",
         weight: "2.3 Oz",
-        brand: "Lataffa",
-        inStock: true,
-        price: "70, 000.00",
+        brand: "Latafa",
+        availability:true,
+        price: 7000000
 
     },
     {
@@ -156,8 +153,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: false,
-        price: "9, 000.00",
+        availability:false,
+        price: 9000000,
 
     },
     {
@@ -169,8 +166,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Ralph Lauren",
-        inStock: true,
-        price: "80, 000.00",
+        availability:true,
+        price: 800000,
 
     },
     {
@@ -182,8 +179,8 @@ export const data = [
         scentType: "Mush, Amber",
         weight: "2.3 Oz",
         brand: "Zaien",
-        inStock: true,
-        price: "50, 000.00",
+        iavailability:true,
+        price: 500000,
 
     },
     {
@@ -195,8 +192,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "20, 000.00",
+        availability:true,
+        price: 200000,
 
     },
     {
@@ -208,8 +205,8 @@ export const data = [
         scentType: "Fresh",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "60, 000.00",
+        availability:true,
+        price: 600000,
 
     },
     {
@@ -221,8 +218,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "50, 000.00",
+        availability:false,
+        price: 5000000
 
     },
     {
@@ -234,8 +231,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "30, 000.00",
+        availability:true,
+        price: 3000000,
 
     },
     {
@@ -247,8 +244,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "30, 000.00",
+        availability:true,
+        price: 300000,
 
     },
     {
@@ -260,8 +257,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "80, 000.00",
+        availability:true,
+        price: 800000
 
     },
     {
@@ -273,8 +270,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "40, 000.00",
+        availability:true,
+        price: 4000000,
 
     },
     {
@@ -286,8 +283,8 @@ export const data = [
         scentType: "lemon",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "50, 000.00",
+        availability:true,
+        price: 5000000,
 
     },
     {
@@ -299,8 +296,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "90, 000.00",
+        availability:true,
+        price: 900000,
 
     },
     {
@@ -312,8 +309,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: false,
-        price: "5, 000.00",
+        availability:false,
+        price: 500000
 
     },
     {
@@ -325,8 +322,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "80, 000.00",
+        availability:true,
+        price: 800000
 
     },
     {
@@ -337,9 +334,9 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "cedar",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "10, 000.00",
+        brand: "Versace",
+        availability:true,
+        price: 1000000
 
     },
     {
@@ -350,9 +347,9 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "cedar",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "5, 000.00",
+        brand: "Yves Saint Laurent",
+        availability:true,
+        price: 500000
 
     },
     {
@@ -363,9 +360,9 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "cedar",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "50, 000.00",
+        brand: "Ralph Lauren",
+        availability:true,
+        price: 5000000
 
     },
     {
@@ -376,9 +373,9 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "cedar",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "50, 000.00",
+        brand: "Hugo Boss",
+        availability:true,
+        price: 700000
 
     },
     {
@@ -390,8 +387,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "50, 000.00",
+        availability:true,
+        price: 4000000,
 
     },
     {
@@ -403,8 +400,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "5, 000.00",
+        availability:true,
+        price: 500000,
 
     },
     {
@@ -415,9 +412,9 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "cedar",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "10, 000.00",
+        brand: "Latafa",
+        availability: false,
+        price: 1000000,
 
     },
     {
@@ -429,8 +426,8 @@ export const data = [
         scentType: "lemon",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "50, 000.00",
+        availability:true,inStock: true,
+        price: 5000000
 
     },
     {
@@ -442,8 +439,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "80, 000.00",
+        availability:true,
+        price: 800000
 
     },
     {
@@ -455,8 +452,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "10, 000.00",
+        availability:true,
+        price: 1000000
 
     },
     {
@@ -467,9 +464,9 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "cedar",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "5, 000.00",
+        brand: "Mont Blanc",
+        iavailability:true,
+        price: 500000
 
     },
     {
@@ -481,8 +478,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "50, 000.00",
+        availability:true,
+        price: 800000
 
     },
     {
@@ -494,8 +491,8 @@ export const data = [
         scentType: "Fresh",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "60, 000.00",
+        availability:true,
+        price: 600000
 
     },
     {
@@ -507,8 +504,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "50, 000.00",
+        availability:true,
+        price: 500000
 
     },
     {
@@ -519,9 +516,9 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "cedar",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "30, 000.00",
+        brand: "Adidas",
+        availability:true,
+        price: 600000
 
     },
     {
@@ -533,8 +530,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "30, 000.00",
+        availability:true,
+        price: 3000000
 
     },
     {
@@ -546,8 +543,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "80, 000.00",
+        availability:true,
+        price: 800000
 
     },
     {
@@ -559,8 +556,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "40, 000.00",
+        availability:true,
+        price: 4000000,
 
     },
     {
@@ -571,9 +568,9 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "lemon",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
+        brand: "Armaf",
         inStock: true,
-        price: "50, 000.00",
+        price: 900000,
 
     },
     {
@@ -585,8 +582,8 @@ export const data = [
         scentType: "cedar",
         weight: "2.3 Oz",
         brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "90, 000.00",
+        availability:true,
+        price: 9000000
 
     },
     {
@@ -597,9 +594,9 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "cedar",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
-        inStock: false,
-        price: "5, 000.00",
+        brand: "Essenza",
+        availability:true,
+        price: 50000
 
     },
     {
@@ -610,10 +607,23 @@ export const data = [
         fragranceType: "Eau de Parfum",
         scentType: "cedar",
         weight: "2.3 Oz",
-        brand: "Dolce & Gabbana",
-        inStock: true,
-        price: "80, 000.00",
+        brand: "Giorgio Armani",
+        availability:true,
+        price: 80000
 
-    }
+    },
+    // {
+    //     id : 45,
+    //     image: image23,
+    //     gender: "male",
+    //     name: "Waison Francis Kurkdjian Paris",
+    //     fragranceType: "Eau de Parfum",
+    //     scentType: "cedar",
+    //     weight: "2.3 Oz",
+    //     brand: "Dolce & Gabbana",
+    //     inStock: true,
+    //     price: "80, 000.00",
+
+    // }
     
 ]

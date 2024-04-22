@@ -1,9 +1,14 @@
-.all-details{
+/* .all-details{
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
+/* .gaccrel{
+    width: 79rem !important;
+    border: 1px solid green;
+   
+} */
 /* Media Query for low resolution  Tablets, Ipads */
 @media (min-width: 370px) and (max-width: 767px) {
    /* .all-details{

@@ -13,6 +13,7 @@
     width: 100%;
     /* border: 1px solid rgb(218, 40, 40) !important; */
 }
+
 .card {
         width: 11.5rem !important;
 }
@@ -38,7 +39,7 @@
 
 .arrival-desk-div{
     width: 100%;
-    display: flex;
+    display: flex; 
     flex-direction: column;
     /* border: 1px solid red!important; */
 }
@@ -47,10 +48,6 @@
 }
 .arrival-products-div-mob{
     width: 100%;
-    display: flex;
-    /* justify-content: center;
-    align-items: center; */
-    /* border: 1px solid rgb(218, 40, 40) !important; */
 }
 .arrival-filter-div{
     width: 18rem;
@@ -62,11 +59,27 @@
 }
 }
 @media (min-width: 900px) {
+    .home-div{
+        width: 100%;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid blue !important;
+    }
+.arrival-desk-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .arrival-main-div{
-    width:100%;
+    width:90%;
     height: 100vh;
     display: flex;
     justify-content: center;
+    margin: auto;
+    /* border: 1px solid red!important; */
+
     /* border: 1px solid red !important; */
 }
 .arrival-filter-div{
@@ -79,18 +92,21 @@
 }
 .arrival-products-div-desk{
     width: 72%;
-    /* border: 1px solid rgb(231, 228, 228) !important; */
+    /* border: 1px solid rgb(177, 24, 24) !important; */
+    /* height: 100vh; */
 }
+
 .card {
-    width: 18rem !important;
+    width: 16.5rem !important;
 }
 .arrival-top-div-desk{
-    width: 93.09%;
+    width: 1,238px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     /* top right bottom left */
-    margin: 30px 58px 41px 38px 
+    margin: auto;
+    margin: 0px 110px 50px 99px 
 }
 }
 /* .breadcrumb-item + .breadcrumb-item::before {

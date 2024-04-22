@@ -1,9 +1,8 @@
-// import '../csst/ProductM.css'
 import React from 'react'
 import '../css/ProductM.css'
 
 const ProductCard = ({product, index}) => {
-  const {name,description,priceCents, image, availability} = product
+  const {name,description,priceCents, image, isavailability} = product
   let price = (priceCents/100).toLocaleString(undefined, {minimumFractionDigits: 2})
   return (
     <div key={index}>
@@ -18,7 +17,7 @@ const ProductCard = ({product, index}) => {
                 <h2>&#x20A6;{price}</h2>
             </div>
             <div className="m-card-btn">
-              {availability ? <button>Add to cart</button> : <button className='not-ava'>Sold Out</button> }
+              {isavailability ? <button>Add to cart</button> : <button className='not-ava' disabled>Sold Out</button> }
             </div>
         </div>
       </div>

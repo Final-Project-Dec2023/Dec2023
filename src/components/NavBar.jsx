@@ -4,10 +4,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../css/Nav.css"
 import Logo from "../assets/images/Frame 579.png"
-import Profileimg from "../assets/icons/person.png"
-import Cartimg from "../assets/icons/cart.png"
+import Profileimg from "../assets/icons/humprofile.png"
+import Cartimg from "../assets/icons/blackcart.png"
 import Seicon from "../assets/icons/Vector (5).png"
 import { Link } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 
 
@@ -46,16 +48,34 @@ function Menu() {
                <img src={Profileimg} alt="" />
               </div>
              <div className='select-container'>
-              <select className='select-box'>
-                 <option value="">My Account</option>
-                 <option value="first">Sign Up</option>
-              </select>
+            <Dropdown>
+               <Dropdown.Toggle variant="light" id="dropdown-basic">
+                  My Account
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1" className='first-drop'>
+                <Link to="/login">
+                Login
+                </Link>
+              </Dropdown.Item>
+              <Dropdown.Item href="#/action-1" className='first-drop'>
+                <Link to="/signup">
+                Sign Up
+                </Link>
+              </Dropdown.Item>
+              <Dropdown.Item href="#/action-1">My Account</Dropdown.Item>
+              </Dropdown.Menu>
+           </Dropdown>
              </div>
         </div>
 
         <div className="cart-sec">
+          <Link to="/cart">
           <img src={Cartimg} alt="" />
+          </Link>
+          <Link to="/cart">
           <p>Cart</p>
+          </Link>
         </div>
         </div>
         </div>
@@ -85,7 +105,7 @@ function Menu() {
               <NavDropdown.Item href="#action/3.1">Yves Saint Laurent</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Zaien</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/new-arrival" className='text-white'>New Arrival</Nav.Link>               
+            <Nav.Link href="/new-arrivals" className='text-white'>New Arrival</Nav.Link>               
             <Nav.Link href="/blog" className='text-white'>Blog</Nav.Link>               
             <Nav.Link href="/contact" className='text-white'>Contact Us</Nav.Link>               
           </Nav>

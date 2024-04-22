@@ -13,7 +13,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, totalProductsPerPag
     for (let i = currentPage - 1; i <= currentPage + 1; i++) {
       if (i > 0 && i <= totalPages) {
         pageNumbers.push(
-          <button key={i} onClick={() => handlePageClick(i)} className={currentPage === i ? 'active' : ''}>
+          <button key={i} onClick={() => handlePageClick(i)} className={currentPage === i ? 'active-m' : ''}>
             {i}
           </button>
         );

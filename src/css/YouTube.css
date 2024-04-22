@@ -1,30 +1,35 @@
 
-.video-wrapper {
-    position: relative;
-    /* padding-top: 5.25%;  */
-    overflow:hidden !important;
-}
-
-.video-player {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 
 /* .ytp-cued-thumbnail-overlay-image {
     border-radius: 4rem;
 } */
 .youtubeG{
-    width:37rem !important;
-    height:28rem !important;
-    /* margin-top: 10rem !important; */
+    width:38.3rem !important;
+    height:30rem !important;
+   
 }
+.gvideo{
+    width: 37rem !important;
+    height: 27rem !important;
+}
+@media (min-width: 768px) and (max-width: 1024px){
+    .youtubeG{
+        width:46.5rem !important;
+        height:31rem !important;
+    }
+    .gvideo{
+        width: 43.5rem !important;
+        height: 27rem !important;
+    }
+    }
 @media (min-width: 370px) and (max-width: 767px) {
     .youtubeG{
-        width:22rem !important;
-        height:28rem !important;
-        /* margin-top: 10rem !important; */
+        width:22.5rem !important;
+        height:27rem !important;
+       
+    }
+    .gvideo{
+        width: 21rem !important;
+        height: 24rem !important;
     }
 }   

@@ -1,0 +1,77 @@
+.rpB{
+    width: 27.6rem !important;
+}
+.rpG{
+    width: 26.5rem !important;
+    height: 65rem !important;
+    border: 1px solid black !important;
+    }
+    .cardG{
+        width: 22.5rem !important;
+        height: 30rem !important;
+    }
+    .imgGa{
+        height: 15.63rem;
+    }
+    .btnG{
+        width: 20.5rem !important;
+        margin-bottom: 0 !important;
+        margin-left: 0 !important;
+    }
+    
+    @media (min-width: 768px) and (max-width: 1024px){
+        .rpB{
+            width: 46rem !important;
+        }
+        .rpG{
+            width: 44rem !important;
+            height: 35rem !important;
+            border: none !important;
+            }
+            .cardG{
+                width: 25rem !important;
+                height: 32rem !important;
+            }
+            .imgGa{
+                height: 18.75rem;
+            }
+            .btnG{
+                width: 19.7rem !important;
+                margin-bottom: 0 !important;
+                margin-left: 0 !important;
+            }
+        }
+    
+    @media (min-width: 370px) and (max-width: 767px) {
+       .rpB{
+        width: 23.6rem !important;
+        
+       }
+        .rpG{
+        width: 23rem !important;
+        height: 23.13rem !important;
+        border: none !important;
+       }
+       .cardG{ 
+        width: 50% !important;
+        height: 21.88rem !important;
+       }
+       .imgGa{
+        height: 12.5rem;
+    }
+       .hg{
+        font-size: 0.8rem !important; 
+       }
+       .pg{
+        font-size: 0.8rem !important; 
+       }
+       .ppg{
+        font-size: 1rem !important; 
+       }
+       .btnG{
+        width: 12.5rem !important;
+        margin-bottom: 0 !important;
+        margin-left: 0 !important;
+       }
+       
+    }   
