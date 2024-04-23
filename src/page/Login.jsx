@@ -46,7 +46,7 @@ const Login = () => {
     try {
       
       setLoading(true);
-    const { data } = await axios.post( url,{
+    const { data } = await axios.post( `/${url}/auth/login`,{
       email,
       password,
     });
