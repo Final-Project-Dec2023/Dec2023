@@ -7,6 +7,7 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/Auth';
 
 
 
@@ -18,6 +19,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
+  const { login } = useAuth();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -27,7 +29,6 @@ const Login = () => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const url = "https://fragrancehubbe.onrender.com/api/v1/auth/login"
 
     if (!email || !password) {
       return toast.error("Enter all fields");
@@ -41,34 +42,20 @@ const Login = () => {
       return toast.error("Enter a valid password");
     }
     try {
-      
-      setLoading(true);
-    const { data } = await axios.post( "/auth/login",{
-      email,
-      password,
-    });
-
-    // check for successful login
-    if(!data?.error){
-      toast.success("Login successful")
+    setLoading(true);
+      const success = await login(email, password);
       setLoading(false);
-      // save login data to local storage
-      localStorage.setItem("auth", JSON.stringify(data));
 
-      // clear the form input
-      setEmail("");
-      setPassword("");
-
-      setTimeout(()=>{
-          navigate("/")
-      }, 5000)
-    }else{
-      toast.error("Login failed")
-    }
+      if (success) {
+        toast.success("Login successful");
+        navigate("/");
+      } else {
+        toast.error("Login failed. try again..");
+      }
   } catch (err) {
-    console.log(err);
-    const { error } = err?.response?.data
-    toast.error(error)
+    // console.log(err?.message);
+    const  msg = err?.message
+    toast.error(msg)
     setLoading(false)
   }
   };
