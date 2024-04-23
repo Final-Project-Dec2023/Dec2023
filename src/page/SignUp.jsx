@@ -41,7 +41,7 @@ const SignUp = () => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = "https://blogg-api-v1.onrender.com/register";
+    // const url = "https://blogg-api-v1.onrender.com/register";
 
     if (!name || !email || !password) {
       console.log("enter all fields....")
@@ -58,8 +58,8 @@ const SignUp = () => {
     try {
       // sending form data to server
       setLoading(true);
-    const { data } = await axios.post( url,{
-      username: name,
+    const { data } = await axios.post("/auth/register",{
+      name,
       email,
       password,
     });
@@ -79,6 +79,7 @@ const SignUp = () => {
     console.log(err);
     const { error } = err?.response?.data
     toast.error(error)
+    setLoading(false)
   }
   };
 

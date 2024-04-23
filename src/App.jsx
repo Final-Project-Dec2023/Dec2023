@@ -40,7 +40,7 @@ function App() {
         <Route path='/detail/:productId' element={<DetailPage/>}/>        
       </Routes>  
     </Router>
-    <Footer/>
+    {/* <Footer/> */}
 
     </>
     
