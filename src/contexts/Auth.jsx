@@ -1,4 +1,4 @@
-import { Outlet,Navigate } from "react-router-dom";
+import { Outlet,  Navigate } from "react-router-dom";
 import { useState, createContext, useContext, useEffect } from "react";
 import axios from "axios";
 
@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
 
       if (!data?.error) {
         // Login successful
-        setAuth({ user: data.user, token: data.user.token });
+        setAuth({ user: data?.user, token: data?.user?.token });
         localStorage.setItem("auth", JSON.stringify(data));
         return true;
       } else {
@@ -47,8 +47,12 @@ const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Login error:", error.message);
-      if (error?.response && error?.response?.data && error?.response?.data?.error) {
-        throw new Error(error?.response?.data?.error); 
+      if (
+        error?.response &&
+        error?.response?.data &&
+        error?.response?.data?.error
+      ) {
+        throw new Error(error?.response?.data?.error);
       } else {
         throw new Error("An error occurred while logging in");
       }
@@ -77,7 +81,15 @@ const AuthProvider = ({ children }) => {
       return data;
     } catch (error) {
       console.error("Signup Error:", error.message);
-      return { error: "Failed to register" };
+      if (
+        error?.response &&
+        error?.response?.data &&
+        error?.response?.data?.error
+      ) {
+        throw new Error(error?.response?.data?.error);
+      } else {
+        throw new Error("An error occurred while signing up");
+      }
     }
   };
 
@@ -87,12 +99,24 @@ const AuthProvider = ({ children }) => {
     setAuth({ user: null, token: "" });
   };
 
+  
+
+const PrivateRoutes = () => {
+const data = localStorage.getItem("auth");
+const parsedData = JSON.parse(data);
+const token = parsedData;
+
+  return isLoggedIn ? <Outlet/> : <Navigate to="/login"/>
+}
+const AdminRoute=
+
+
   // console.log(auth.user);
-  const PrivateRoute = () => {
-    return auth?.token ? <Outlet/>:<Navigate to="login"/>
-  }
+  // const PrivateRoute = () => {
+  //   return auth?.token ? <Outlet/>:<Navigate to="login"/>
+  // }
   return (
-    <AuthContext.Provider value={{ auth, setAuth, login, signup, logout, PrivateRoute }}>
+    <AuthContext.Provider value={{ auth, setAuth, login, signup, logout, PrivateRoutes,AdminRoute }}>
       {children}
     </AuthContext.Provider>
   );
