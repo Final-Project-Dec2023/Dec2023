@@ -100,23 +100,31 @@ const AuthProvider = ({ children }) => {
   };
 
   
-
+// Private Route
 const PrivateRoutes = () => {
 const data = localStorage.getItem("auth");
 const parsedData = JSON.parse(data);
-const token = parsedData;
+const isLoggedIn = parsedData;
 
-  return isLoggedIn ? <Outlet/> : <Navigate to="/login"/>
+  return isLoggedIn ? <Outlet/> : <Navigate to="/"/>
 }
-const AdminRoute=
+const AdminRoutes = () => {
+const data = localStorage.getItem("auth");
+const parsedData = JSON.parse(data);
+const isAdmin = parsedData.user.role === 1;
+
+  return isAdmin ? <Outlet/> : <Navigate to="/"/>
+}
+
 
 
   // console.log(auth.user);
   // const PrivateRoute = () => {
   //   return auth?.token ? <Outlet/>:<Navigate to="login"/>
   // }
+
   return (
-    <AuthContext.Provider value={{ auth, setAuth, login, signup, logout, PrivateRoutes,AdminRoute }}>
+    <AuthContext.Provider value={{ auth, setAuth, login, signup, logout, PrivateRoutes, AdminRoutes }}>
       {children}
     </AuthContext.Provider>
   );
