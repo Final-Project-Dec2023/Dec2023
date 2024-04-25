@@ -13,7 +13,7 @@ const Search = ()=> {
     e.preventDefault();
     try {
       const { data } = await axios.get(`/product/search/${values?.keyword}`);
-      console.log(data);
+      // console.log(data);
       setValues({ ...values, results: data?.products });
       navigate("/search");
     } catch (err) {

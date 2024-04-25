@@ -47,26 +47,8 @@ const AdminCategory = () => {
       toast.error(msg);
     }
   };
-  // handleFormSubmit
-  const handleCategoryUpdate = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.put(`/category/${selected._id}`, { name: updateName });
 
-      if (!data?.error) {
-        fetchCategories();
-        setUpdateName("");
-        toast.success("Category updated successfully");
-        setShow(false);
-      }
-    } catch (err) {
-      console.log(err);
-      const msg = err?.response?.data;
-      toast.error(msg);
-    }
-  };
-
-  console.log(selected);
+  // console.log(selected);
 
   return (
     <>
@@ -87,7 +69,6 @@ const AdminCategory = () => {
         value={name}
         setValue={setName}
         handleSubmit={handleFormSubmit}
-        placeholder="Write category name"
       />
 
       <div className="">
@@ -98,7 +79,6 @@ const AdminCategory = () => {
               key={c._id}
               onClick={() => {
                 setSelected(c);
-                handleShow();
               }}
             >
               {c.name}
@@ -108,19 +88,23 @@ const AdminCategory = () => {
       </div>
 
       <>
+        <Button variant="primary" onClick={handleShow}>
+          Launch demo modal
+        </Button>
+
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>{selected?.name}</Modal.Title>
+            <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <CategoryForm
-              placeholder="update category name"
-              handleSubmit={handleCategoryUpdate}
-              value={updateName}
-              setValue={setUpdateName}
-              buttonText="Update"
-            />
-          </Modal.Body>
+          <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
         </Modal>
       </>
     </>

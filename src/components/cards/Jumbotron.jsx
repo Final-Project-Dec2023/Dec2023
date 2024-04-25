@@ -1,6 +1,6 @@
 import "../../css/Jumbotron.css"
 
-const Jumbotron = ({ title, subTitle = "Welcome to React E-commerce" }) => {
+const Jumbotron = ({ title, subTitle = "Welcome to Fragrance Hub" }) => {
   return (
     <div
       className="container jumbotron"

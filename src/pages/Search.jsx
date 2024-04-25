@@ -6,7 +6,7 @@ import Jumbotron from "../components/cards/Jumbotron";
 export default function Search() {
   const [values, setValues] = useSearch();
 
-  console.log(values);
+  // console.log(values);
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function Search() {
         subTitle={
           values?.results?.length < 1
             ? "No products found"
-            : `Found ${values?.results?.length} products`
+            : `Found ${values?.results?.length} ${values?.results?.length  > 1 ? "products" : "product"}`
         }
       />
 
@@ -23,7 +23,6 @@ export default function Search() {
         <div className="row">
           {values?.results?.map((p) => (
             <div key={p._id} className="col-md-4">
-              {/* <ProductCard product={p} /> */}
               <SearchProductCard product={p}/>
             </div>
           ))}
