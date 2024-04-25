@@ -17,7 +17,7 @@ const AdminCategory = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // fetch categories
+  // fetch all categories from the backend. fetching using the right route as used in the backend
   const fetchCategories = async () => {
     try {
       const { data } = await axios.get("/category/categories");
@@ -31,7 +31,7 @@ const AdminCategory = () => {
     fetchCategories();
   }, []);
 
-  // handleFormSubmit
+  // handleFormSubmit - this is also to create a category
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -60,8 +60,6 @@ const AdminCategory = () => {
         fetchCategories();
         setUpdateName("");
         toast.success("Category updated successfully");
-        // setShow(false);
-        // setLoading(true);
         setTimeout(() => {
             setShow(false);
             setLoading(false);
@@ -122,7 +120,7 @@ const AdminCategory = () => {
           </Modal.Header>
           <Modal.Body>
             <CategoryForm
-              placeholder="update category name"
+              placeholder="Update category name"
               handleSubmit={handleCategoryUpdate}
               value={updateName}
               setValue={setUpdateName}

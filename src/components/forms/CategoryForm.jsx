@@ -20,11 +20,13 @@ const  CategoryForm = ({
           <div className="d-flex mx-2">
           {loading ? (
                 <>
+                  <button className="btn btn-dark my-3">
                   <span
-                    className="spinner-border spinner-border-sm"
+                    className="spinner-border spinner-border-sm mx-1"
                     aria-hidden="true"
                   ></span>
                   <span role="status">Loading...</span>
+                  </button>
                 </>
               ) : (
                 <button className="btn btn-primary mt-3">{buttonText}</button>
