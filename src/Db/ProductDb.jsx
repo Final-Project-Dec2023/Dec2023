@@ -74,7 +74,8 @@ export const data=[
             one: img111,
             two: img112,
             three: img113,
-          }
+          },
+          rating: 2.2
         },
         {
           _id: 2,

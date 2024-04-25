@@ -106,15 +106,19 @@ const data = localStorage.getItem("auth");
 const parsedData = JSON.parse(data);
 const isLoggedIn = parsedData;
 
-  return isLoggedIn ? <Outlet/> : <Navigate to="/"/>
-}
-const AdminRoutes = () => {
-const data = localStorage.getItem("auth");
-const parsedData = JSON.parse(data);
-const isAdmin = parsedData.user.role === 1;
+  return isLoggedIn ? <Outlet/> : <Navigate to="/login"/>
 
-  return isAdmin ? <Outlet/> : <Navigate to="/"/>
 }
+
+const AdminRoutes = () => {
+  const data = localStorage.getItem("auth");
+  const parsedData = JSON.parse(data);
+  const isAdmin = parsedData.user.role === 1;
+
+    return isAdmin ? <Outlet/> : <Navigate to ="/"/>
+
+}
+
 
 
 

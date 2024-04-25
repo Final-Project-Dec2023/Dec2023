@@ -4,7 +4,7 @@ const Jumbotron = ({ title, subTitle = "Welcome to Fragrance Hub" }) => {
   return (
     <div
       className="container jumbotron"
-      style={{ marginTop: "-8px", height: "200px" }}
+      style={{ marginTop: "1rem", height: "200px" }}
     >
       <div className="row">
         <div className="col text-center p-5">

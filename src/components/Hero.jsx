@@ -18,12 +18,12 @@ function Hero() {
 
   return (
     <div className="hero">
-      <Carousel className="main" activeIndex={index} onSelect={handleSelect} controls={false}>
+      <Carousel className="main-pb" activeIndex={index} onSelect={handleSelect} controls={false}>
         <Carousel.Item className="">
           <div className="img-pb">
               <img src={img1} text="First slide" width="100%" height="450px" />
           </div>
-          <div className="main">
+          <div className="main-b">
             <Carousel.Caption>
               <div className="text-body1">
                 <h1>Classic Elegance</h1>

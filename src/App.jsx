@@ -22,6 +22,8 @@ import { ScrollToTop } from "./components/utils/SmoothScrollToTop";
 import { useAuth } from "./contexts/Auth";
 import AdminCategory from "./pages/admin/Category";
 
+// WARNING: Do Not change anything in this pages.
+
 function App() {
   const { PrivateRoutes, AdminRoutes } = useAuth();
 
@@ -41,20 +43,21 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/customer-details" element={<CustomerDetails />} />
           <Route path="/cart" element={<CartItems />} />
-
           <Route path="/new-arrivals" element={<Newarrival />} />
           <Route path="/detail/:productId" element={<DetailPages />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/admin-category" element={<AdminCategory/>} />
+          <Route path="/admin-category" element={<AdminCategory />} />
 
           {/* Private Routes */}
           <Route path="/dashboard" element={<PrivateRoutes />}>
             <Route path="user" element={<UserDashboard />} />
             <Route path="order" element={<Order />} />
 
-            {/* AdminRoutes */}
+            {/* Admin Routes */}
             <Route path="" element={<AdminRoutes />}>
-              <Route path="admin" element={<AdminDashboard />} />
+              <Route path="admin" element={<AdminDashboard />} />         
+               <Route path="admin-category" element={<AdminCategory/>} />
+
             </Route>
           </Route>
         </Routes>

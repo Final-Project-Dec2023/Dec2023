@@ -44,8 +44,11 @@ const Login = () => {
       setLoading(false);
 
       if (success) {
+        setTimeout(() => {
         toast.success("Login successful");
         navigate("/");
+        }, 5000)
+        
       } else {
         toast.error("Login failed. try again..");
       }
@@ -59,7 +62,6 @@ const Login = () => {
 
   return (
     <div>
-      <ToastContainer />
       <div className="dan">
         <div className="top-section">
           <img className="ww" src={signinIcon} alt="" />

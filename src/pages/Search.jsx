@@ -1,11 +1,9 @@
 import { useSearch } from "../contexts/Search";
-import ProductCard from "../components/ProductCardM";
 import SearchProductCard from "../components/cards/SearchProductCard";
 import Jumbotron from "../components/cards/Jumbotron";
 
 export default function Search() {
   const [values, setValues] = useSearch();
-
   // console.log(values);
 
   return (

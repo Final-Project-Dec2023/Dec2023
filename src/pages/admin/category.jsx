@@ -3,8 +3,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import CategoryForm from "../../components/forms/CategoryForm";
 import { useAuth } from "../../contexts/Auth";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import AdminMenu from "../../components/nav/AdminMenu";
+import Jumbotron from "../../components/cards/Jumbotron";
+import LoadBtn from "../../components/utils/LoadBtn";
 
 const AdminCategory = () => {
   const [name, setName] = useState("");
@@ -12,6 +14,11 @@ const AdminCategory = () => {
   const [updateName, setUpdateName] = useState("");
   const [selected, setSelected] = useState(null);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+
+  const { auth } = useAuth();
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -34,79 +41,133 @@ const AdminCategory = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const { data } = await axios.post("/category/create", { name });
 
       if (data?.success) {
         fetchCategories();
         setName("");
         toast.success("Category created successfully");
+        setLoading(false);
       }
     } catch (err) {
       console.log(err);
       const msg = err?.response?.data;
       toast.error(msg);
+      setLoading(false);
+    }
+  };
+  // handleCategoryUpdate
+  const handleCategoryUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const { data } = await axios.put(`/category/${selected._id}`, {
+        name: updateName,
+      });
+
+      if (!data?.error) {
+        setLoading(false);
+        fetchCategories();
+        setUpdateName("");
+        toast.success("Category updated successfully");
+        setShow(false);
+      }
+    } catch (err) {
+      console.log(err);
+      const msg = err?.response?.data?.error;
+      toast.error(msg);
+      setLoading(false);
+    }
+  };
+  // handleDelete
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading2(true);
+      const { data } = await axios.delete(`/category/${selected._id}`);
+
+      if (!data?.error) {
+        setLoading2(false);
+        fetchCategories();
+        toast.success(`"${data.name}" is deleted`);
+        setShow(false);
+      }
+    } catch (err) {
+      console.log(err);
+      const msg = err?.response?.data?.error;
+      toast.error(msg);
+      setLoading2(false);
     }
   };
 
-  // console.log(selected);
+  //   console.log(selected);
 
   return (
     <>
-      <h1>All Categories</h1>
-      {categories.length > 0 &&
-        categories.map((category) => {
-          return (
-            <div className="" key={category._id}>
-              <ul key={category._id}>
-                <li>{category.name}</li>
-              </ul>
-            </div>
-          );
-        })}
-
-      {/* Create category Form */}
-      <CategoryForm
-        value={name}
-        setValue={setName}
-        handleSubmit={handleFormSubmit}
+    <Jumbotron
+        title={`Hello ${auth?.user?.name}`}
+        subTitle="Admin Dashboard"
       />
+    
 
-      <div className="">
-        {categories?.map((c) => {
-          return (
-            <button
-              className="btn btn-outline-primary m-3"
-              key={c._id}
-              onClick={() => {
-                setSelected(c);
-              }}
-            >
-              {c.name}
-            </button>
-          );
-        })}
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-3">
+            <AdminMenu />
+          </div>
+          <div className="col-md-9">
+            <div className="p-3 mt-2 mb-2 h4 bg-light">Manage Categories</div>
+
+            <CategoryForm
+              value={name}
+              setValue={setName}
+              handleSubmit={handleFormSubmit}
+              placeholder="Create new category..."
+              buttonText={loading ? <LoadBtn/> :"Submit"}
+            />
+
+            <hr />
+
+            <div className="col">
+              {categories?.map((c) => (
+                <button
+                  key={c._id}
+                  className="btn btn-outline-primary m-3"
+                  onClick={() => {
+                    setSelected(c);
+                    setUpdateName(c.name);
+                    handleShow();
+                  }}
+                >
+                  {c.name}
+                </button>
+              ))}
+            </div>
+
+              {/* Modal */}
+            <>
+              <Modal show={show} onHide={handleClose} centered>
+                <Modal.Header closeButton>
+                  <Modal.Title>Update Category</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <CategoryForm
+                    placeholder="update category name"
+                    handleSubmit={handleCategoryUpdate}
+                    value={updateName}
+                    setValue={setUpdateName}
+                    buttonText={loading ? <LoadBtn/> :"Update"}
+                    handleDelete={handleDelete}
+                    loading={loading2}
+                    LoadBtn={LoadBtn}
+                  />
+                </Modal.Body>
+              </Modal>
+            </>
+          </div>
+        </div>
       </div>
-
-      <>
-        <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
-        </Button>
-
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
     </>
   );
 };
