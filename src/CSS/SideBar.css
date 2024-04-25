@@ -1,4 +1,8 @@
-
+    @media(min-width: 768px) {
+        .upNav {
+            display: none;
+        }
+    }
 @media(max-width: 767px) {
     .upNav {
         height: 56px;
@@ -8,7 +12,6 @@
         background-color: #0098B8 !important;
         padding: 0 5px;
     }
-   
 
     .left-nav {
         width: 20%;

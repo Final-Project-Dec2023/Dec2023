@@ -2,7 +2,7 @@ import React from 'react'
 import '../../css/ProductM.css'
 
 const SearchProductCard = ({product}) => {
-  const {name,description, price, images, isavailability, _id} = product
+  const {name, description, price, images, isavailability, _id} = product
   return (
     <div key={_id}>
       <div className='m-card-Container' key={_id}>

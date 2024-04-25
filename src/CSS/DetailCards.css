@@ -6,22 +6,22 @@
  } 
 .productCont{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    width: 80rem;
+    width: 100%;
     height: 33rem;
 }
 .productImg{
-    width: 50%;
+    width: 55%;
     height: 100%;
     border-radius: 10px;
     border: 1px solid #D7D7D7;
     display: flex;
     padding: 0.5rem 0;
+
 }
 .selectImg{
     width: 25%;
-    /* border: 1px solid black; */
     height: 70%;
     display: flex;
     flex-direction: column;
@@ -42,7 +42,7 @@
     border: 2px solid #000000;
 }
 .clickedImg{
-    width: 75%;
+    width: 70%;
     height: 100%;
 }
 .clickedImg img{
@@ -50,7 +50,7 @@
     width: 100%;
 }
 .productInfo{
-    width: 30.7%;
+    width: 35%;
     height: 100%;
     border: 1px solid #D7D7D7;
     display: flex;
@@ -64,8 +64,9 @@
     font-weight: 500
 }
 .imgG img{
-     width: 0.88rem;
+     width: 1rem;
     height: 0.81rem;
+    
 }
 /* .myG{
     display: flex !important;
@@ -87,9 +88,12 @@
     --bs-btn-hover-bg: none !important;
 }
 .buttonG{
-    width: 21.25rem !important;
+    width: 100% !important;
     height: 3.06rem !important;
     margin-left: 0 !important;
+}
+.buttonG:hover{
+    border: 1px solid black !important;
 }
 
 @media (min-width: 768px) and (max-width: 1024px){
@@ -104,8 +108,9 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        width: 39.4rem !important;
-        height: 73rem !important;
+        width: 100% !important;
+        height: 100% !important;
+        gap: 20px;
     }
     .productImg{
         width: 100%;
@@ -120,10 +125,10 @@
     .selectImg{
         width: 25% !important;
         /* border: 1px solid black; */
-        height: 80%;
+        height: 23rem !important;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: space-evenly !important;
         /* align-items: center; */
         padding-left: 1rem;
         /* padding-top: 0.5rem; */
@@ -278,6 +283,7 @@
 .buttonG{
     width: 305px !important;
     height: 43px !important;
+   
 }
 .btn{
     margin-bottom: 0rem !important;

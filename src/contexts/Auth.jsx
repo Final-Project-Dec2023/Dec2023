@@ -100,13 +100,14 @@ const AuthProvider = ({ children }) => {
   };
 
   
-
+// Private Route
 const PrivateRoutes = () => {
 const data = localStorage.getItem("auth");
 const parsedData = JSON.parse(data);
 const isLoggedIn = parsedData;
 
   return isLoggedIn ? <Outlet/> : <Navigate to="/login"/>
+
 }
 
 const AdminRoutes = () => {
@@ -115,7 +116,9 @@ const AdminRoutes = () => {
   const isAdmin = parsedData.user.role === 1;
 
     return isAdmin ? <Outlet/> : <Navigate to ="/"/>
+
 }
+
 
 
   // console.log(auth.user);

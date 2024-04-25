@@ -18,7 +18,7 @@ function NewAccordion({ handleCheckboxChange, handleAvailabilityChange}) {
 
   const genders = Array.from(new Set(data.map((product) => {
     return product.gender
-  }))).sort()
+  })))
 
  
   const brands = Array.from(new Set(data.map((product) => {
@@ -79,11 +79,11 @@ function NewAccordion({ handleCheckboxChange, handleAvailabilityChange}) {
           <Accordion.Body className="checked-div6">
             <div className='' >
               <div className=' d-flex'>
-                <input type='search' placeholder="Search" className='arrival-search-bar' onChange={(e) => set(e.target.value.toLowerCase().trim())} />
-                <div style={{ backgroundColor: "black", width: "2rem", height: "35px", borderTopRightRadius: "3px", borderBottomRightRadius: "3px" }} className=''><img src={searchEye} alt="" className="" /></div>
+                <input type='search' placeholder="Search" className='arrival-search-bar' onChange={(e) => setSearch(e.target.value.toLowerCase().trim())} />
+                <button type="submit" style={{ backgroundColor: "black", width: "2.5rem", height: "35px", borderTopRightRadius: "3px", borderBottomRightRadius: "3px" }} className=''><img src={searchEye} alt="" className="" /></button>
               </div>
             </div>
-            <div className='mt-3' style={{ maxHeight: "280px", overflowY: 'auto', overflowX: "hidden", width: "12.7rem", scrollbarGutter: "stable" }}>
+            <div className='mt-3 search-brand'>
               {brands.filter((brand, index) => {
                 return search.toLowerCase() === '' ? brand : brand.toLowerCase().includes(search)
               }).map((brand, index) => (

@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import AllFragance from "./pages/AllFragrance";
 import Menu from "./components/NavBar";
@@ -19,15 +19,19 @@ import Search from "./pages/Search";
 import UserDashboard from "./pages/dashboard/User";
 import AdminDashboard from "./pages/dashboard/Admin";
 import { ScrollToTop } from "./components/utils/SmoothScrollToTop";
-// import PrivateRoutes from "./pages/routes/PrivateRoutes";
 import { useAuth } from "./contexts/Auth";
 import AdminCategory from "./pages/admin/Category";
+import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
 
 // WARNING: Do Not change anything in this pages.
 
 function App() {
-
-  const { PrivateRoutes, AdminRoutes } = useAuth()
+  const { PrivateRoutes, AdminRoutes } = useAuth();
+  // const location = useLocation();
+  // const isLoginPage = location.pathname === "/login"
+  // const isSignUpPage = location.pathname === "/signup"
+  // const isMenuVisble = !(isLoginPage || isSignUpPage)
 
   return (
     <>
@@ -38,32 +42,35 @@ function App() {
         <ScrollToTop />
         <ToastContainer />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/all-fragrances" element={<AllFragance />} />
-          <Route path="/cart-empty" element={<CartEmpty />} />
+          {/* these are the following pages that should have navbar and footer page */}
+        
+            <Route path="/" element={<Home />} />
+            <Route path="/all-fragrances" element={<AllFragance />} />
+            <Route path="/cart-empty" element={<CartEmpty />} />
+            <Route path="/customer-details" element={<CustomerDetails />} />
+            <Route path="/cart" element={<CartItems />} />
+            <Route path="/new-arrivals" element={<Newarrival />} />
+            <Route path="/detail/:productId" element={<DetailPages />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/admin-category" element={<AdminCategory />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<Blog />} />
+            {/* Private Routes */}
+            <Route path="/dashboard" element={<PrivateRoutes />}>
+              <Route path="user" element={<UserDashboard />} />
+              <Route path="order" element={<Order />} />
+              {/* Admin Routes */}
+              <Route path="" element={<AdminRoutes />}>
+                <Route path="admin" element={<AdminDashboard />} />
+                <Route path="admin-category" element={<AdminCategory />} />
+              </Route>
+            </Route>
+          
+
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/customer-details" element={<CustomerDetails />} />
-          <Route path="/cart" element={<CartItems />} />
-
-          <Route path="/new-arrivals" element={<Newarrival />} />
-          <Route path="/detail/:productId" element={<DetailPages />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/admin-category" element={<AdminCategory />} />
-
-
-          {/* Private Routes */}
-          <Route path="/" element={<PrivateRoutes />}>
-            <Route path="/dashboard/user" element={<UserDashboard />} />
-            <Route path="/order" element={<Order />} />
-            {/* Admin Routes */}
-          <Route path="/" element={<AdminRoutes />}>
-            <Route path="/dashboard/admin" element={<AdminDashboard />} />
-          </Route>
-          </Route>
-
         </Routes>
-        {/* <Footer/> */}
+        <Footer/>
       </Router>
     </>
   );
