@@ -108,7 +108,7 @@
   /* border-radius: 50%; */
 }
 .pic-story img{
-  height: 100%;
+  height: 95%;
   width: 100%;
   border-radius: 50%;
 }
@@ -126,7 +126,6 @@
 .pics-celeb{
   width: 100%;
   height: 48px;
-  margin-top: 10px;
   /* border: 1px solid; */
   display: flex;
   
@@ -136,12 +135,165 @@
   padding-left: 7px;
 }
 
+
 .star{
   align-items: end;
 }
 .box-container-mobile{
   display: none;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main{
+    width: 100%;
+    height: 280px;
+    background-color:#00758E;
+    display: flex;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+  }
+  
+  
+  .main-body{
+     height: 60%;
+     /* padding-left: 20px; */
+     /* width: 100%; */
+  }
+  
+  .heading{
+    padding-top: 5px;
+    /* padding-left: px; */
+    color: white;
+   /* display: flex;
+   justify-content: space-between; */
+   /* align-items: center; */
+   height: 20px;
+  }
+  .content{
+    height: 23px;
+  }
+  
+  .content p{
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .content h1{
+    font-weight: 800;
+    font-size: 20px;
+  }
+  .box-container-mobile{
+     height: 40vh;
+     width: 100%;
+     display: flex;
+     justify-content: space-around;
+     gap: 10px;
+     /* flex-wrap: wrap; */
+     flex-direction: row;
+     padding-top: 40px;
+     /* background-color: red; */
+     overflow-x: scroll;
+     
+    
+
+  }
+  
+  .box {
+   height: 50%;
+   display: flex;
+   /* justify-content: space-between; */
+   flex-direction: column;
+   flex: 0 0 50%;
+   scroll-snap-align: start;
+    /* display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    width: 40%;
+    height: 120px;
+    display: flex;
+    justify-content: space-around; */
+  }
+  
+  
+    .para{
+      height: 60px;
+      font-size: 1rem;
+      font-weight: 400;
+      width: 100%;
+      padding-left: 20px;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+    
+  
+    .icon{
+      /* border: 1px solid red; */
+      height: 5px;
+      padding-top: 5px;
+     /* padding-top: 15px; */
+    }
+   
+  .arrow {
+    display: none;
+  }
+  .head-icon{
+   display: none;
+  }
+  
+  .arrow-icons svg {
+     display: none;
+  }
+  .arrow-container h1{
+    font-size: 0.9rem;
+  }
+  .arrow-container p{
+    padding-left: 20px;
+  }
+  
+  
+  .pic-story{
+    border-radius: 100%;
+  }
+  .pic-story img{
+    height: 80%;
+    width: 100%;
+   /* height: 100%; */
+   /* width: 100%; */
+   /* padding-bottom: 7px; */
+   border-radius: 50%;
+  }
+  
+  .pic-story{
+   /* font-size: 10px; */
+  }
+  
+  .pic-story{
+   
+  }
+  
+  .pics-celeb{
+   height: 40%;
+   padding-top: 7px;
+   /* border: red solid; */
+  }
+  .pic-text h6{
+   font-size: 0.9rem;
+  }
+  .pic-text p{
+    font-size: 0.7rem;
+  }
+  
+  .star{
+   
+  }
+
+  .box-container{
+    display: none;
+  }
+}
+
 
 @media (min-width: 370px) and (max-width: 767px) {
   .main{

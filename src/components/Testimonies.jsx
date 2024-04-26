@@ -100,7 +100,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa
-                minima magni dolor delectus assumenda perspiciatis non ad
+                minima magni dolor delectus assumenda perspi
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -119,8 +119,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Excepturi illum itaque, asperiores vel cum atque repellendus
-                perferendis ab error ex.
+                Excepturi illum itaque, asperiores vel cum atque repellendus.
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -139,8 +138,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Excepturi illum itaque, asperiores vel cum atque repellendus
-                perferendis ab error ex.
+                Excepturi illum itaque, asperiores vel cum atque repellendu.
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -182,7 +180,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa
-                minima magni dolor delectus assumenda perspiciatis non ad
+                minima magni dolor delectus assumenda
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -201,8 +199,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Excepturi illum itaque, asperiores vel cum atque repellendus
-                perferendis ab error ex.
+                Excepturi illum itaque, asperiores vel cum atque repellendus.
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -221,8 +218,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Excepturi illum itaque, asperiores vel cum atque repellendus
-                perferendis ab error ex.
+                Excepturi illum itaque, asperiores vel cum atque repellendus.
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">

@@ -96,9 +96,9 @@ const Login = () => {
                 />
                 <span onClick={() => setShowPassword(!showPassword)}>
                   {showPassword ? (
-                    <FaRegEye className="icon" />
+                    <FaRegEye className="icon-d" />
                   ) : (
-                    <FaRegEyeSlash className="icon" />
+                    <FaRegEyeSlash className="icon-d" />
                   )}
                 </span>
               </div>
