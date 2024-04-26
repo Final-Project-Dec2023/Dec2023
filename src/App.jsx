@@ -23,6 +23,9 @@ import { useAuth } from "./contexts/Auth";
 import AdminCategory from "./pages/admin/Category";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import AdminProduct from "./pages/admin/AdminProduct";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminProductDetail from "./pages/admin/AdminProductDetail";
 
 // WARNING: Do Not change anything in this pages.
 
@@ -57,6 +60,10 @@ function App() {
             <Route path="" element={<AdminRoutes />}>
               <Route path="admin" element={<AdminDashboard />} />         
                <Route path="admin-category" element={<AdminCategory/>} />
+               <Route path="admin-product" element={<AdminProduct/>} />
+               <Route path="admin-product/detail/:slug" element={<AdminProductDetail/>} />
+               <Route path="admin-products" element={<AdminProducts/>} />
+
 
             </Route>
           </Route>
