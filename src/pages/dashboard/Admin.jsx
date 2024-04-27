@@ -1,6 +1,8 @@
 import { useAuth } from "../../contexts/Auth.jsx";
 import Jumbotron from "../../components/cards/Jumbotron.jsx";
 import AdminMenu from "../../components/nav/AdminMenu.jsx";
+import Menu from "../../components/NavBar.jsx";
+import SideNav from "../../components/SideNav.jsx";
 
 const AdminDashboard = () => {
   // context
@@ -8,6 +10,8 @@ const AdminDashboard = () => {
 
   return (
     <>
+      <Menu />
+      <SideNav />
       <Jumbotron
         title={`Hello ${auth?.user?.name || "Admin"}`}
         subTitle="Admin Dashboard"
@@ -27,34 +31,34 @@ const AdminDashboard = () => {
               <li className="list-group">Admin</li>
             </ul> */}
             <table class="table table-striped">
-            <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>{auth?.user?.name}</td>
-      <td>admin@demo.com</td>
-      <td>090885530123</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>--</td>
-      <td>--</td>
-      <td>--</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry the Bird</td>
-      <td>--</td>
-      <td>--</td>
-    </tr>
-  </tbody>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{auth?.user?.name}</td>
+                  <td>admin@demo.com</td>
+                  <td>090885530123</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>--</td>
+                  <td>--</td>
+                  <td>--</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry the Bird</td>
+                  <td>--</td>
+                  <td>--</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
