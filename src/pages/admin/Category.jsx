@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -18,6 +15,7 @@ const AdminCategory = () => {
   const [selected, setSelected] = useState(null);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
   const [loading2, setLoading2] = useState(false);
 
   const { auth } = useAuth();
@@ -44,20 +42,20 @@ const AdminCategory = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      setLoading1(true);
       const { data } = await axios.post("/category/create", { name });
 
       if (data?.success) {
         fetchCategories();
         setName("");
         toast.success("Category created successfully");
-        setLoading(false);
+        setLoading1(false);
       }
     } catch (err) {
       console.log(err);
       const msg = err?.response?.data;
       toast.error(msg);
-      setLoading(false);
+      setLoading1(false);
     }
   };
   // handleCategoryUpdate
@@ -127,7 +125,7 @@ const AdminCategory = () => {
               setValue={setName}
               handleSubmit={handleFormSubmit}
               placeholder="Create new category..."
-              buttonText={loading ? <LoadBtn/> :"Submit"}
+              buttonText={loading1 ? <LoadBtn/> :"Submit"}
             />
 
             <hr />

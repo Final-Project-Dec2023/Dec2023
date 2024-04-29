@@ -1,16 +1,17 @@
-// one for regular user and one for admin user.
-
-
 import { useAuth } from "../../contexts/Auth";
 import Jumbotron from "../../components/cards/Jumbotron";
 import UserMenu from "../../components/nav/UserMenu";
+import Menu from "../../components/NavBar";
+import SideNav from "../../components/SideNav";
 
 export default function UserDashboard() {
   // context
-  const {auth, setAuth} = useAuth();
+  const { auth, setAuth } = useAuth();
 
   return (
     <>
+      <Menu />
+      <SideNav />
       <Jumbotron title={`Hello ${auth?.user?.name}`} subTitle="Dashboard" />
 
       <div className="container-fluid">
