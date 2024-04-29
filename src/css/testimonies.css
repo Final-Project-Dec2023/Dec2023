@@ -97,9 +97,7 @@
 .pics-celeb{
   width: 100%;
   height: 48px;
-  /* border: 1px solid; */
   display: flex;
-  
 }
 .pic-text{
   width: 60%;

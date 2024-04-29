@@ -76,7 +76,7 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <>
       <div className="container-milly">
         <div className="left-side-milly">
           <div className="top-section-milly ">
@@ -207,7 +207,7 @@ const SignUp = () => {
           <img src={registerImg} className="image-fluid" />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

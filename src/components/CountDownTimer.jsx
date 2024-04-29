@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import "../css/Countdown.css";
 import flash from "../assets/icons/flash logo.png";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { data } from "../Db/ProductDb";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const CountDownTimer = () => {
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
-
+  const [product, setProduct] = useState([]);
   function calculateTimeRemaining() {
     const now = new Date();
     const endOfDay = new Date(now);
@@ -34,7 +34,20 @@ const CountDownTimer = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const flashProduct = data.slice(4, 8);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/product/all`);
+        setProduct(response?.data?.products);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+      console.log(product);
+    };
+    fetchData();
+  }, []);
+
+  const flashProduct = product?.slice(4, 8);
 
   return (
     <>
@@ -54,17 +67,15 @@ const CountDownTimer = () => {
         </div>
         <div className="flash-product">
           {flashProduct.map((product) => {
-            const {_id, image, name, description,priceCents, isavailability} = product
-            let price = (priceCents / 100).toLocaleString(undefined, {
-                minimumFractionDigits: 2,
-              });
+            const { _id, images, name, description, price, isAvailable } =
+              product;
             return (
               <>
               <Link className="link" to={`/detail/${product._id}`}>
                 <div key={_id}>
                   <div className="m-card-Container" key={_id}>
                     <div className="m-image">
-                      <img src={image} />
+                      <img src={images[0].url} />
                     </div>
                     <div className="m-card-info">
                       <div className="m-card-text">
@@ -73,7 +84,7 @@ const CountDownTimer = () => {
                         <h2>&#x20A6;{price}</h2>
                       </div>
                       <div className="m-card-btn">
-                        {isavailability ? (
+                        {isAvailable ? (
                           <button>Add to cart</button>
                         ) : (
                           <button className="not-ava" disabled>

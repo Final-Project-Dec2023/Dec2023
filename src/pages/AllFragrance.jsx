@@ -74,7 +74,7 @@ const AllFragrance = () => {
     let filteredProducts = data;
 
     //filter for Gender
-    if (selectedGender.length > 0) {
+     if (selectedGender.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
         selectedGender.includes(product.gender)
       );
@@ -219,6 +219,7 @@ const AllFragrance = () => {
     <>
       <Menu />
       <SideNav />
+      <Breadcrumbs />
       <div className="m-section">
         <div className="m-main">
           <div className="m-title">
@@ -271,7 +272,7 @@ const AllFragrance = () => {
             </div>
 
             <div className="m-products">
-              {paginate.map((product, index) => (
+              {paginate.map((product) => (
                 <ProductCard product={product} key={product._id} />
               ))}
             </div>
@@ -285,7 +286,6 @@ const AllFragrance = () => {
           />
         </div>
       </div>
-      <CountDownTimer/>
       <Footer />
     </>
   );

@@ -10,7 +10,7 @@ import CountDownTimer from "../components/CountDownTimer";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Menu />
       <SideNav />
       <Hero />
@@ -20,7 +20,7 @@ const Home = () => {
       <CountDownTimer/>
       <BlogCard />
       <Footer />
-    </div>
+    </>
   );
 };
 
