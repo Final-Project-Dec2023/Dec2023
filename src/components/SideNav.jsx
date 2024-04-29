@@ -12,9 +12,14 @@ import HumanB from "../assets/icons/humprofile.png";
 import CartB from "../assets/icons/blackcart.png";
 import FragLogo from "../assets/images/Frame 579.png";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/Auth";
+// import Search from "./forms/Search";
+// import { useNavigate } from "react-router-dom";
 
 function SideNav() {
   const [show, setShow] = useState(false);
+  const { auth, login} = useAuth();
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -32,8 +37,21 @@ function SideNav() {
           </div>
 
           <div className="right-icons">
+            <div className="">
             <img src={Searchi} alt="" />
-            <img src={Humani} alt="" />
+            </div>
+
+         
+          {!auth?.user ? (
+              <Link to="/login">
+                <img src={Humani} alt="" />
+              </Link>
+            ) : ( 
+              <Link to={auth?.user.role === 1 ? "/dashboard/admin" : "/dashboard/user"}>
+              <img src={Humani} alt="" />
+            </Link> 
+          )}
+          
             <Link to="/cart">
             <img src={Carti} alt="" />
             </Link>
@@ -49,11 +67,6 @@ function SideNav() {
               ></Offcanvas.Header>
               <img src={FragLogo} alt="" />
             </div>
-            {/* <div className="li-img">
-              <img src={SearchB} alt="" />
-              <img src={HumanB} alt="" />
-              <img src={CartB} alt="" />
-            </div> */}
           </div>
           <Offcanvas.Body className="off-main">
             <div className="">

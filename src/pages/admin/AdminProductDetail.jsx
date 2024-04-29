@@ -55,7 +55,7 @@ const AdminProductDetail = () => {
     }
   };
 
-  console.log(product);
+  // console.log(product);
 
   return (
     <>
@@ -67,7 +67,6 @@ const AdminProductDetail = () => {
 
       <div className="container py-3">
         <AdminProductCard product={product} slug={slug} handleDelete={handleDelete} loading={loading} />
-        {/* Features in this AdminProductDetail page include delete, link to update, etc */}
       </div>
       <Footer />
     </>

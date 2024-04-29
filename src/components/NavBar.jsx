@@ -87,11 +87,16 @@ function Menu() {
               </div>
             </div>
 
-            <div className="cart-sec">
+          <div className="everything-cart">
+          <div className="cart-sec">
               <Link to="/cart">
                 <img src={Cartimg} alt="" />
               </Link>
             </div>
+            <div className="cartcount">
+              <span>3</span>
+            </div>
+          </div>
           </div>
         </div>
 

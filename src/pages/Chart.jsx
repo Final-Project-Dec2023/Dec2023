@@ -11,7 +11,7 @@ const CartEmpty = () => {
     <Menu/>
     <SideNav/>
     <div className='cart-container'>
-      <>
+      <>  
       <div className='cart'>
         <img src ={order}/>
       </div>

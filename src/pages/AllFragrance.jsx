@@ -12,6 +12,7 @@ import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
 import ShowingAllfilter from "../components/ShowingAllfilter";
 import SortBy from "../components/SortBy";
+import CountDownTimer from "../components/CountDownTimer";
 const AllFragrance = () => {
   //general data
   const [currentProducts, setCurrentProducts] = useState(data);
@@ -284,6 +285,7 @@ const AllFragrance = () => {
           />
         </div>
       </div>
+      <CountDownTimer/>
       <Footer />
     </>
   );

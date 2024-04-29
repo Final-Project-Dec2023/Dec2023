@@ -191,7 +191,7 @@ function NewAccordion({ handleCheckboxChange, handleAvailabilityChange, handleSe
         <Accordion.Body>
           <div className='checked-div5'>
             <button onClick={() => {handleAvailabilityChange('true'); handleSelectedFilter("Product In stock");}} style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "green", border: "none",fontFamily:"Satoshi"  }} className='ms-2 mt-3' /> <span className='text-success'>In stock</span> <br />
-            <button onClick={() => {handleAvailabilityChange('false'); handleSelectedFilter("Product Out of Stock");}} style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "red", border: "none", fontFamily:"Satoshi" }} className='ms-2 mt-2' /> <span className='text-danger'>Out of stock</span>
+            <button onClick={() => {handleAvailabilityChange('false'); handleSelectedFilter("Product In stock");}} style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "red", border: "none", fontFamily:"Satoshi" }} className='ms-2 mt-2' /> <span className='text-danger'>Out of stock</span>
           </div>
         </Accordion.Body>
       </Accordion.Item>

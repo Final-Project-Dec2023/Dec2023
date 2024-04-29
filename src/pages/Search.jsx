@@ -3,6 +3,7 @@ import SearchProductCard from "../components/cards/SearchProductCard";
 import Jumbotron from "../components/cards/Jumbotron";
 import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
+import Footer from "../components/Footer";
 
 export default function Search() {
   const [values, setValues] = useSearch();
@@ -32,6 +33,7 @@ export default function Search() {
           ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

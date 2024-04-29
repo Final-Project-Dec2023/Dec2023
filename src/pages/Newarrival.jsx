@@ -17,6 +17,7 @@ import Hamburger from "../components/Hamburger";
 import { RenderPaginationButtons } from "../components/NAPagination";
 
 const Newarrival = () => {
+  const [savedItems, setSavedItems] = useState([]);
   const [currentProducts, setCurrentProducts] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedGender, setSelectedGender] = useState([]);
@@ -98,7 +99,17 @@ const Newarrival = () => {
   }, [selectedGender,selectedBrand,selectedFragranceTypes,selectedScentType,selectedAvailability,selectedPrice,selectedAlphabet]);
 
   console.log(currentProducts);
-  localStorage.setItem('currentProducts', JSON.stringify(currentProducts))
+  useEffect(() => {
+    localStorage.setItem('currentProducts', JSON.stringify(currentProducts));
+  }, [currentProducts]);
+
+  // Load state on component mount
+  useEffect(() => {
+    const savedCurrentProducts = JSON.parse(localStorage.getItem('currentProducts'));
+    if (savedCurrentProducts) {
+      setCurrentProducts(savedCurrentProducts);
+    }
+  }, []);
   
   const handleCheckboxChange = (event, value, category) => {
     const isChecked = event.target.checked;
@@ -200,7 +211,7 @@ const Newarrival = () => {
             </div>
           </div>
           
-          <div className="me-lg-3 mt-2">
+          <div className="me-lg-3 mt-4">
           <h6 onClick={handleClick}>
         <span className="">
         <BiSort />
@@ -229,7 +240,7 @@ const Newarrival = () => {
                               fontSize: "10px",
                               cursor: "pointer",
                             }}
-                            onClick={() => handleDelete(index)}
+                            onClick={() => {handleDelete(index); }}
                           >
                             X
                           </span>
@@ -257,6 +268,7 @@ const Newarrival = () => {
             <NewAccordion
               handleCheckboxChange={handleCheckboxChange}
               handleAvailabilityChange={handleAvailabilityChange}
+              handleSelectedFilter={handleSelectedFilter}
             />
           </div>
 

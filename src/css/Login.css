@@ -23,7 +23,7 @@
     font-size: 15px;
 }
 .top-section img{
-    height: 80px;
+    height: 16px;
     width: 10rem
     
 }
@@ -69,14 +69,12 @@
     height: 100%;
 }
 .ddd{
-    
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 2rem;
     width: 100%;
     margin-right: 10px;
-   
 }
 
 .ddd .yp{

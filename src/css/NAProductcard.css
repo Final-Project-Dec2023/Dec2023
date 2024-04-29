@@ -62,7 +62,7 @@
 
 @media (min-width: 320px) and (max-width: 768px) {
     .card {
-        width: 11rem;
+        width: 10rem;
         height: 260px !important;
         text-align: left;
     

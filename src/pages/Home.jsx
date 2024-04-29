@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
 import NewArrivalComponent from "../components/NewArrivalComponent";
+import CountDownTimer from "../components/CountDownTimer";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <Brands />
       <Testimonies />
       <NewArrivalComponent title="New Arrivals" link = "/new-arrivals"/>
+      <CountDownTimer/>
       <BlogCard />
       <Footer />
     </div>

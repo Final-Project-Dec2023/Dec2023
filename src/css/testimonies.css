@@ -11,15 +11,11 @@
 .main-body{
     height: 40%;
     width: 90%;
-   
-    /* background-color: dodgerblue; */
-    /* background-size: cover; */
 }
 
 .heading{
   padding-top: 20px;
   color: white;
-  /* width: 8; */
 }
 .box-container{
     display: flex;
@@ -38,12 +34,11 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
-    /* padding-bottom: 50px; */
+    padding: 2px;
   }
 
 
   .para{
-    /* padding: 30px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,22 +48,6 @@
     flex-direction: column;
     padding-top: 15px;
   }
-  /* .para-one{
-    padding: 20px;
-  }
-  .para-two{
-    padding: 20px;
-  }
-  .para-three{
-    padding: 30px;
-  }
-  .para-four{
-    padding: 30px;
-  }
-  .para-five{
-    padding: 30px;
-  } */
-
   .icon{
     padding-left: 15px;
   }
@@ -77,20 +56,15 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    /* border: 1px solid #555; */
 }
 
 
-/* .arrow-icons {
-  font-size: 200px;
-} */
+
 .head-icon{
   font-size: 50px;
 }
 
 .arrow-icons svg {
-    /* Add custom styles to your arrow icons here */
-    /* For example: */
     margin: 0 5px; /* Add some spacing between icons */
     color: #555; /* Change the color */
     font-size: 24px; /* Adjust the size */
@@ -99,16 +73,13 @@
 
 
 .pic-story{
-  height: 100%;
-  width: 15%;
+  height: 40px;
+  width: 40px;
   display: flex;
-  padding-left: 5px;
-  /* background-color: #555; */
-  /* border: 1px solid red; */
-  /* border-radius: 50%; */
+  padding: 5px;
 }
 .pic-story img{
-  height: 95%;
+  height: 100%;
   width: 100%;
   border-radius: 50%;
 }
@@ -133,6 +104,10 @@
 .pic-text{
   width: 60%;
   padding-left: 7px;
+}
+.pic-text p{
+  font-size: .8rem;
+  color: #777;
 }
 
 
@@ -250,27 +225,6 @@
   }
   .arrow-container p{
     padding-left: 20px;
-  }
-  
-  
-  .pic-story{
-    border-radius: 100%;
-  }
-  .pic-story img{
-    height: 80%;
-    width: 100%;
-   /* height: 100%; */
-   /* width: 100%; */
-   /* padding-bottom: 7px; */
-   border-radius: 50%;
-  }
-  
-  .pic-story{
-   /* font-size: 10px; */
-  }
-  
-  .pic-story{
-   
   }
   
   .pics-celeb{
