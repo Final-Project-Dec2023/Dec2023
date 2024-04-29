@@ -8,7 +8,7 @@ const Contact = () => {
   return (
     <>
       <Menu />
-      <SideNav />F
+      <SideNav />
       <Jumbotron title="COMING SOON..." subTitle="Contact Page" />
       <Footer />
     </>

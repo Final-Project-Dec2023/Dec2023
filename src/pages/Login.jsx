@@ -158,11 +158,11 @@ const Login = () => {
             
           </div>
         </div>
-        <div className="right-side">
+        {/* <div className="right-side">
           <div className="logo ">
             <img src={signin} alt="" />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

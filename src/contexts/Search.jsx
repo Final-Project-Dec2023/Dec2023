@@ -8,8 +8,13 @@ const SearchProvider = ({ children }) => {
     results: [],
   });
 
+  
+const bacToTop = () => {
+  window.scrollTo(0, 0);
+}
+
   return (
-    <SearchContext.Provider value={[values, setValues]}>
+    <SearchContext.Provider value={[values, setValues, bacToTop]}>
       {children}
     </SearchContext.Provider>
   );

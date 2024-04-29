@@ -3,3 +3,7 @@
     background-color: #0098B8 !important;
     color: aliceblue !important;
 }
+
+.form-select:focus{
+    box-shadow: none !important;
+}

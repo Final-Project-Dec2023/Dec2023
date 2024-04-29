@@ -10,7 +10,9 @@ import Breadcrumbs from "../components/NABreadcCumbs";
 import Footer from "../components/Footer";
 import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
-
+import ShowingAllfilter from "../components/ShowingAllfilter";
+import SortBy from "../components/SortBy";
+import CountDownTimer from "../components/CountDownTimer";
 const AllFragrance = () => {
   //general data
   const [currentProducts, setCurrentProducts] = useState(data);
@@ -28,6 +30,29 @@ const AllFragrance = () => {
   const [selectedPrice, setSelectedPrice] = useState([]);
   //Availability
   const [selectedAvailability, setSelectedAvailability] = useState(null);
+
+  //Showing the selected in the page
+  const [selectedFilters, setSelectedFilters] = useState([]);
+
+  // Function to handle adding and removing selected filters
+  const handleSelectedFilter = (filter) => {
+    setSelectedFilters((prevFilters) => {
+      if (prevFilters.includes(filter)) {
+        return prevFilters.filter((f) => f !== filter);
+      } else {
+        return [...prevFilters, filter];
+      }
+    });
+  };
+  const clearFilters = () => {
+    setSelectedFilters([]);
+    setSelectedGender([]);
+    setSelectedBrand([]);
+    setSelectedFragranceTypes([]);
+    setSelectedScentType([]);
+    setSelectedPrice([]);
+    setSelectedAvailability([]);
+  };
 
   // ---------------Pagination Start---------
   const productsPerPage = 15;
@@ -127,7 +152,6 @@ const AllFragrance = () => {
             ? [...prevState, value]
             : prevState.filter((item) => item !== value)
         );
-
         break;
       case "fragranceType":
         setSelectedFragranceTypes((prevState) =>
@@ -150,24 +174,45 @@ const AllFragrance = () => {
             : prevState.filter((item) => item !== value)
         );
         break;
-      case "":
       default:
         break;
     }
-
-    if (category === "price") {
-      setSelectedPrice((prevState) => {
-        if (isChecked) {
-          return [...prevState, value];
-        } else {
-          return prevState.filter((item) => item !== value);
-        }
-      });
-    }
   };
-
   const handleAvailabilityChange = (availability) => {
     setSelectedAvailability(availability);
+  };
+
+  const handleDefaultSort = () => {
+    setCurrentProducts([...data]);
+  };
+  const handleSort = (option) => {
+    switch (option) {
+      case "A-Z":
+        setCurrentProducts(
+          [...currentProducts].sort((a, b) => a.name.localeCompare(b.name))
+        );
+        break;
+      case "Z-A":
+        setCurrentProducts(
+          [...currentProducts].sort((a, b) => b.name.localeCompare(a.name))
+        );
+        break;
+      case "LowToHigh":
+        setCurrentProducts(
+          [...currentProducts].sort((a, b) => a.priceCents - b.priceCents)
+        );
+        break;
+      case "HighToLow":
+        setCurrentProducts(
+          [...currentProducts].sort((a, b) => b.priceCents - a.priceCents)
+        );
+        break;
+        case "BestSeller":
+          handleDefaultSort();
+          break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -185,11 +230,15 @@ const AllFragrance = () => {
               </p>
             </div>
             <div className="title-right">
-              <span>Sort by</span>
-              <select className="selectM">
-                <option value="0">Best Seller</option>
-              </select>
+              <span>Sort by</span>        
+            <SortBy handleSort={handleSort} />
             </div>
+          </div>
+          <div className="show-filterM">
+            <ShowingAllfilter
+              clearFilters={clearFilters}
+              selectedFilters={selectedFilters}
+            />
           </div>
           <div className="m-content">
             <div className="m-controls">
@@ -201,6 +250,8 @@ const AllFragrance = () => {
                 <Accord
                   handleCheckboxChange={handleCheckboxChange}
                   handleAvailabilityChange={handleAvailabilityChange}
+                  selectedFilters={selectedFilters}
+                  handleSelectedFilter={handleSelectedFilter}
                 />
                 {/* Accordion ends */}
               </div>
@@ -209,12 +260,16 @@ const AllFragrance = () => {
               <OffCanvasButton
                 handleCheckboxChange={handleCheckboxChange}
                 handleAvailabilityChange={handleAvailabilityChange}
+                handleSelectedFilter={handleSelectedFilter}
+                selectedFilters={selectedFilters}
+                clearFilters={clearFilters}
               />
               <h3>
                 <BiSort />
-                Sort By
+                <SortBy handleSort={handleSort} />
               </h3>
             </div>
+
             <div className="m-products">
               {paginate.map((product, index) => (
                 <ProductCard product={product} key={product._id} />
@@ -230,6 +285,7 @@ const AllFragrance = () => {
           />
         </div>
       </div>
+      <CountDownTimer/>
       <Footer />
     </>
   );

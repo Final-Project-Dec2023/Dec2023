@@ -2,7 +2,7 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .top-section{
@@ -24,7 +24,8 @@
 }
 .top-section img{
     height: 16px;
-    width: 10rem
+    width: 10rem;
+    justify-content: center;
     
 }
 .form-dan{
@@ -118,7 +119,7 @@
     border: none;
     background-color: black;
     color: white;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -129,7 +130,7 @@
     border: 2px black solid;
     background-color: white;
     gap: 2rem;
-    margin-top: 20px;
+    margin-top: 25px;
     
 }
 
@@ -140,7 +141,7 @@
     
 }
 .dd{
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .dd p a{
     text-decoration: none;
@@ -150,6 +151,10 @@
 span{
     justify-content: center;
 }
+.icon-d{
+    margin-top: 10px;
+ }
+ 
 .dat{
     display: flex;
     align-items: center;

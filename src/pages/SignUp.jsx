@@ -6,7 +6,6 @@ import registerImg from "../assets/images/signin.png";
 import img2 from "../assets/images/download-removebg-preview.png";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { IoEyeOutline } from "react-icons/io5";
-import axios from "axios";
 import { useNavigate } from "react-router";
 import { useAuth } from "../contexts/Auth";
 import { Link } from "react-router-dom";
@@ -204,9 +203,9 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-        <div className="right-side-milly">
+        {/* <div className="right-side-milly">
           <img src={registerImg} className="image-fluid" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

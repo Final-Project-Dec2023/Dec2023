@@ -87,7 +87,7 @@
     color: aliceblue !important;
   }
   
-  .cart-sec {
+  .everything-cart {
     height: 50%;
     display: flex;
     align-items: center;
@@ -95,9 +95,32 @@
     margin-top: 4px;
     padding-left: 4px;
   }
+
+  .cart-sec {
+    position: absolute;
+  }
+
+  .cartcount {
+    height: 20px;
+    width: 20px;
+    background-color: #0098B8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 17px;
+    bottom: 13px;
+    color: white;
+    border-radius: 50%;
+    /* padding: 3px;     */
+  }
+  .cartcount span{
+    font-size: .8rem;
+  }
   
   .cart-sec img {
     margin-bottom: 0.4rem;
+
   }
   
   .navbar-nav{
