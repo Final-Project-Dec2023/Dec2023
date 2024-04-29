@@ -176,7 +176,7 @@ const AllFragrance = () => {
             </div>
             <div className="m-products">
               {paginate.map((product, index) => (
-                <ProductCard product={product} key={index} />
+                <ProductCard product={product} key={product._id} />
               ))}
             </div>
           </div>

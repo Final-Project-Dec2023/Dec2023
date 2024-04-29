@@ -4,12 +4,21 @@ import App from './App.jsx'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from './contexts/Auth.jsx';
+import { CartProvider } from './contexts/Cart.jsx';
+import { SearchProvider } from './contexts/Search.jsx';
 
 
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+    <SearchProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </SearchProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )

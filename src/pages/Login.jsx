@@ -7,18 +7,19 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/Auth';
 
 
 
 const Login = () => {
   // hooks/
-  
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("gidi@email.com");
+  const [password, setPassword] = useState("password");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
+  const { login } = useAuth();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -27,12 +28,9 @@ const Login = () => {
     setPassword(e.target.value);
   }
   const handleSubmit = async (e) => {
-    console.log("Button clicked");
     e.preventDefault();
-    const url = "https://blogg-api-v1.onrender.com/register";
 
     if (!email || !password) {
-      console.log("enter all fields....")
       return toast.error("Enter all fields");
     }
     const emailRegex = /\S+@\S+\.\S+/;
@@ -44,28 +42,21 @@ const Login = () => {
       return toast.error("Enter a valid password");
     }
     try {
-      
-      setLoading(true);
-    const { data } = await axios.post( `/${url}/auth/login`,{
-      email,
-      password,
-    });
-
-    // check for successful registration
-    if(!data?.error){
-      toast.success("Registration successful")
+    setLoading(true);
+      const success = await login(email, password);
       setLoading(false);
-      // redirect user to login
-      setTimeout(()=>{
-          navigate("/")
-      }, 5000)
-    }else{
-      toast.error("Registration failed")
-    }
+
+      if (success) {
+        toast.success("Login successful");
+        navigate("/");
+      } else {
+        toast.error("Login failed. try again..");
+      }
   } catch (err) {
-    console.log(err);
-    const { error } = err?.response?.data
-    toast.error(error)
+    // console.log(err?.message);
+    const  msg = err?.message
+    toast.error(msg)
+    setLoading(false)
   }
   };
 

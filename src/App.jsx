@@ -1,31 +1,38 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home  from './page/Home'
-import AllFragance from './page/AllFragrance'
+import Home  from './pages/Home'
+import AllFragance from './pages/AllFragrance'
 import Menu from './components/NavBar'
 import SideNav from './components/SideNav'
-import CartEmpty from './page/Chart'
+import CartEmpty from './pages/Chart'
 import { ToastContainer } from 'react-toastify'
-import SignUp from './page/SignUp'
+import SignUp from './pages/SignUp'
 import CustomerDetails from './components/CustomerDetails'
 import CartItems from './components/CartItems'
-import Order from './page/Order'
-import Newarrival from './page/Newarrival'
-import DetailPage from './page/DetailPage'
-import Login from './page/Login'
+import Order from './pages/Order'
+import Newarrival from './pages/Newarrival'
+import DetailPages from './pages/DetailPage'
+import Login from './pages/Login'
 import Breadcrumbs from './components/NABreadcCumbs'
 import Footer from './components/Footer'
+import Search from './pages/Search'
+import UserDashboard from './pages/dashboard/User'
+import AdminDashboard from './pages/dashboard/Admin'
+import { ScrollToTop } from './components/utils/SmoothScrollToTop'
+import PrivateRoutes from './pages/routes/PrivateRoute'
+import { useAuth } from './contexts/Auth'
 
-// WARNING: Do Not change anything in this page.
+// WARNING: Do Not change anything in this pages.
 
 function App() {
-
+ const {PrivateRoutes} = useAuth()
   return (
     <>
     <Router>
     <Menu/>
     <SideNav/>
     {/* <Breadcrumbs/>   */}
+    <ScrollToTop/>
     <ToastContainer/>
       <Routes >
         <Route path='/' element={<Home/>}/>
@@ -35,12 +42,21 @@ function App() {
         <Route path='/login' element={<Login/>}/> 
         <Route path='/customer-details' element={<CustomerDetails/>}/>        
         <Route path='/cart' element={<CartItems/>}/>        
-        <Route path='/order' element={<Order/>}/>        
         <Route path='/new-arrivals' element={<Newarrival/>}/>        
-        <Route path='/detail/:productId' element={<DetailPage/>}/>        
+        <Route path='/detail/:productId' element={<DetailPages/>}/>        
+        <Route path='/search' element={<Search/>}/>        
+         
+
+        {/* Private routes */}
+        <Route path='/' element={<PrivateRoutes/>}>
+          <Route path='/dashboard/user' element={<UserDashboard/>}/>
+          <Route path='/dashboard/admin' element={<AdminDashboard/>}/>
+          <Route path='/order' element={<Order/>}/>        
+        </Route>
+
       </Routes>  
+      {/* <Footer/> */}
     </Router>
-    <Footer/>
 
     </>
     

@@ -23,23 +23,29 @@
     height: 50%;
     background: #0098B8;
   }
+
   
-  .search{
+  /* .search{
     height: 41px;
     width: 500px
-  }
+  } */
   
-  .search-sec {
+  /* .search-sec {
     display: flex;
     padding-left: 1rem;
+  } */
+
+  .search-sec{
+    width: 40%;
   }
   
   .search-sec button {
-   height: 100%;
-   width: 50px;
+   /* height: 100%; */
+   /* width: 50px; */
    background-color: black;
    border: none;
    border-radius: 0 8px 8px 0;
+   padding: 0 20px;
   }
   
   .profile-con {
@@ -92,6 +98,11 @@
   .dropp{
     color: white !important;
   }
+  .first-drop:focus, .first-drop:hover, .first-drop::after{
+    /* display: none; */
+    background-color: #0098B8 !important;
+    color: aliceblue !important;
+  }
   
   .cart-sec {
     height: 50%;
@@ -115,9 +126,9 @@
     color: white !important;
   }
   
-  .active {
+  /* .active {
     background-color: inherit !important;
-  }
+  } */
 
   .btn-light:hover {
   background-color: inherit !important;
