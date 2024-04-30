@@ -97,8 +97,8 @@ function Menu() {
           </div>
           </div>
         </div>
-
-        <Navbar expand="lg" className="bg-body-primary fs-5" id="bottom">
+ 
+        <Navbar expand="lg" className="bg-body-primary fs-5 " id="bottom">
           <Container className="">
             <Navbar.Collapse id="basic-navbar-nav">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
