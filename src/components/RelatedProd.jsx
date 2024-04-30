@@ -59,32 +59,39 @@ const RelatedProd = () => {
         <div className="rpG  rounded px-lg-4  pt-lg-4 d-flex flex-row flex-lg-column justify-content-md-between gap-2">
           {relatedProducts
           .slice(0, limit )
-          .map((product) => (
-            <Card className="cardG mb-lg-4 px-2" key={product._id}>
-              <Link to={`/detail/${product._id}`} style={{ textDecoration: "none", color: "black" }}>
-                {/* <Card.Img variant="top" src={product?.images[1].url} className="imgGa" /> */}
-                {product.images && product.images.length > 0 && (
-                    <Card.Img variant="top" src={product.images[0]?.url} className="imgGa" />
-                  )}
-                <Card.Body className="row d-flex justify-content-between align-items-center">
-                  <div>
-                    <h1 className="hg" style={{ fontSize: "24px" }}>
-                      {product?.name}
-                    </h1>
-                    <p className="pg" style={{ fontSize: "18px", fontWeight: "400" }}>
-                      {product?.description}
-                    </p>
-                    <p className="ppg" style={{ fontSize: "26px", fontWeight: "700" }}>
-                      &#x20A6;{product.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-                    </p>
+          .map((product) =>{ 
+            const { _id, images, name, price, isAvailable } = product;
+            let Price = price.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+            });
+            return (
+              <Link className="link" to={`/detail/${product._id}`}>
+                <div key={_id}>
+                  <div className="m-card-Container mt-lg-4" key={_id} >
+                    <div className="m-image">
+                      <img src={images[0].url} alt={name} />
+                    </div>
+                    <div className="m-card-info">
+                      <div className="m-card-text">
+                        <h4>{name}</h4>
+                        {/* <p>{description}</p> */}
+                        <h2>&#x20A6;{Price}</h2>
+                      </div>
+                      <div className="m-card-btn pb-2">
+                        {isAvailable ? (
+                          <button className="">Add to cart</button>
+                        ) : (
+                          <button className="not-ava" disabled>
+                            Sold Out
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <Button variant="dark" className="btnG mx-lg-2  d-block">
-                    Add to Cart
-                  </Button>
-                </Card.Body>
+                </div>
               </Link>
-            </Card>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
