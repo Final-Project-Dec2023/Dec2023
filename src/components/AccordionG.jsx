@@ -1,7 +1,6 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import AccordionStyles from '../css/AccordionG.module.css'
-// import '../css/AccordionG.module.css'
 function Accordions({product}) {
   return (
     <div className="accordionG ">

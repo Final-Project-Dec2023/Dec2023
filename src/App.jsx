@@ -34,10 +34,10 @@ function App() {
   return (
     <>
       <Router>
+        <ToastContainer/>
         {/* <Breadcrumbs/>   */}
         <ScrollToTop />
-        <ToastContainer />
-        <Routes>
+         <Routes>
           <Route element={<Menu />}></Route>
           <Route path="/" element={<Home />} />
           <Route path="/all-fragrances" element={<AllFragance />} />

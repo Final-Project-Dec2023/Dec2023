@@ -182,7 +182,7 @@ const AdminProductUpdate = () => {
                       )}
                       <img
                         key={image.imagePublicId || index}
-                        src={image.url || URL.createObjectURL(image)}
+                        src={images ? (image.url || URL.createObjectURL(image)) : null}
                         alt={`Image ${index + 1}`}
                         className="img-thumbnail mr-2 mx-2"
                         style={{ width: "100px", height: "100px" }}

@@ -5,8 +5,8 @@ import BlogCard from "../components/Blog";
 import Footer from "../components/Footer";
 import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
-import NewArrivalComponent from "../components/NewArrivalComponent";
 import CountDownTimer from "../components/CountDownTimer";
+import NewArrivalComponent from "../components/NewArrivalComponent";
 
 const Home = () => {
   return (
@@ -16,8 +16,8 @@ const Home = () => {
       <Hero />
       <Brands />
       <Testimonies />
-      <NewArrivalComponent title="New Arrivals" link = "/new-arrivals"/>
       <CountDownTimer/>
+      <NewArrivalComponent title="New Arrivals" link = "/new-arrivals"/>
       <BlogCard />
       <Footer />
     </>

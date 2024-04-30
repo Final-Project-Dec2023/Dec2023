@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "../css/AllFragance.css";
 import ProductCard from "../components/ProductCardM";
-import { data } from "../Db/ProductDb";
 import Accord from "../components/AccordionM";
 import Pagination from "../components/PaginationM";
 import { BiSort } from "react-icons/bi";
