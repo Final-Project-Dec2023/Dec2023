@@ -29,7 +29,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-top: 20px;
 }
 .m-title .title-left{
     height: 100%;
@@ -87,8 +87,8 @@
 }
 .m-content .m-products{
     width: 75%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     row-gap: 20px;
     justify-content: space-between;
 }
@@ -101,9 +101,13 @@
     justify-content: center;
     height: 100px;
 }
+.show-filterM{
+    width: 100%;
+    text-align: left;
+}
 
 /* Media Query for low resolution  Tablets, Ipads */
-@media (min-width: 300px) and (max-width: 320px) {
+@media(max-width: 320px) {
     .m-main{
         display: flex;
         flex-direction: column;
@@ -160,13 +164,15 @@
         font-size: 16px;
         font-weight: 500;
     }
-
     .m-content .m-products{
         width: 100%;
         height: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+    }
+    .show-filterM{
+        display: none;
     }
 }
 
@@ -235,6 +241,9 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
+    .show-filterM{
+        display: none;
+    }
 }
 @media (min-width: 380px) and (max-width: 767px) {
     .m-main{
@@ -301,7 +310,9 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
-    
+    .show-filterM{
+        display: none;
+    }
    
    }
    
@@ -313,7 +324,7 @@
         align-items: center;
         width: 100%;
         padding-top: 20px;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
     .m-title{
         height: 80px;
@@ -339,6 +350,9 @@
         width: 100%;
     }
     .m-content .m-controls{
+        display: none;
+    }
+    .show-filterM{
         display: none;
     }
     .m-controls-mobile{
@@ -367,12 +381,12 @@
 
 
     .m-content .m-products{
-        width: 90%;
+        width: 95%;
         height: 100%;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 30px;
+        justify-content: space-evenly;
+
     }
      
 

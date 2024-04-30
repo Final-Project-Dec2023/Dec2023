@@ -69,6 +69,24 @@
         height: 20px;
     }
 
+    .cart-imgs {
+        display: flex;
+    }
+
+    .cartcount-s {
+        position: relative;
+        height: 18px;
+        width: 18px;
+        bottom: 6px;
+        right: 6px;
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .show-header {
         height: 56px;
         width: 100%;
@@ -141,6 +159,8 @@
     padding-left: 0 !important;
     }
 }
+
+
 
 
 

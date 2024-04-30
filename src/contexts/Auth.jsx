@@ -1,6 +1,7 @@
-import { Outlet,  Navigate } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import { useState, createContext, useContext, useEffect } from "react";
 import axios from "axios";
+
 
 
 const AuthContext = createContext();
@@ -123,6 +124,7 @@ const AdminRoutes = () => {
       {children}
     </AuthContext.Provider>
   );
+
 };
 
 

@@ -2,6 +2,7 @@ import { useState, createContext, useContext, useEffect } from "react";
 
 const CartContext = createContext();
 
+// Anythng in the provider function is what we want to ship out
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
@@ -9,7 +10,8 @@ const CartProvider = ({ children }) => {
     let existingCart = localStorage.getItem("cart");
     if (existingCart) setCart(JSON.parse(existingCart));
   }, []);
-
+  
+// Anything in the provider is what we want to ship out
   return (
     <CartContext.Provider value={{cart, setCart}}>
       {children}
@@ -19,4 +21,5 @@ const CartProvider = ({ children }) => {
 
 const useCart = () => useContext(CartContext);
 
-export { useCart, CartProvider };
+//CartProvider will wrap App in main.jsx
+export { useCart, CartProvider }; 

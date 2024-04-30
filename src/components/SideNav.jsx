@@ -12,9 +12,12 @@ import HumanB from "../assets/icons/humprofile.png";
 import CartB from "../assets/icons/blackcart.png";
 import FragLogo from "../assets/images/Frame 579.png";
 import { Link } from "react-router-dom";
-
+import { useAuth } from "../contexts/Auth";
+import Search from "./forms/Search";
 function SideNav() {
   const [show, setShow] = useState(false);
+  const { auth, login} = useAuth();
+  
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -32,12 +35,28 @@ function SideNav() {
           </div>
 
           <div className="right-icons">
-            <img src={Searchi} alt="" />
-            <img src={Humani} alt="" />
-            <Link to="/cart">
+            <div className="">
+            <img src={Searchi} alt=""/>
+            </div>
+         
+          {!auth?.user ? (
+              <Link to="/login">
+                <img src={Humani} alt="" />
+              </Link>
+            ) : ( 
+              <Link to={auth?.user.role === 1 ? "/dashboard/admin" : "/dashboard/user"}>
+              <img src={Humani} alt="" />
+            </Link> 
+          )}
+              <div className="cart-imgs">
+              <Link to="/cart">
             <img src={Carti} alt="" />
             </Link>
-          </div>
+             <div className="cartcount-s">
+              0
+            </div>
+              </div>
+          </div>  
         </div>
 
         <Offcanvas className="w-75" show={show} onHide={handleClose}>
@@ -49,11 +68,6 @@ function SideNav() {
               ></Offcanvas.Header>
               <img src={FragLogo} alt="" />
             </div>
-            {/* <div className="li-img">
-              <img src={SearchB} alt="" />
-              <img src={HumanB} alt="" />
-              <img src={CartB} alt="" />
-            </div> */}
           </div>
           <Offcanvas.Body className="off-main">
             <div className="">
@@ -102,7 +116,7 @@ function SideNav() {
                   to="/"
                   style={{ textDecoration: "none", color: "white" }}
                 >
-                  <li>FAG</li>
+                  <li>FAQ</li>
                 </Link>
 
                 <Link

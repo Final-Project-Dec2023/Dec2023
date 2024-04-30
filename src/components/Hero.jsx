@@ -28,8 +28,8 @@ function Hero() {
               <div className="text-body1">
                 <h1>Classic Elegance</h1>
                 <p className="hero-p">
-                  <b>Discover timeless fragrances that exude sophistication and
-                  charm.</b>
+                  Discover timeless fragrances that exude sophistication and
+                  charm.
                 </p>
               </div>
 

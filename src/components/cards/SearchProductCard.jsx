@@ -2,7 +2,7 @@ import React from 'react'
 import '../../css/ProductM.css'
 
 const SearchProductCard = ({product}) => {
-  const {name, description, price, images, isavailability, _id} = product
+  const {name, description, price, images, isAvailable, _id} = product
   return (
     <div key={_id}>
       <div className='m-card-Container' key={_id}>
@@ -16,7 +16,7 @@ const SearchProductCard = ({product}) => {
                 <h2>&#x20A6;{price}</h2>
             </div>
             <div className="m-card-btn">
-              {isavailability ? <button>Add to cart</button> : <button className='not-ava' disabled>Sold Out</button> }
+              {isAvailable ? <button>Add to cart</button> : <button className='not-ava' disabled>Sold Out</button> }
             </div>
         </div>
       </div>

@@ -6,10 +6,17 @@ function Mydropdown1() {
     return (
         <div>
             <form>
-                <label className= "me-2"><b>Sort By</b></label>
+                <label className="me-2"><b>Sort By</b></label>
                 <select name="cars" id="cars">
                     <option value="New Arrival">New Arrival</option>
                     <option value="Best Seller">Best Seller</option>
+                    <option value="Best Seller">Featured</option>
+                    <option value="Best Seller">Alphabetically, A-Z</option>
+                    <option value="Best Seller">Alphabetically, Z-A</option>
+                    <option value="Best Seller">Price, Low to High</option>
+                    <option value="Best Seller">Price, High to Low</option>
+                    <option value="Best Seller">Date, Old to New</option>
+                    <option value="Best Seller">Date, New to Old</option>
                 </select>
             </form>
         </div>
@@ -24,6 +31,13 @@ export function Mydropdown2() {
             <select name="cars" id="cars"  >
                 <option value="New Arrival">New Arrival</option>
                 <option value="Best Seller">Best Seller</option>
+                <option value="Best Seller">Featured</option>
+                <option value="Best Seller">Alphabetically, A-Z</option>
+                <option value="Best Seller">Alphabetically, Z-A</option>
+                <option value="Best Seller">Price, Low to High</option>
+                <option value="Best Seller">Price, High to Low</option>
+                <option value="Best Seller">Date, Old to New</option>
+                <option value="Best Seller">Date, New to Old</option>
             </select>
         </div>
 
