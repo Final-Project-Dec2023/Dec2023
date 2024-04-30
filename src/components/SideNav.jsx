@@ -14,14 +14,12 @@ import FragLogo from "../assets/images/Frame 579.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
 import Search from "./forms/Search";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-function SideNav() {
+import Dropdown from "react-bootstrap/Dropdown";
+import HandleShow from "./HandleShow";
+
+function SideNav({ name, ...props }) {
   const [show, setShow] = useState(false);
-  const { auth, login, logout} = useAuth();
-
-  const navigate = useNavigate();
-
+  const { auth, login, logout } = useAuth();
   
 
   const handleClose = () => setShow(false);
@@ -45,128 +43,144 @@ function SideNav() {
           </div>
 
           <div className="right-icons">
-            <div className="">
-            <img src={Searchi} alt=""/>
-            </div>
-         
-          {!auth?.user ? (
+           <HandleShow/>
+
+            {!auth?.user ? (
               <Link to="/login">
                 <img src={Humani} alt="" />
               </Link>
-            ) : ( 
-              <Link to={auth?.user.role === 1 ? "/dashboard/admin" : "/dashboard/user"}>
-              <img src={Humani} alt="" />
-            </Link> 
-          )}
-              <div className="cart-imgs">
-              <Link to="/cart">
-            <img src={Carti} alt="" />
-            </Link>
-             <div className="cartcount-s">
-              0
-            </div>
+            ) : (
+              <Link
+                to={
+                  auth?.user.role === 1 ? "/dashboard/admin" : "/dashboard/user"
+                }
+              >
+                <img src={Humani} alt="" />
+              </Link>
+            )}
+
+            <Link to="/cart">
+              <div className="cartiee">
+              <img src={Carti} alt="" />
               </div>
-          </div>  
-        </div>
-
-        <Offcanvas className="w-75" show={show} onHide={handleClose}>
-          <div className="show-header ">
-            <div className="left-logo">
-              <Offcanvas.Header
-                closeButton
-                className="off-header"
-              ></Offcanvas.Header>
-              <img src={FragLogo} alt="" />
-            </div>
-          </div>
-          <Offcanvas.Body className="off-main">
-            <div className="">
-              <ul className="first-li">
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Home</li>
-                </Link>
-
-                <Link to="/all-fragrances" style={{ textDecoration: "none", color: "white" }}>
-                  <li>All Fragrance</li>
-                </Link>
-
-                <Link to="/new-arrivals" style={{ textDecoration: "none", color: "white" }}>
-                  <li>New Arrival</li>
-                </Link>
-
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Blogs</li>
-                </Link>
-
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Contact Us</li>
-                </Link>
-              </ul>
-            </div>
-
-            <div className="straight-line"></div>
-
-            <div>
-              <ul className="last-li">
-              <Dropdown>
-      <Dropdown.Toggle variant="none" id="dropdown-basic" align="end" drop="end" size="lg" title="Drop-large" className="bg-none text-light">
-        My Account
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu>
-        {auth.user? (
-          <div>
-          <Dropdown.Item>
-            <Link to={auth?.user.role === 1? "/dashboard/admin" : "/dashboard/user"} className="text-decoration-none text-dark">
-             Dashboard
             </Link>
-          </Dropdown.Item>
-          <Dropdown.Item onClick={handleLogout} className="text-decoration-none text-dark">
-              Logout
-          </Dropdown.Item>
+            <div className="cartcount-s">0</div>
           </div>
-        ) : (
-          <div>
-        <Dropdown.Item>
-          <Link to="/signup" className="text-decoration-none text-dark">
-          Sign Up
-          </Link>
-        </Dropdown.Item>
-        <Dropdown.Item>
-          <Link to="/login" className="text-decoration-none text-dark">
-          Login
-          </Link>
-        </Dropdown.Item>
-          </div>
-        )}
-      </Dropdown.Menu>
-    </Dropdown>
-
-                <Link
-                  to="/"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  <li>Help</li>
-                </Link>
-
-                <Link
-                  to="/"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  <li>FAQ</li>
-                </Link>
-
-                <Link
-                  to="/"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  <li>Shipping Information</li>
-                </Link>
-              </ul>
-            </div>
-          </Offcanvas.Body>
-        </Offcanvas>
+        </div>
       </div>
+
+      <Offcanvas className="w-75" show={show} onHide={handleClose}>
+        <div className="show-header ">
+          <div className="left-logo">
+            <Offcanvas.Header
+              closeButton
+              className="off-header"
+            ></Offcanvas.Header>
+            <img src={FragLogo} alt="" />
+          </div>
+        </div>
+        <Offcanvas.Body className="off-main">
+          <div className="">
+            <ul className="first-li">
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Home</li>
+              </Link>
+
+              <Link
+                to="/all-fragrances"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <li>All Fragrance</li>
+              </Link>
+
+              <Link
+                to="/new-arrivals"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <li>New Arrival</li>
+              </Link>
+
+              <Link to="/blog" style={{ textDecoration: "none", color: "white" }}>
+                <li>Blogs</li>
+              </Link>
+
+              <Link to="/contact" style={{ textDecoration: "none", color: "white" }}>
+                <li>Contact Us</li>
+              </Link>
+            </ul>
+          </div>
+
+          <div className="straight-line"></div>
+
+          <div>
+            <ul className="last-li">
+              <Dropdown>
+                <Dropdown.Toggle
+                  variant="none"
+                  id="dropdown-basic"
+                  className="text-light"
+                  size="lg"
+                >
+                  My Account
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {auth.user ? (
+                    <div>
+                      <Dropdown.Item>
+                        <Link
+                          to={
+                            auth?.user.role === 1
+                              ? "/dashboard/admin"
+                              : "/dashboard/user"
+                          }
+                          className="text-decoration-none text-dark"
+                        >
+                          Dashboard
+                        </Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={handleLogout}>
+                        Logout
+                      </Dropdown.Item>
+                    </div>
+                  ) : (
+                    <div>
+                      <Dropdown.Item>
+                        <Link
+                          to="/signup"
+                          className="text-decoration-none text-dark"
+                        >
+                          Sign Up
+                        </Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <Link
+                          to="/login"
+                          className="text-decoration-none text-dark"
+                        >
+                          Login
+                        </Link>
+                      </Dropdown.Item>
+                    </div>
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Help</li>
+              </Link>
+
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>FAG</li>
+              </Link>
+
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Shipping Information</li>
+              </Link>
+            </ul>
+          </div>
+        </Offcanvas.Body>
+      </Offcanvas>
+      {/* </div> */}
     </>
   );
 }

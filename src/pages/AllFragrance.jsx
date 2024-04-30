@@ -12,10 +12,13 @@ import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
 import ShowingAllfilter from "../components/ShowingAllfilter";
 import SortBy from "../components/SortBy";
-import CountDownTimer from "../components/CountDownTimer";
+import axios from "axios";
+import ProductCardLoading from "../components/ProductCardLoadingM";
 const AllFragrance = () => {
   //general data
-  const [currentProducts, setCurrentProducts] = useState(data);
+  const [fetchProduct, setFetchProduct] = useState([]);
+  const [currentProducts, setCurrentProducts] = useState([]);
+  //   
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
   //gender
@@ -33,6 +36,29 @@ const AllFragrance = () => {
 
   //Showing the selected in the page
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [loading, setLoading] = useState();
+
+// Fetching from database
+const fetchData = async () => {
+  setLoading(true);
+  try {
+    const response = await axios.get(`/product/all?page=1&limit=100000`);
+    setFetchProduct(response?.data?.products);
+    setCurrentProducts(response?.data?.products)
+    console.log(response?.data?.products);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  } finally {
+    setLoading(false); // Set loading to false regardless of success or error
+  }
+};
+
+useEffect(() => {
+  fetchData();
+
+}, []);
+
+
 
   // Function to handle adding and removing selected filters
   const handleSelectedFilter = (filter) => {
@@ -56,7 +82,7 @@ const AllFragrance = () => {
 
   // ---------------Pagination Start---------
   const productsPerPage = 15;
-  const totalPages = Math.ceil(data.length / productsPerPage);
+  const totalPages = Math.ceil(currentProducts.length / productsPerPage);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -71,7 +97,7 @@ const AllFragrance = () => {
   // ---------------Pagination End---------
 
   useEffect(() => {
-    let filteredProducts = data;
+    let filteredProducts = fetchProduct;
 
     //filter for Gender
     if (selectedGender.length > 0) {
@@ -89,25 +115,25 @@ const AllFragrance = () => {
     //filter for Fragrance Type
     if (selectedFragranceTypes.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
-        selectedFragranceTypes.includes(product.fragrance_type)
+        selectedFragranceTypes.includes(product.fragranceType)
       );
     }
 
     //filter for Scent Type
     if (selectedScentType.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
-        selectedScentType.includes(product.scent_type)
+        selectedScentType.includes(product.scentType)
       );
     }
     //filter for Price
     if (selectedPrice.length > 0) {
       filteredProducts = filteredProducts.filter((product) => {
         if (selectedPrice.includes("Under10K")) {
-          return product.priceCents <= 1000000;
+          return product.price <= 10000;
         } else if (selectedPrice.includes("10kTo50K")) {
-          return product.priceCents >= 1000000 && product.priceCents <= 5000000;
+          return product.price >= 10000 && product.price <= 50000;
         } else if (selectedPrice.includes("Over50k")) {
-          return product.priceCents >= 5000000;
+          return product.price >= 50000;
         }
       });
     }
@@ -116,11 +142,11 @@ const AllFragrance = () => {
     if (selectedAvailability !== null) {
       if (selectedAvailability === "true") {
         filteredProducts = filteredProducts.filter(
-          (product) => product.isavailability === true
+          (product) => product.isAvailable === true
         );
       } else {
         filteredProducts = filteredProducts.filter(
-          (product) => product.isavailability === false
+          (product) => product.isAvailable === false
         );
       }
     }
@@ -183,7 +209,7 @@ const AllFragrance = () => {
   };
 
   const handleDefaultSort = () => {
-    setCurrentProducts([...data]);
+    setCurrentProducts([...fetchProduct]);
   };
   const handleSort = (option) => {
     switch (option) {
@@ -199,21 +225,25 @@ const AllFragrance = () => {
         break;
       case "LowToHigh":
         setCurrentProducts(
-          [...currentProducts].sort((a, b) => a.priceCents - b.priceCents)
+          [...currentProducts].sort((a, b) => a.price - b.price)
         );
         break;
       case "HighToLow":
         setCurrentProducts(
-          [...currentProducts].sort((a, b) => b.priceCents - a.priceCents)
+          [...currentProducts].sort((a, b) => b.price - a.price)
         );
         break;
-        case "BestSeller":
-          handleDefaultSort();
-          break;
+      case "BestSeller":
+        handleDefaultSort();
+        break;
       default:
         break;
     }
   };
+  const reverseArray = (array) => {
+    return array.slice().reverse();
+  };
+  const reversedProducts = reverseArray(paginate);
 
   return (
     <>
@@ -230,15 +260,15 @@ const AllFragrance = () => {
               </p>
             </div>
             <div className="title-right">
-              <span>Sort by</span>        
-            <SortBy handleSort={handleSort} />
+              <span>Sort by</span>
+              <SortBy handleSort={handleSort} />
             </div>
           </div>
           <div className="show-filterM">
             <ShowingAllfilter
               clearFilters={clearFilters}
               selectedFilters={selectedFilters}
-            />
+            /> 
           </div>
           <div className="m-content">
             <div className="m-controls">
@@ -252,6 +282,7 @@ const AllFragrance = () => {
                   handleAvailabilityChange={handleAvailabilityChange}
                   selectedFilters={selectedFilters}
                   handleSelectedFilter={handleSelectedFilter}
+                  currentProducts={currentProducts}
                 />
                 {/* Accordion ends */}
               </div>
@@ -269,13 +300,17 @@ const AllFragrance = () => {
                 <SortBy handleSort={handleSort} />
               </h3>
             </div>
-
             <div className="m-products">
-              {paginate.map((product, index) => (
-                <ProductCard product={product} key={product._id} />
-              ))}
+              {loading
+                ? Array.from({ length: 6 }).map((_, index) => (
+                    <ProductCardLoading key={index} />
+                  ))
+                : paginate.map((product) => (
+                    <ProductCard product={product} key={product._id} />
+                  ))}
             </div>
           </div>
+
         </div>
         <div className="m-pagination">
           <Pagination
@@ -285,7 +320,6 @@ const AllFragrance = () => {
           />
         </div>
       </div>
-      <CountDownTimer/>
       <Footer />
     </>
   );

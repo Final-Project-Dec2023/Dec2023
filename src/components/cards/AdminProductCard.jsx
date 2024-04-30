@@ -147,7 +147,7 @@ import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 
 const AdminProductCard = ({ product, slug, handleDelete, loading }) => {
-  const [selectedImage, setSelectedImage] = useState(product?.images[1].url);
+  const [selectedImage, setSelectedImage] = useState(product?.images[0].url);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -163,7 +163,8 @@ const AdminProductCard = ({ product, slug, handleDelete, loading }) => {
       handleClose();
     }, 4500);
   }
-
+  console.log("Product:", product);
+// console.log("Product Images:", product.images);
   return (
     <>
     <h2 className="bg-light">Product Details</h2>
@@ -171,13 +172,13 @@ const AdminProductCard = ({ product, slug, handleDelete, loading }) => {
         <div className="productCont">
           <div className="productImg">
             <div className="selectImg">
-              {product?.images.map((image, index) => (
+              {product?.images.length > 0 && product?.images.map((image, index) => (
                 <div
                   key={index}
-                  className={`simg ${selectedImage === image.url ? "selected" : ""}`}
-                  onClick={() => handleImageClick(image.url)}
+                  className={`simg ${selectedImage === image?.url ? "selected" : ""}`}
+                  onClick={() => handleImageClick(image?.url)}
                 >
-                  <img src={image.url} alt="" />
+                  <img src={image?.url} alt="" />
                 </div>
               ))}
             </div>
@@ -186,6 +187,8 @@ const AdminProductCard = ({ product, slug, handleDelete, loading }) => {
                 src={selectedImage || product?.images[0]?.url}
                 className={selectedImage === product?.images[0]?.url ? "selected" : ""}
               />
+             
+
             </div>
           </div>
           <div className="productInfo p-3">

@@ -9,7 +9,7 @@ const CartProvider = ({ children }) => {
     let existingCart = localStorage.getItem("cart");
     if (existingCart) setCart(JSON.parse(existingCart));  //update the cart
   }, []);
-
+// Anything in the provider is what we want to ship out
   return (
     <CartContext.Provider value={{cart, setCart}}>
       {children}
@@ -19,4 +19,4 @@ const CartProvider = ({ children }) => {
 
 const useCart = () => useContext(CartContext);
 
-export { useCart, CartProvider };
+export { useCart, CartProvider };// The cart provider wraps up the App in main.jsx

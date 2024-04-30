@@ -14,13 +14,16 @@
     border: 1px solid gray !important;
     align-items: center;
     justify-content: center;
+    
+    
     }
     .cardG{
         width: 100% !important;
-        height: 30rem !important;
+        height: 31rem !important;
+        
     }
     .imgGa{
-        height: 15.63rem;
+        height: 15.5rem;
     }
     .btnG{
         width: 95% !important;
@@ -37,10 +40,13 @@
             width: 44rem !important;
             height: 35rem !important;
             border: none !important;
+            overflow-x:auto !important;
             }
             .cardG{
                 width: 21.5rem !important;
-                height: 32rem !important;
+                height: 34rem !important;
+                flex-shrink: 0; /* Prevent shrinking */
+        flex-grow: 0;
             }
             .imgGa{
                 height: 18.75rem;
@@ -58,14 +64,21 @@
        
        }
         .rpG{
-        width: 23rem !important;
+        width: 23.4rem !important;
         height: auto !important;
         border: none !important;
-      
+        width: 95%;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        gap: 20px;
+        overflow-x: scroll;
        }
        .cardG{ 
         width: 50% !important;
         height: auto !important;
+        flex-shrink: 0; /* Prevent shrinking */
+        flex-grow: 0;
        }
        .imgGa{
         height: 12.5rem;

@@ -26,13 +26,13 @@ const Search = ()=> {
       <input
         type="text"
         style={{ borderRadius: "0px" }}
-        className="form-control"
+        className="form-control real-search"
         placeholder="Search"
         onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         value={values.keyword}
       />
       <button
-        className="btn btn-dark"
+        className="btn btn-dark real-search"
         type="submit"
         style={{ borderRadius: "0px" }}
       >
