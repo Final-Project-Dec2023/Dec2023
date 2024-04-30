@@ -3,14 +3,15 @@ import React, { useState } from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import "../css/NAAccordion.css"
 import searchEye from "../assets/images/Vector search.png"
-// import { Alphabets } from "../components/NAAlphabetsCard"
 import "../css/NACheckbox.css"
-import { data } from "../Db/Perfumedb"
+// import { data } from "../Db/Perfumedb"
+import axios from "axios";
 import "../css/NAAlphabets.css"
 
 
 function NewAccordion({ handleCheckboxChange, handleAvailabilityChange, handleSelectedFilter}) {
   const [search, setSearch] = useState('')
+  const [data, setData] = useState([])
   // const [selectedAlphabet, setSelectedAlphabet] = useState('')
     // Alphabet
   const [selectedAlphabet, setSelectedAlphabet] = useState('');
@@ -36,6 +37,21 @@ function NewAccordion({ handleCheckboxChange, handleAvailabilityChange, handleSe
   const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
     'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
+    const fetchData = async () => {
+      // setLoading(true);
+      try {
+        const response = await axios.get(`/product/all?page=1&limit=10000`);
+        setData(response?.data?.products);
+        console.log(response?.data?.products);
+      } 
+      catch (error) {
+        console.error("Error fetching data:", error);
+      } 
+    };
+
+    useEffect(() => {
+      fetchData();
+    }, []);
     
   return (
     <Accordion defaultActiveKey={[""]} alwaysOpen>

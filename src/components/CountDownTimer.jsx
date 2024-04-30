@@ -69,6 +69,9 @@ const CountDownTimer = () => {
           {flashProduct.map((product) => {
             const { _id, images, name, description, price, isAvailable } =
               product;
+            let Price = price.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+            });
             return (
               <>
               <Link className="link" to={`/detail/${product._id}`}>
@@ -81,7 +84,7 @@ const CountDownTimer = () => {
                       <div className="m-card-text">
                         <h4>{name}</h4>
                         <p>{description}</p>
-                        <h2>&#x20A6;{price}</h2>
+                        <h2>&#x20A6;{Price}</h2>
                       </div>
                       <div className="m-card-btn">
                         {isAvailable ? (
