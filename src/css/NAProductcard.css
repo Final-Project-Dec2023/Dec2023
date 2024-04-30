@@ -62,7 +62,7 @@
 
 @media (min-width: 320px) and (max-width: 768px) {
     .card {
-        width: 11rem;
+        width: 10rem;
         height: 260px !important;
         text-align: left;
     
@@ -217,11 +217,7 @@
     .NA-card-btn {
         width: 14rem;
     }
-    .pagination{
-        --bs-pagination-focus-box-shadow:none !important;
-        margin-left: 10rem !important;
-        
-    }
+    
     .active>.page-link, .page-link.active{
         color: white !important;
         background-color: black !important;
@@ -244,10 +240,5 @@
         border: none !important;
         border-radius: 50% !important;
     }
-    .pagination{
-        --bs-pagination-focus-box-shadow:none !important;
-        margin-top:1rem !important;
-        margin-left: 10rem !important;
-        /* border: 1px solid red; */
-    }
+    
 }

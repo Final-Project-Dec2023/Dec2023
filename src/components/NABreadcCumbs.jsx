@@ -17,7 +17,7 @@ function Breadcrumbs() {
                 {pathnames.length > 0 && <Link to='/'>Home</Link>}
                 {pathnames.map((name, index)=>{
                     if (name === 'new-arrivals') {
-                        name = 'New Arrival' 
+                        name = 'New Arrivals' 
                     };
                     if (name === 'all-fragrances') {
                         name = 'All Featured Perfumes' 
