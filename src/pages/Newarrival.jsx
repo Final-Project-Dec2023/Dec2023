@@ -3,7 +3,6 @@ import { BiSort } from "react-icons/bi";
 import "../css/Newarrival.css";
 import "../css/NAProductcard.css";
 import BreadCrumb from "../components/NABreadcCumbs";
-import { data } from "../Db/ProductDb";
 import ProductCard from "../components/NAProductCard";
 import Footer from "../components/Footer";
 import OffCanvasButton from "../components/NAFilter";
@@ -12,8 +11,6 @@ import SideNav from "../components/SideNav";
 import axios from "axios";
 import Pagination from "../components/PaginationM";
 import SortBy from "../components/SortBy";
-import Skeleton from "react-loading-skeleton";
-// import ShowingAllfilter from "../components/ShowingAllfilter";
 import ProductCardLoading from "../components/ProductCardLoadingM";
 import Accord from "../components/AccordionM";
 
