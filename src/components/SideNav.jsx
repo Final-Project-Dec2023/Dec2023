@@ -11,12 +11,18 @@ import SearchB from "../assets/icons/Vector (searchb).png";
 import HumanB from "../assets/icons/humprofile.png";
 import CartB from "../assets/icons/blackcart.png";
 import FragLogo from "../assets/images/Frame 579.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
 import Search from "./forms/Search";
+// import Search from "./forms/Search";
+// import { useNavigate } from "react-router-dom";
+
 function SideNav() {
   const [show, setShow] = useState(false);
-  const { auth, login} = useAuth();
+  const { auth, login } = useAuth();
+
+  const navigate = useNavigate();
+
   
 
   const handleClose = () => setShow(false);
@@ -41,22 +47,29 @@ function SideNav() {
           </div>
 
           <div className="right-icons">
-            <div className="">
-            <img src={Searchi} alt=""/>
+            <div className="search-icon" onClick={toggleSearchBar}>
+              <img src={Searchi} alt="Search" />
             </div>
-         
-          {!auth?.user ? (
+            <div className="search">
+            {isSearchBarVisible && <Search toggleSearchBar={toggleSearchBar}/>}
+            </div>
+
+            {!auth?.user ? (
               <Link to="/login">
                 <img src={Humani} alt="" />
               </Link>
-            ) : ( 
-              <Link to={auth?.user.role === 1 ? "/dashboard/admin" : "/dashboard/user"}>
-              <img src={Humani} alt="" />
-            </Link> 
-          )}
-              <div className="cart-imgs">
-              <Link to="/cart">
-            <img src={Carti} alt="" />
+            ) : (
+              <Link
+                to={
+                  auth?.user.role === 1 ? "/dashboard/admin" : "/dashboard/user"
+                }
+              >
+                <img src={Humani} alt="" />
+              </Link>
+            )}
+
+            <Link to="/cart">
+              <img src={Carti} alt="" />
             </Link>
              <div className="cartcount-s">
               0
@@ -118,11 +131,8 @@ function SideNav() {
                   <li>Help</li>
                 </Link>
 
-                <Link
-                  to="/"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  <li>FAQ</li>
+                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                  <li>FAG</li>
                 </Link>
 
                 <Link to="/" style={{ textDecoration: "none", color: "white" }}>
@@ -132,7 +142,6 @@ function SideNav() {
             </div>
           </Offcanvas.Body>
         </Offcanvas>
-      </div>
     </>
   );
 }

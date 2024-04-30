@@ -25,6 +25,8 @@ import AdminProducts from "./pages/admin/AdminProducts";
 import AdminProductDetail from "./pages/admin/AdminProductDetail";
 import AdminProductUpdate from "./pages/admin/AdminProductUpdate";
 import AdminOrders from "./pages/admin/AdminOrders";
+import UserProfile from "./pages/user/UserProfile";
+import UserOrders from "./pages/user/UserOrders";
 
 // WARNING: Do Not change anything in this pages.
 
@@ -53,7 +55,9 @@ function App() {
           {/* Protected Routes */}
           <Route path="/dashboard" element={<PrivateRoutes />}>
             <Route path="user" element={<UserDashboard />} />
-            <Route path="order" element={<Order />} />
+            <Route path="user/order" element={<Order />} />
+            <Route path="user/profile" element={<UserProfile/>} />
+            <Route path="user/orders" element={<UserOrders/>} />
             {/* Admin Routes */}
             <Route path="" element={<AdminRoutes />}>
               <Route path="admin" element={<AdminDashboard />} />

@@ -9,43 +9,26 @@ import { toast } from "react-toastify";
 import Accordion from "react-bootstrap/Accordion";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
+import UserMenu from "../../components/nav/UserMenu";
 import Menu from "../../components/NavBar"
 import Footer from "../../components/Footer";
 
-const AdminOrders = () => {
+const UserOrders = () => {
   // context
   const { auth, setAuth } = useAuth();
   // state
   const [orders, setOrders] = useState([]);
-  const [totalOrders, setTotalOrders] = useState(null);
 
   useEffect(() => {
     if (auth?.token) {
       getOrders();
     }
   }, [auth?.token]);
-  
+
   const getOrders = async () => {
     try {
-      const { data } = await axios.get("orders/all");
+      const { data } = await axios.get("/orders");
       setOrders(data?.orders);
-      setTotalOrders(data?.orderCount);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleChange = async (orderId, value) => {
-    try {
-      const { data } = await axios.put(`/orders/status/${orderId}`, {
-        status: value,
-      });
-      if (data?.success) {
-        toast.success(data.message);
-      }
-      // console.log(data);
-      console.log(`Order status for ${orderId}  updated`, value);
-      getOrders();
     } catch (err) {
       console.log(err);
     }
@@ -77,11 +60,11 @@ const AdminOrders = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-3">
-            <AdminMenu />
+            <UserMenu/>
           </div>
           <div className="col-md-9">
             <div className="p-3 mt-2 mb-2 h4 bg-light">
-              All Orders({totalOrders})
+              All Orders
             </div>
 
             {orders?.map((o) => (
@@ -89,7 +72,7 @@ const AdminOrders = () => {
                 key={o._id}
                 className="border shadow bg-light rounded-4 mb-5"
               >
-                <table className="table">
+                <table className="table table-responsive">
                   <thead>
                     <tr>
                       <th scope="col">#OrderId</th>
@@ -101,20 +84,10 @@ const AdminOrders = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr key={o._id}>
+                    <tr>
                       <td>{o._id}</td>
                       <td>
-                        <select
-                          className="form-select"
-                          value={o.status}
-                          onChange={(e) => handleChange(o._id, e.target.value)}
-                        >
-                          <option value="Not processed">Not processed</option>
-                          <option value="Processing">Processing</option>
-                          <option value="Shipped">Shipped</option>
-                          <option value="Delivered">Delivered</option>
-                          <option value="Cancelled">Cancelled</option>
-                        </select>
+                        {o.status}
                       </td>
                       <td>{o.buyer.name}</td>
                       <td>{moment(o.createdAt).fromNow()}</td>
@@ -157,4 +130,4 @@ const AdminOrders = () => {
   );
 };
 
-export default AdminOrders;
+export default UserOrders;

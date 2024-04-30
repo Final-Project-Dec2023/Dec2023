@@ -23,13 +23,13 @@
     }
 @media (min-width: 370px) and (max-width: 767px) {
     .youtubeG{
-        width:21.5rem !important;
+        width:24rem !important;
         height:27rem !important;
         /* border: 1px solid black !important; */
        
     }
     .gvideo{
-        width: 20rem !important;
+        width: 22rem !important;
         height: 24rem !important;
     }
 }   

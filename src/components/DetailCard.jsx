@@ -19,31 +19,31 @@ const DetailCard = ({ product }) => {
 
   const [selectedImage, setSelectedImage] = useState(images[0]?.url);
 
-  const [rating, setRating] = useState(0); // State variable to store user's rating
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [rating, setRating] = useState(0); // State variable to store user's rating
+  // const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
-  };
+  // const handleRatingChange = (newRating) => {
+  //   setRating(newRating);
+  // };
 
-  const handleSubmitRating = async () => {
-    setIsSubmitting(true);
-    try {
+  // const handleSubmitRating = async () => {
+  //   setIsSubmitting(true);
+  //   try {
       // Make a POST request to the backend rating endpoint
-      const response = await axios.post(`/rating/${productId}`,{
-        productId: product._id,
-        userId: "user123", // Replace with actual user ID
-        rating: rating,
-      });
-      console.log("Rating submitted:", response.data);
+      // const response = await axios.post(`/rating/${productId}`,{
+      //   productId: product._id,
+      //   userId: "user123", // Replace with actual user ID
+      //   rating: rating,
+      // });
+      // console.log("Rating submitted:", response.data);
       // Optionally, update UI or provide feedback to the user
-    } catch (error) {
-      console.error("Error submitting rating:", error);
+    // } catch (error) {
+    //   console.error("Error submitting rating:", error);
       // Optionally, handle errors or provide feedback to the user
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
 
   useEffect(() => {
     // Set the selected image to the first image in the array when component mounts
@@ -114,10 +114,10 @@ const DetailCard = ({ product }) => {
             </p>
 
               {/* Rating component */}
-      <div>
+      {/* <div> */}
         {/* Display rating UI here (e.g., star rating component) */}
         {/* Example: */}
-        <select value={rating} onChange={(e) => handleRatingChange(parseInt(e.target.value))}>
+        {/* <select value={rating} onChange={(e) => handleRatingChange(parseInt(e.target.value))}>
           <option value={0}>Select Rating</option>
           <option value={1}>1 Star</option>
           <option value={2}>2 Stars</option>
@@ -125,12 +125,12 @@ const DetailCard = ({ product }) => {
           <option value={4}>4 Stars</option>
           <option value={5}>5 Stars</option>
         </select>
-      </div>
+      </div> */}
 
       {/* Button to submit rating */}
-      <button onClick={handleSubmitRating} disabled={rating === 0 || isSubmitting}>
+      {/* <button onClick={handleSubmitRating} disabled={rating === 0 || isSubmitting}>
         {isSubmitting ? "Submitting..." : "Submit Rating"}
-      </button>
+      </button> */}
 
 
             <div style={{ display: "flex", alignItems: "center" }} className="">
@@ -209,7 +209,7 @@ const DetailCard = ({ product }) => {
             </div>
 
             <div className="d-flex gap-2">
-              <p style={{ fontSize: "1.25rem" }}>Availability({quantity}) :</p>
+              <p style={{ fontSize: "1.25rem" }}>Availability:</p>
               <ul
                 className="d-flex"
                 style={{ listStyle: "none", paddingLeft: "1rem" }}
@@ -233,7 +233,7 @@ const DetailCard = ({ product }) => {
                       marginRight: "5px",
                     }}
                   ></span>
-                  {isAvailable ? "In Stock" : "Out of Stock"}
+                  {isAvailable ? `In Stock (${quantity})`  : "Out of Stock"} 
                 </li>
               </ul>
             </div>

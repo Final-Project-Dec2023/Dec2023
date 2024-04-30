@@ -10,33 +10,65 @@ import Footer from "../../components/Footer";
 
 const AdminProducts = () => {
   // context
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
   // state
   const [products, setProducts] = useState([]);
-  const [page, setPage] = useState(1);
   const [totalPages, setTotalPage] = useState(null);
   const [productCount, setProductCount] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(()=>{
+    const savedLimit = localStorage.getItem("currentLimit");
+   return savedLimit ? parseInt(savedLimit) : 4;
+  });
+  const [currentPageFromAPI, setCurrentPageFromAPI] = useState(1);
+  const [page, setPage] = useState(() => {
+    const savedPage = localStorage.getItem("currentPage");
+    return savedPage ? parseInt(savedPage) : 1;
+  });
 
   useEffect(() => {
     loadProducts();
-  }, [page]);
+  }, [page, limit]);
 
   const loadProducts = async () => {
     try {
-      const { data } = await axios.get(`/product/all?page=${page}&limit=${limit}`);
+      const { data } = await axios.get(
+        `/product/all?page=${page}&limit=${limit}`
+      );
       setProducts(data?.products);
       setTotalPage(data?.totalPages);
       setProductCount(data?.productCount);
-      setCurrentPage(data?.currentPage);
+      setCurrentPageFromAPI(data?.currentPage);
     } catch (err) {
-      console.log(err); 
+      console.log(err);
     }
   };
 
+  useEffect(() => {
+    const savedPage = localStorage.getItem("currentPage");
+    if (savedPage) {
+      setPage(parseInt(savedPage));
+    }
+  
+    const savedLimit = localStorage.getItem("currentLimit");
+    if (savedLimit) {
+      setLimit(parseInt(savedLimit));
+    }
+  
+    loadProducts();
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem("currentPage", page);
+  }, [page]);
+  
+  useEffect(() => {
+    localStorage.setItem("currentLimit", limit);
+    loadProducts();
+  }, [limit]);
+  
+
   console.log(productCount);
-  // console.log(currentPage);
+  console.log(limit);
 
   return (
     <>
@@ -56,7 +88,21 @@ const AdminProducts = () => {
               <h4>
                 All Products <span>({productCount || 0})</span>
               </h4>
-              <p className="bg-warning px-2 py-1">Page {page}/{totalPages}</p>
+              <div className="w-25">
+                <select
+                  className="form-select"
+                  onChange={(e) => setLimit(parseInt(e.target.value))}
+                >
+                  <option value={limit}>{limit} per page</option>
+                  <option value="4">4 per page</option>
+                  <option value="6">6 per page</option>
+                  <option value="10">10 per page</option>
+                  <option value="20">20 per page</option>
+                </select>
+              </div>
+              <p className="bg-warning px-2 py-1">
+                Page {currentPageFromAPI}/{totalPages}
+              </p>
             </div>
             <table className="table table-hover">
               <thead>
@@ -100,24 +146,26 @@ const AdminProducts = () => {
             </table>
             {/* pagination */}
             <div className="d-flex justify-content-center align-items-center mb-3">
-                <button
-                  className="btn btn-primary mx-2"
-                  onClick={() => setPage(page - 1)}
-                  disabled={page === 1}
-                  style={{backgroundColor: "#0098B8"}}
-                >
-                  Previous
-                </button>
-                <span>(page {page}/{totalPages})</span>
-                <button
-                  className="btn btn-primary mx-2"
-                  onClick={() => setPage(page + 1)}
-                  disabled={page === totalPages}
-                  style={{backgroundColor: "#0098B8"}}
-                >
-                  Next
-                </button>
-              </div>
+              <button
+                className="btn btn-primary mx-2"
+                onClick={() => setPage(page - 1)}
+                disabled={page === 1}
+                style={{ backgroundColor: "#0098B8" }}
+              >
+                Previous
+              </button>
+              <span>
+                (page {currentPageFromAPI}/{totalPages})
+              </span>
+              <button
+                className="btn btn-primary mx-2"
+                onClick={() => setPage(page + 1)}
+                disabled={page === totalPages}
+                style={{ backgroundColor: "#0098B8" }}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>

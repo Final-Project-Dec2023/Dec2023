@@ -67,7 +67,7 @@ const RelatedProd = () => {
             return (
               <Link className="link" to={`/detail/${product._id}`}>
                 <div key={_id}>
-                  <div className="m-card-Container" key={_id}>
+                  <div className="m-card-Container mt-lg-4" key={_id} >
                     <div className="m-image">
                       <img src={images[0].url} alt={name} />
                     </div>

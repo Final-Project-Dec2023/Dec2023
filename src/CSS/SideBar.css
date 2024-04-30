@@ -78,8 +78,6 @@
     .real-search{
         height: 55px !important;
     }
-<<<<<<< HEAD
-=======
 
     .cart-imgs {
         display: flex;
@@ -99,7 +97,6 @@
         justify-content: center;
     }
 
->>>>>>> 77d1ddd6d0c795c4dc4c25466760c7ada46fdf24
     .show-header {
         height: 56px;
         width: 100%;
@@ -171,6 +168,10 @@
     ol, ul {
     padding-left: 0 !important;
     }
+
+/* .btn.show {
+        border-color: none !important; 
+    } */
 }
 
 
