@@ -241,6 +241,10 @@ useEffect(() => {
         break;
     }
   };
+  const reverseArray = (array) => {
+    return array.slice().reverse();
+  };
+  const reversedProducts = reverseArray(paginate);
 
   return (
     <>

@@ -21,7 +21,7 @@ const DetailPage = () => {
       setLoading(true)
       try {
         const response = await axios.get(`/product/${productId}`);
-        console.log("Fetched data:", response.data);
+        // console.log("Fetched data:", response.data);
         setProductG(response.data.product);
       } catch (error) {
         console.error("Error fetching data:", error);

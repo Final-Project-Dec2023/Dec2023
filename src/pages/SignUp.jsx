@@ -61,9 +61,9 @@ const SignUp = () => {
       if (!data?.error) {
         toast.success("Registration successful");
         setLoading(false);
-        setTimeout(() =>{
-          navigate("/")
-        }, 5000)
+        setTimeout(() => {
+          navigate("/");
+        }, 5000);
       } else {
         toast.error("Registration failed");
       }
@@ -77,20 +77,20 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="container-milly">
-        <div className="left-side-milly">
-          <div className="top-section-milly ">
-            <Link to='/'>
-            <img src={img1} alt="" />
+      <div className="container-fluid mt-4">
+        <div className="col-md-6 offset-md-3">
+          <div className="text-center">
+            <Link to="/" className="">
+              <img src={img1} alt="" />
             </Link>
             <p>
               <b>Join Us To Discover The Perfect Scent For You!.</b>
             </p>
           </div>
 
-          <div className="middle-section-milly">
+          {/* <div className="middle-section-milly">
             <p>Let's get started by filling the information below:</p>
-          </div>
+          </div> */}
           <div className="">
             <form className="form-milly" onSubmit={handleSubmit}>
               <div className="form-action">
@@ -194,18 +194,15 @@ const SignUp = () => {
               </button>
             </div>
             <div className="bb">
-              <Link to="/login">
-              <p>
-                Already have an account? <a href="">Sign in</a>
+              <p className="text-dark">
+                Already have an account? <Link to="/login">Sign in</Link>
               </p>
-              </Link>
-             
             </div>
           </div>
         </div>
-        <div className="right-side-milly">
+        {/* <div className="right-side-milly">
           <img src={registerImg} className="image-fluid" />
-        </div>
+        </div> */}
       </div>
     </>
   );
