@@ -19,7 +19,7 @@ const fetchData = async () => {
   try {
     const response = await axios.get(`product/all?page=1&limit=100000`);
     setData(response?.data?.products);
-    console.log(response?.data?.products); // Log inside try block to ensure updated value
+    console.log(response?.data?.products);
   } catch (error) {
     console.error("Error fetching data:", error);
   }

@@ -17,7 +17,8 @@ import ProductCardLoading from "../components/ProductCardLoadingM";
 const AllFragrance = () => {
   //general data
   const [fetchProduct, setFetchProduct] = useState([]);
-  const [currentProducts, setCurrentProducts] = useState(fetchProduct);
+  const [currentProducts, setCurrentProducts] = useState([]);
+  //   
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
   //gender
@@ -43,6 +44,7 @@ const fetchData = async () => {
   try {
     const response = await axios.get(`/product/all?page=1&limit=100000`);
     setFetchProduct(response?.data?.products);
+    setCurrentProducts(response?.data?.products)
     console.log(response?.data?.products);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -55,9 +57,7 @@ useEffect(() => {
   fetchData();
 
 }, []);
-setTimeout(() => {
-  setCurrentProducts(fetchProduct)
-}, 100);
+
 
 
   // Function to handle adding and removing selected filters
@@ -82,7 +82,7 @@ setTimeout(() => {
 
   // ---------------Pagination Start---------
   const productsPerPage = 15;
-  const totalPages = Math.ceil(fetchProduct.length / productsPerPage);
+  const totalPages = Math.ceil(currentProducts.length / productsPerPage);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -99,6 +99,8 @@ setTimeout(() => {
   useEffect(() => {
     let filteredProducts = fetchProduct;
 
+    console.log("Selected Gender:", selectedGender);
+  console.log("Selected Brand:", selectedBrand);
     //filter for Gender
      if (selectedGender.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
@@ -240,8 +242,11 @@ setTimeout(() => {
         break;
     }
   };
+  const reverseArray = (array) => {
+    return array.slice().reverse();
+  };
+  const reversedProducts = reverseArray(paginate);
 
-  console.log(paginate);
   return (
     <>
       <Menu />
@@ -280,7 +285,7 @@ setTimeout(() => {
                   handleAvailabilityChange={handleAvailabilityChange}
                   selectedFilters={selectedFilters}
                   handleSelectedFilter={handleSelectedFilter}
-                  fetchProduct={fetchProduct}
+                  currentProducts={currentProducts}
                 />
                 {/* Accordion ends */}
               </div>

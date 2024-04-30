@@ -30,13 +30,6 @@
   background-image: url("../assets/images/ic_outline-minus.jpg") !important;
 } */
 
-/* .accordion-toggle::after{
-  background-image: url("../assets/images/ic_sharp-plus.jpg") !important; /* Plus symbol */
-/* }
-
-.accordion-toggle.collapsed::after {
-  background-image: url("../assets/images/ic_outline-minus.jpg") !important;/* Minus symbol */
-/* }  */
 
 /* .accordion-button:focus {
   outline: none !important;
@@ -48,7 +41,7 @@
   max-height: 100% !important;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 10px; */
 }
 .detailG {
   font-size: 1rem;

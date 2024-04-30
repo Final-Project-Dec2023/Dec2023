@@ -30,9 +30,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange, totalProductsPerPag
   return (
     <div className="pagination-btn">
       {/* <strong onClick={() => onPageChange(1)} className={currentPage === 1 ? 'disabled' : ''}>&lt;&lt;</strong> */}
-      <strong onClick={() => onPageChange(currentPage - 1)} className={currentPage === 1 ? 'disabled' : ''}>&lt;&lt;</strong>
+      {/* <strong onClick={() => onPageChange(currentPage - 1)} className={currentPage === 1 ? 'disabled' : ''}>&lt;&lt;</strong> */}
       {renderPageNumbers()}
-      <strong onClick={() => onPageChange(currentPage + 1)} className={currentPage === totalPages ? 'disabled' : 'disable'}>&gt;&gt;</strong>
+      {/* <strong onClick={() => onPageChange(currentPage + 1)} className={currentPage === totalPages ? 'disabled' : 'disable'}>&gt;&gt;</strong> */}
       {/* <strong onClick={() => onPageChange(totalPages)} className={currentPage === totalPages ? 'disabled' : 'disable'}></strong> */}
     </div>
   );

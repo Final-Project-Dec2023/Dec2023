@@ -4,7 +4,7 @@ import { useSearch } from "../../contexts/Search";
 import Seicon from "../../assets/icons/Vector (5).png";
 
 
-const Search = ()=> {
+const Search = ({toggleSearchBar})=> {
   // hooks
   const [values, setValues] = useSearch();  //coming from useSearch(context/search)
   const navigate = useNavigate();
@@ -26,18 +26,18 @@ const Search = ()=> {
       <input
         type="text"
         style={{ borderRadius: "0px" }}
-        className="form-control"
+        className="form-control real-search"
         placeholder="Search"
         onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         value={values.keyword}
       />
       <button
-        className="btn btn-dark"
+        className="btn btn-dark real-search"
         type="submit"
         style={{ borderRadius: "0px" }}
       >
         {/* Search */}
-        <img src={Seicon} alt="" />
+        <img src={Seicon} alt="" onClick={toggleSearchBar} />
       </button>
     </form>
   );
