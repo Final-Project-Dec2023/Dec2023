@@ -11,12 +11,17 @@ import SearchB from "../assets/icons/Vector (searchb).png";
 import HumanB from "../assets/icons/humprofile.png";
 import CartB from "../assets/icons/blackcart.png";
 import FragLogo from "../assets/images/Frame 579.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
 import Search from "./forms/Search";
+// import Search from "./forms/Search";
+// import { useNavigate } from "react-router-dom";
+
 function SideNav() {
   const [show, setShow] = useState(false);
   const { auth, login } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -40,8 +45,13 @@ function SideNav() {
           </div>
 
           <div className="right-icons">
-            <div className="">
-              <img src={Searchi} alt="" />
+            <div className="search-icon" onClick={toggleSearchBar}>
+              <img src={Searchi} alt="Search" />
+            </div>
+            <div className="search">
+              {isSearchBarVisible && (
+                <Search toggleSearchBar={toggleSearchBar} />
+              )}
             </div>
 
             {!auth?.user ? (
@@ -57,80 +67,82 @@ function SideNav() {
                 <img src={Humani} alt="" />
               </Link>
             )}
-            <div className="cart-imgs">
-              <Link to="/cart">
-                <img src={Carti} alt="" />
-              </Link>
-              <div className="cartcount-s">0</div>
-            </div>
+
+            <Link to="/cart">
+              <img src={Carti} alt="" />
+            </Link>
+            <div className="cartcount-s">0</div>
           </div>
         </div>
-
-        <Offcanvas className="w-75 offcanvas-peace" show={show} onHide={handleClose}>
-          <div className="show-header ">
-            <div className="left-logo">
-              <Offcanvas.Header
-                closeButton
-                className="off-header"
-              ></Offcanvas.Header>
-              <img src={FragLogo} alt="" />
-            </div>
-          </div>
-          <Offcanvas.Body className="off-main">
-            <div className="">
-              <ul className="first-li">
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Home</li>
-                </Link>
-
-                <Link
-                  to="/all-fragrances"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  <li>All Fragrance</li>
-                </Link>
-
-                <Link
-                  to="/new-arrivals"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  <li>New Arrival</li>
-                </Link>
-
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Blogs</li>
-                </Link>
-
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Contact Us</li>
-                </Link>
-              </ul>
-            </div>
-
-            <div className="straight-line"></div>
-
-            <div>
-              <ul className="last-li">
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>My Account</li>
-                </Link>
-
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Help</li>
-                </Link>
-
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>FAQ</li>
-                </Link>
-
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Shipping Information</li>
-                </Link>
-              </ul>
-            </div>
-          </Offcanvas.Body>
-        </Offcanvas>
       </div>
+      <Offcanvas
+        className="w-75 offcanvas-peace"
+        show={show}
+        onHide={handleClose}
+      >
+        <div className="show-header ">
+          <div className="left-logo">
+            <Offcanvas.Header
+              closeButton
+              className="off-header"
+            ></Offcanvas.Header>
+            <img src={FragLogo} alt="" />
+          </div>
+        </div>
+        <Offcanvas.Body className="off-main">
+          <div className="">
+            <ul className="first-li">
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Home</li>
+              </Link>
+
+              <Link
+                to="/all-fragrances"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <li>All Fragrance</li>
+              </Link>
+
+              <Link
+                to="/new-arrivals"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <li>New Arrival</li>
+              </Link>
+
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Blogs</li>
+              </Link>
+
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Contact Us</li>
+              </Link>
+            </ul>
+          </div>
+
+          <div className="straight-line"></div>
+
+          <div>
+            <ul className="last-li">
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>My Account</li>
+              </Link>
+
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Help</li>
+              </Link>
+
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>FAG</li>
+              </Link>
+
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Shipping Information</li>
+              </Link>
+            </ul>
+          </div>
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 }
