@@ -16,8 +16,7 @@ import { useAuth } from "../contexts/Auth";
 import Search from "./forms/Search";
 function SideNav() {
   const [show, setShow] = useState(false);
-  const { auth, login} = useAuth();
-  
+  const { auth, login } = useAuth();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -42,30 +41,32 @@ function SideNav() {
 
           <div className="right-icons">
             <div className="">
-            <img src={Searchi} alt=""/>
+              <img src={Searchi} alt="" />
             </div>
-         
-          {!auth?.user ? (
+
+            {!auth?.user ? (
               <Link to="/login">
                 <img src={Humani} alt="" />
               </Link>
-            ) : ( 
-              <Link to={auth?.user.role === 1 ? "/dashboard/admin" : "/dashboard/user"}>
-              <img src={Humani} alt="" />
-            </Link> 
-          )}
-              <div className="cart-imgs">
+            ) : (
+              <Link
+                to={
+                  auth?.user.role === 1 ? "/dashboard/admin" : "/dashboard/user"
+                }
+              >
+                <img src={Humani} alt="" />
+              </Link>
+            )}
+            <div className="cart-imgs">
               <Link to="/cart">
-            <img src={Carti} alt="" />
-            </Link>
-             <div className="cartcount-s">
-              0
+                <img src={Carti} alt="" />
+              </Link>
+              <div className="cartcount-s">0</div>
             </div>
-              </div>
-          </div>  
+          </div>
         </div>
 
-        <Offcanvas className="w-75" show={show} onHide={handleClose}>
+        <Offcanvas className="w-75 offcanvas-peace" show={show} onHide={handleClose}>
           <div className="show-header ">
             <div className="left-logo">
               <Offcanvas.Header
@@ -118,10 +119,7 @@ function SideNav() {
                   <li>Help</li>
                 </Link>
 
-                <Link
-                  to="/"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
+                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
                   <li>FAQ</li>
                 </Link>
 
