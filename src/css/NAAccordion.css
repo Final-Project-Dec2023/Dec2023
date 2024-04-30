@@ -1,7 +1,7 @@
 
-.accordion-item {
+/* .accordion-item {
     border: none !important; 
-} 
+}  */
 /* .accordion-button::after {
     background-image: url("../assets/images/Vector_Accordion_Down.png") !important;
   }
@@ -9,4 +9,8 @@
   .accordion-button:not(.collapsed)::after {
     background-image: url("../assets/images/Vector_Accordion_Up.png") !important;
   }   */
-
+  .accordion-button:focus {
+    /* z-index: 3;
+    outline: 0; */
+    box-shadow: none !important;
+}

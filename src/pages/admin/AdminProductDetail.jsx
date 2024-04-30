@@ -8,6 +8,7 @@ import Menu from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import AdminProductCard from "../../components/cards/AdminProductCard";
 import { toast } from "react-toastify";
+import AdminMenu from "../../components/nav/AdminMenu";
 
 const AdminProductDetail = () => {
   // context
@@ -20,11 +21,9 @@ const AdminProductDetail = () => {
 
   const navigate = useNavigate();
 
-
   useEffect(() => {
     loadProducts();
   }, []);
-
 
   const loadProducts = async () => {
     try {
@@ -34,9 +33,9 @@ const AdminProductDetail = () => {
       console.log(err);
     }
   };
-  
+
   const handleDelete = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       const { data } = await axios.delete(`/product/${product?._id}`);
       if (!data?.error) {
@@ -65,8 +64,20 @@ const AdminProductDetail = () => {
         subTitle="Admin Dashboard"
       />
 
-      <div className="container py-3">
-        <AdminProductCard product={product} slug={slug} handleDelete={handleDelete} loading={loading} />
+      <div className="container-fluid mb-3">
+        <div className="row">
+          <div className="col-md-3">
+            <AdminMenu />
+          </div>
+          <div className="col-md-9">
+              <AdminProductCard
+                product={product}
+                slug={slug}
+                handleDelete={handleDelete}
+                loading={loading}
+              />
+          </div>
+        </div>
       </div>
       <Footer />
     </>
