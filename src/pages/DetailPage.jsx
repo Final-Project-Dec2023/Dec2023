@@ -9,56 +9,43 @@ import "../css/DetailPage.css";
 import Footer from "../components/Footer";
 import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
+import DetailCardLoading from "../components/DetailLoading";
 
 const DetailPage = () => {
   const { productId } = useParams();
   const [productG, setProductG] = useState(null);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
         const response = await axios.get(`/product/${productId}`);
-        console.log("Fetched data:", response.data);
+        // console.log("Fetched data:", response.data);
         setProductG(response.data.product);
       } catch (error) {
         console.error("Error fetching data:", error);
+      }
+      finally{
+        setLoading(false)
       }
     };
     fetchData();
   }, [productId]);
 
-
-//     const url = `${import.meta.env.VITE_BACKEND_API_URL}/product/${productId}`
-
-
-// fetch(url)
-//     .then((response) => response.json())
-//     .then((data) => {
-        // console.log(data.filter((item) => item.region === "Africa"));
-        // loop through the data
-        // const africa = data.filter((products) => products.isAvailale === true)
-        // console.log(africa);
-        // africa.forEach((country) => console.log(`Name: ${country.name} (${country.cioc}) Population: ${country.population}`));
-
-        // africa.forEach((country) => {
-        //     li.innerHTML += `<li><strong>${country.name}</strong> (${country.cioc}) <strong>Population:</strong> ${country.population}</li>`;
-        //   });
-    // })
-
-  // }, [productId]);
-
   return (
     <>
-    <Menu />
-    <SideNav />
-    <div className="all-details d-flex flex-column justify-content-center ">
-      {productG && (
+      <Menu />
+      <SideNav />
+      <div className="all-details d-flex flex-column justify-content-center ">
         <>
           <div className="mb-4 detail-card ">
-            <DetailCard product={productG} />
-            {/* <p>{productG._id}</p>
-            <p>{productG.name}</p> */}
+            {loading ? (
+              <DetailCardLoading />
+            ) : productG && (
 
+              <DetailCard product={productG} />
+            )}
           </div>
 
           <div className="gaccrel d-flex  justify-content-between flex-column flex-lg-row ">
@@ -79,11 +66,9 @@ const DetailPage = () => {
             </div>
           </div>
         </>
-      )}
-    </div>
-    <Footer />
+      </div>
+      <Footer />
     </>
   );
 };
 export default DetailPage;
-

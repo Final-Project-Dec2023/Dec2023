@@ -24,7 +24,7 @@ const AdminOrders = () => {
       getOrders();
     }
   }, [auth?.token]);
-
+  
   const getOrders = async () => {
     try {
       const { data } = await axios.get("orders/all");
