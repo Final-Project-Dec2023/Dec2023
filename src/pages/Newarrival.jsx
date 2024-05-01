@@ -11,8 +11,12 @@ import SideNav from "../components/SideNav";
 import axios from "axios";
 import Pagination from "../components/PaginationM";
 import SortBy from "../components/SortBy";
+import Skeleton from "react-loading-skeleton";
+import ShowingAllfilter from "../components/ShowingAllfilter";
+// import ShowingAllfilter from "../components/ShowingAllfilter";
 import ProductCardLoading from "../components/ProductCardLoadingM";
 import Accord from "../components/AccordionM";
+import moment from "moment";
 
 const Newarrival = () => {
   const [fetchProduct, setFetchProduct] = useState([]);
@@ -54,16 +58,7 @@ const Newarrival = () => {
     fetchData();
   }, []);
 
-  const handleDelete = (indexToDelete) => {
-    const newfilters = [...selectedFilters];
-    newfilters.splice(indexToDelete, 1);
-    setSelectedFilters(newfilters);
-  };
-
-  // Detecting device screen width
-  
-  // // Pagination
-  
+  // Pagination
   const totalPages = Math.ceil(currentProducts.length / itemsPerPage);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -224,6 +219,7 @@ const Newarrival = () => {
         setCurrentProducts(
           [...currentProducts].sort((a, b) => a.name.localeCompare(b.name))
         );
+
         break;
       case "Z-A":
         setCurrentProducts(
@@ -240,8 +236,37 @@ const Newarrival = () => {
           [...currentProducts].sort((a, b) => b.price - a.price)
         );
         break;
+      case "oldToNew":
+        setCurrentProducts(
+          [...currentProducts].sort(
+            (a, b) => moment(a.createdAt) - moment(b.createdAt)
+          )
+        );
+
+        break;
+      case "newToOld":
+        setCurrentProducts(
+          [...currentProducts].sort((a, b) =>
+            moment(b.createdAt).diff(moment(a.createdAt))
+          )
+        );
+        break;
       case "BestSeller":
         handleDefaultSort();
+        break;
+      case "OldToNew":
+        setCurrentProducts(
+          [...currentProducts].sort(
+            (a, b) => moment(a.createdAt) - moment(b.createdAt)
+          )
+        );
+        break;
+      case "NewToOld":
+        setCurrentProducts(
+          [...currentProducts].sort(
+            (a, b) => moment(b.createdAt) - moment(a.createdAt)
+          )
+        );
         break;
       default:
         break;
@@ -254,52 +279,75 @@ const Newarrival = () => {
       <SideNav />
       <div className="arrival-desk-div ">
         <div className="arrival-top-div-desk ">
-          <div className="d-none d-md-none d-lg-block">
+          <div className="d-none d-md-block d-lg-block ms-md-2 ms-lg-4">
             <BreadCrumb />
           </div>
           <div className="d-flex justify-content-between ">
             <div className="d-block d-md-none d-lg-none mx-3 my-3">
               <h3>New Arrivals</h3>
-              <span>
-                Showing {lastIndex} Products of {currentProducts.length}{" "}
-                Products
-              </span>
+              {currentProducts.length == lastIndex ? (
+                <span>
+                  Showing {firstIndex + 1} - {currentProducts.length} of{" "}
+                  {currentProducts.length} Products Products
+                </span>
+              ) : (
+                <span>
+                  Showing {firstIndex + 1} - {lastIndex} of{" "}
+                  {currentProducts.length} Products
+                </span>
+              )}
             </div>
-            <div className="d-none d-md-block d-lg-block w-lg-75 ms-lg-4">
+            <div className="d-none d-md-block d-lg-block w-lg-75 ms-lg-4 mx-md-5 my-md-4">
               <h3>New Arrivals</h3>
-              <span>
-                Showing {lastIndex} Products of {currentProducts.length}{" "}
-                Products{" "}
-              </span>
+              {currentProducts.length == lastIndex ? (
+                <span>
+                  Showing {firstIndex + 1} - {currentProducts.length} of{" "}
+                  {currentProducts.length} Products Products
+                </span>
+              ) : (
+                <span>
+                  Showing {firstIndex + 1} - {lastIndex} of{" "}
+                  {currentProducts.length} Products
+                </span>
+              )}
             </div>
 
-            <div className="d-none d-md-none d-lg-block mt-2">
-              <span>
-                {/* Dropdown for desktop */}
+            {/* Sort by desktop  */}
+            <div className="d-none d-md-none d-lg-block mt-lg-5 d-lg-flex">
+              <div className="me-3 mt-2">Sort By</div>
+              <div className="">
                 <SortBy handleSort={handleSort} />
-              </span>
+              </div>
+              {/* Dropdown for desktop */}
             </div>
           </div>
         </div>
 
-        <div className="  d-block d-md-block d-lg-none">
-          <div className=" arrival-top-div-mob">
-            <div className="arrival-filter-div">
+        <div className="arrival d-block d-md-block d-lg-none mb-3 border border-2">
+          <div className="arrival-top-div-mob px-md-5 d-flex mx-3 mb-2 mx-md-0 mb-md-0">
+            <div className="arrival-filter-div ">
               <OffCanvasButton
                 handleCheckboxChange={handleCheckboxChange}
                 handleAvailabilityChange={handleAvailabilityChange}
                 handleSelectedFilter={handleSelectedFilter}
                 selectedFilters={selectedFilters}
-                clearFilters={clearFilters}
+                // clearFilters={clearFilters}
               />
             </div>
 
-            <BiSort />
-            <SortBy handleSort={handleSort} />
+            {/* Sort by mobile and Tablet */}
+            <div className="d-flex mt-3">
+              <div>
+                <BiSort />
+              </div>
+              <div>
+                <SortBy handleSort={handleSort} />
+              </div>
+            </div>
           </div>
         </div>
 
-        {selectedFilters.length > 0 && (
+        {/* {selectedFilters.length > 0 && (
           <div className="selected-filters w-100">
             {selectedFilters.map((filter, index) => (
               <span key={index} className="selected-filter">
@@ -330,7 +378,7 @@ const Newarrival = () => {
               Clear
             </button>
           </div>
-        )}
+        )} */}
 
         <div className="arrival-products-div-mob d-flex justify-content-center align-items-center flex-wrap gap-3 ">
           {loading ? (
@@ -349,7 +397,6 @@ const Newarrival = () => {
                   </div>
                 );
               })}
-              
             </>
           ) : (
             <>
@@ -358,15 +405,20 @@ const Newarrival = () => {
               </h3>
             </>
           )}
-          
         </div>
         <div className="pagination d-block d-md-block d-lg-none ">
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={handlePageChange}
-                />
-              </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
+        <div className="d-none d-md-block d-lg-block ms-5 w-50">
+          <ShowingAllfilter
+            clearFilters={clearFilters}
+            selectedFilters={selectedFilters}
+          />
+        </div>
         <div className="arrival-main-div">
           <div className="arrival-filter-div d-none d-md-none d-lg-block ms-lg-5 me-lg-3">
             <h6 className="ms-3 mt-3 mb-2">
@@ -384,31 +436,31 @@ const Newarrival = () => {
           {/* Desktop */}
 
           <div className="arrival-products-div-desk d-flex flex-wrap gap-3 ">
-            {loading? (
-            Array.from({ length: 6 }).map((_, index) => (
-              <ProductCardLoading key={index} />
-            ))
-          ) : currentProducts.length > 0 ? (
-            <>
-              {paginate.map((product) => {
-                return (
-                  <div
-                    className=" d-none d-md-none d-lg-block"
-                    key={product._id}
-                  >
-                    <ProductCard products={product} />
-                  </div>
-                );
-              })}
-            </>
-          ) : (
-            <>
-              <h3 className="text-center d-none d-md-none d-lg-block">
-                No Products Found
-              </h3>
-            </>
-          )}
-            
+            {loading ? (
+              Array.from({ length: 6 }).map((_, index) => (
+                <ProductCardLoading key={index} />
+              ))
+            ) : currentProducts.length > 0 ? (
+              <>
+                {paginate.map((product) => {
+                  return (
+                    <div
+                      className=" d-none d-md-none d-lg-block"
+                      key={product._id}
+                    >
+                      <ProductCard products={product} />
+                    </div>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                <h3 className="text-center d-none d-md-none d-lg-block">
+                  No Products Found
+                </h3>
+              </>
+            )}
+
             <div className="d-none d-md-none d-lg-block m-pagination">
               <Pagination
                 currentPage={currentPage}
