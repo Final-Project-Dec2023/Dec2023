@@ -59,16 +59,35 @@ const Newarrival = () => {
   }, []);
 
   // Pagination
-  const totalPages = Math.ceil(currentProducts.length / itemsPerPage);
+  // ---------------Pagination Start---------
+  // Function to handle page change
   const handlePageChange = (pageNumber) => {
+    console.log("Changing page to:", pageNumber);
     setCurrentPage(pageNumber);
+    localStorage.setItem("currentPage", pageNumber);
   };
 
-  const lastIndex = currentPage * itemsPerPage;
-  const firstIndex = lastIndex - itemsPerPage;
+  useEffect(() => {
+    // Retrieve current page from local storage
+    const storedPage = localStorage.getItem("currentPage");
+    if (storedPage) {
+      console.log(storedPage);
+      setCurrentPage(parseInt(storedPage));
+    } else {
+      setCurrentPage(1); // Set default page to 1 if not found in local storage
+    }
+  }, []);
 
-  const paginate = currentProducts.slice(firstIndex, lastIndex);
+  // Pagination logic
+  const productsPerPage = 15;
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const paginate = currentProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
+  // ---------------Pagination End---------
   useEffect(() => {
     let filteredProducts = fetchProduct;
     //filtering by Gender
@@ -285,7 +304,7 @@ const Newarrival = () => {
           <div className="d-flex justify-content-between ">
             <div className="d-block d-md-none d-lg-none mx-3 my-3">
               <h3>New Arrivals</h3>
-              {currentProducts.length == lastIndex ? (
+              {/* {currentProducts.length == lastIndex ? (
                 <span>
                   Showing {firstIndex + 1} - {currentProducts.length} of{" "}
                   {currentProducts.length} Products Products
@@ -295,11 +314,11 @@ const Newarrival = () => {
                   Showing {firstIndex + 1} - {lastIndex} of{" "}
                   {currentProducts.length} Products
                 </span>
-              )}
+              )} */}
             </div>
             <div className="d-none d-md-block d-lg-block w-lg-75 ms-lg-4 mx-md-5 my-md-4">
               <h3>New Arrivals</h3>
-              {currentProducts.length == lastIndex ? (
+              {/* {currentProducts.length == lastIndex ? (
                 <span>
                   Showing {firstIndex + 1} - {currentProducts.length} of{" "}
                   {currentProducts.length} Products Products
@@ -309,7 +328,7 @@ const Newarrival = () => {
                   Showing {firstIndex + 1} - {lastIndex} of{" "}
                   {currentProducts.length} Products
                 </span>
-              )}
+              )} */}
             </div>
 
             {/* Sort by desktop  */}
@@ -407,11 +426,13 @@ const Newarrival = () => {
           )}
         </div>
         <div className="pagination d-block d-md-block d-lg-none ">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+        <Pagination
+          totalItems={currentProducts.length}
+          itemsPerPage={productsPerPage}
+          onPageChange={handlePageChange}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
         </div>
         <div className="d-none d-md-block d-lg-block ms-5 w-50">
           <ShowingAllfilter
@@ -463,9 +484,11 @@ const Newarrival = () => {
 
             <div className="d-none d-md-none d-lg-block m-pagination">
               <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
+                totalItems={currentProducts.length}
+                itemsPerPage={productsPerPage}
                 onPageChange={handlePageChange}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
               />
             </div>
 

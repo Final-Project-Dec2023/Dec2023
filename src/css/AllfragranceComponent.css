@@ -24,15 +24,27 @@
     gap: 4px;
 }
 .home-all-fragrnace-product{
-    /* width: 90%; */
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 20px;
 }
-
-@media (max-width: 786px) {
+.best-seller-product{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+@media (max-width: 768px) {
+    .home-all-fragrance{
+        margin: 0px 0 30px 0;
+    }
     .home-all-fragrnace-product{
-        grid-template-columns: repeat(2, 1fr);
+        width: 95%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        column-gap: 4px;
     }
     .home-all-fragrance-header{
         font-size: 18px;
@@ -43,10 +55,31 @@
         align-items: center;
         gap: 4px;
     }
+    .best-seller-product{
+        width: 95%;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        overflow-x: auto;
+    }
 }
 
-@media (max-width: 1100px) {
+@media (min-width: 769px) and (max-width: 1100px) {
+    .home-all-fragrance{
+        margin: 10px 0 30px 0;
+    }
     .home-all-fragrnace-product{
-        grid-template-columns: repeat(3, 1fr);
+        width: 95%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        /* column-gap: 0px; */
+    }
+    .best-seller-product{
+        width: 95%;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        overflow-x: auto;
     }
 }

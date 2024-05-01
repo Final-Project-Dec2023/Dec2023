@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import closeImage from "../assets/images/Vector star.png"
 import NewAccordion from '../components/NAAccordion';
 import { CiFilter } from "react-icons/ci";
-import { data } from "../Db/ProductDb";
+// import { data } from "../Db/ProductDb";
 
 
 

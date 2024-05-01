@@ -64,8 +64,8 @@ const ProductCard = ({ product }) => {
   });
 
   const handleAddToCart = (event) => {
-    event.stopPropagation(); // Prevent event propagation
-    addToCart(product); // Add the product to the cart
+    event.stopPropagation(); 
+    addToCart(product); 
   };
 // console.log(cart);
 

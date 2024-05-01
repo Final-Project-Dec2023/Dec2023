@@ -8,6 +8,7 @@ import SideNav from "../components/SideNav";
 import CountDownTimer from "../components/CountDownTimer";
 import AllfragranceComponent from "../components/AllfragranceComponent";
 import NewArrivalComponent from "../components/NewArrivalComponent";
+import BestSeller from "../components/BestSeller";
 
 const Home = () => {
   return (
@@ -15,11 +16,12 @@ const Home = () => {
       <Menu />
       <SideNav />
       <Hero />
+      <BestSeller/>
       <Brands />
-      <Testimonies />
+      <NewArrivalComponent title="New Arrivals" link = "/new-arrivals"/>
       <CountDownTimer/>
       <AllfragranceComponent/>
-      <NewArrivalComponent  link = "/new-arrivals"/>
+      <Testimonies />
       <BlogCard />
       <Footer />
     </>
