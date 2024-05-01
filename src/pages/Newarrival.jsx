@@ -11,7 +11,7 @@ import SideNav from "../components/SideNav";
 import axios from "axios";
 import Pagination from "../components/PaginationM";
 import SortBy from "../components/SortBy";
-import Skeleton from "react-loading-skeleton";
+// import Skeleton from "react-loading-skeleton";
 import ShowingAllfilter from "../components/ShowingAllfilter";
 // import ShowingAllfilter from "../components/ShowingAllfilter";
 import ProductCardLoading from "../components/ProductCardLoadingM";

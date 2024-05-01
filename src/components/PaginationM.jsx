@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/paginationM.css'
 
-function Pagination({ totalItems, itemsPerPage, onPageChange }) {
-    const [currentPage, setCurrentPage] = useState(1);
+function Pagination({ totalItems, itemsPerPage, onPageChange, currentPage, setCurrentPage }) {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
     useEffect(() => {

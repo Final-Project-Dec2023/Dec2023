@@ -64,6 +64,8 @@ useEffect(() => {
 
   // Function to handle adding and removing selected filters
   const handleSelectedFilter = (filter) => {
+    setCurrentPage(1);
+
     setSelectedFilters((prevFilters) => {
       if (prevFilters.includes(filter)) {
         return prevFilters.filter((f) => f !== filter);
@@ -282,7 +284,7 @@ useEffect(() => {
             <div className="title-left">
               <h4>All Featured Fragrance</h4>
               <p>
-                Showing {indexOfFirstProduct + 1} - {indexOfLastProduct} of{" "}
+                Showing {productsPerPage} of{" "}
                 {currentProducts.length} Products
               </p>
             </div>
@@ -347,6 +349,8 @@ useEffect(() => {
           totalItems={currentProducts.length}
           itemsPerPage={productsPerPage}
           onPageChange={handlePageChange}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
         />
         </div>
       </div>
