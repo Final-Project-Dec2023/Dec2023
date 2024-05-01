@@ -3,8 +3,8 @@
   width: 50% !important;
   text-align: left;
   color: whitesmoke;
-  font-weight: 800;
-  font-size: 1.6rem;
+  font-weight: 600 !important;
+  font-size: 2rem;
   padding: 5px;
 }
 
@@ -46,6 +46,10 @@
   height: 15px !important;
   border-radius: 50%;
 }
+
+/* .carousel-indicators [data-bs-target]:active {
+ background-color: rgb(225, 12, 12) !important;
+} */
 .btn-pb {
   width: 170px !important;
   height: 45px;

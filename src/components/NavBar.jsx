@@ -1,3 +1,5 @@
+
+
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -9,19 +11,22 @@ import Cartimg from "../assets/icons/blackcart.png";
 import Seicon from "../assets/icons/Vector (5).png";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useAuth } from "../contexts/Auth";
-import Search from "../components/forms/Search";
+import { useAuth } from "../contexts/Auth.jsx";
 import { useNavigate } from "react-router-dom";
+import Search from "./forms/Search.jsx";
+
+
+
+
 
 function Menu() {
-  const { auth, setAuth, logout } = useAuth();
+  const { auth, logout } = useAuth();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     navigate("/");
-
   };
 
   return (
@@ -34,7 +39,7 @@ function Menu() {
             </Link>
           </div>
           <div className="search-sec">
-            <Search/>
+            <Search />
           </div>
 
           <div className="profile-con">
@@ -50,19 +55,31 @@ function Menu() {
                   <Dropdown.Menu>
                     {!auth.user ? (
                       <div className="text-center">
-                        <Dropdown.Item  href="/login" className="first-drop">
+                        <Dropdown.Item href="/login" className="first-drop">
                           Login
                         </Dropdown.Item>
-                        <Dropdown.Item  href="/signup" className="first-drop">
+                        <Dropdown.Item href="/signup" className="first-drop">
                           Sign Up
                         </Dropdown.Item>
                       </div>
                     ) : (
                       <div className="text-center">
-                        <Dropdown.Item className="first-drop" href={auth?.user.role === 1 ? "/dashboard/admin" : "/dashboard/user"}>
-                          My Account
+                        <Dropdown.Item
+                          className="first-drop"
+                          href={
+                            auth?.user.role === 1
+                              ? "/dashboard/admin"
+                              : "/dashboard/user"
+                          }
+                        >
+                          Dashboard
                         </Dropdown.Item>
-                        <Dropdown.Item className="first-drop" onClick={handleLogout}>Logout</Dropdown.Item>
+                        <Dropdown.Item
+                          className="first-drop text-danger"
+                          onClick={handleLogout}
+                        >
+                          Logout
+                        </Dropdown.Item>
                       </div>
                     )}
                   </Dropdown.Menu>
@@ -70,20 +87,17 @@ function Menu() {
               </div>
             </div>
 
-            <div className="cart-sec">
+          <div className="everything-cart">
+          <div className="cart-sec">
               <Link to="/cart">
                 <img src={Cartimg} alt="" />
               </Link>
-              <Link to="/cart">
-                <p>Cart</p>
-              </Link>
+            </div>
+            <div className="cartcount">
+              <span>3</span>
             </div>
           </div>
-          {auth?.user && (
-            <button className="btn btn-danger" onClick={handleLogout}>
-              Logout
-            </button>
-          )}
+          </div>
         </div>
 
         <Navbar expand="lg" className="bg-body-primary fs-5" id="bottom">

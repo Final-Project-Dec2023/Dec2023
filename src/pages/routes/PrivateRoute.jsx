@@ -1,10 +1,14 @@
-import { Outlet, Navigate } from "react-router-dom";
-import { useAuth } from "../../contexts/Auth";
- 
-const PrivateRoutes = () => {
-    const {auth} = useAuth();
+// import { Outlet, Navigate } from "react-router-dom";
+// import { useAuth } from "../../contexts/Auth";
 
-    return auth?.token ? <Outlet/> : <Navigate to = "/login"/>;
-}
+// import React from 'react'
 
-export default PrivateRoutes;
+// const PrivateRoute = () => {
+// const {auth} = useAuth();
+
+
+
+//   return auth.token ? <Outlet/> : <Navigate to="/"/>;
+// }
+
+// export default PrivateRoute

@@ -11,15 +11,11 @@
 .main-body{
     height: 40%;
     width: 90%;
-   
-    /* background-color: dodgerblue; */
-    /* background-size: cover; */
 }
 
 .heading{
   padding-top: 20px;
   color: white;
-  /* width: 8; */
 }
 .box-container{
     display: flex;
@@ -38,12 +34,11 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
-    /* padding-bottom: 50px; */
+    padding: 2px;
   }
 
 
   .para{
-    /* padding: 30px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,22 +48,6 @@
     flex-direction: column;
     padding-top: 15px;
   }
-  /* .para-one{
-    padding: 20px;
-  }
-  .para-two{
-    padding: 20px;
-  }
-  .para-three{
-    padding: 30px;
-  }
-  .para-four{
-    padding: 30px;
-  }
-  .para-five{
-    padding: 30px;
-  } */
-
   .icon{
     padding-left: 15px;
   }
@@ -77,20 +56,15 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    /* border: 1px solid #555; */
 }
 
 
-/* .arrow-icons {
-  font-size: 200px;
-} */
+
 .head-icon{
   font-size: 50px;
 }
 
 .arrow-icons svg {
-    /* Add custom styles to your arrow icons here */
-    /* For example: */
     margin: 0 5px; /* Add some spacing between icons */
     color: #555; /* Change the color */
     font-size: 24px; /* Adjust the size */
@@ -99,13 +73,10 @@
 
 
 .pic-story{
-  height: 100%;
-  width: 15%;
+  height: 40px;
+  width: 40px;
   display: flex;
-  padding-left: 5px;
-  /* background-color: #555; */
-  /* border: 1px solid red; */
-  /* border-radius: 50%; */
+  padding: 5px;
 }
 .pic-story img{
   height: 100%;
@@ -126,7 +97,6 @@
 .pics-celeb{
   width: 100%;
   height: 48px;
-  margin-top: 10px;
   /* border: 1px solid; */
   display: flex;
   
@@ -135,6 +105,11 @@
   width: 60%;
   padding-left: 7px;
 }
+.pic-text p{
+  font-size: .8rem;
+  color: #777;
+}
+
 
 .star{
   align-items: end;
@@ -142,6 +117,137 @@
 .box-container-mobile{
   display: none;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main{
+    width: 100%;
+    height: 280px;
+    background-color:#00758E;
+    display: flex;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+  }
+  
+  
+  .main-body{
+     height: 60%;
+     /* padding-left: 20px; */
+     /* width: 100%; */
+  }
+  
+  .heading{
+    padding-top: 5px;
+    /* padding-left: px; */
+    color: white;
+   /* display: flex;
+   justify-content: space-between; */
+   /* align-items: center; */
+   height: 20px;
+  }
+  .content{
+    height: 23px;
+  }
+  
+  .content p{
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .content h1{
+    font-weight: 800;
+    font-size: 20px;
+  }
+  .box-container-mobile{
+     height: 40vh;
+     width: 100%;
+     display: flex;
+     justify-content: space-around;
+     gap: 10px;
+     /* flex-wrap: wrap; */
+     flex-direction: row;
+     padding-top: 40px;
+     /* background-color: red; */
+     overflow-x: scroll;
+     
+    
+
+  }
+  
+  .box {
+   height: 50%;
+   display: flex;
+   /* justify-content: space-between; */
+   flex-direction: column;
+   flex: 0 0 50%;
+   scroll-snap-align: start;
+    /* display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    width: 40%;
+    height: 120px;
+    display: flex;
+    justify-content: space-around; */
+  }
+  
+  
+    .para{
+      height: 60px;
+      font-size: 1rem;
+      font-weight: 400;
+      width: 100%;
+      padding-left: 20px;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+    
+  
+    .icon{
+      /* border: 1px solid red; */
+      height: 5px;
+      padding-top: 5px;
+     /* padding-top: 15px; */
+    }
+   
+  .arrow {
+    display: none;
+  }
+  .head-icon{
+   display: none;
+  }
+  
+  .arrow-icons svg {
+     display: none;
+  }
+  .arrow-container h1{
+    font-size: 0.9rem;
+  }
+  .arrow-container p{
+    padding-left: 20px;
+  }
+  
+  .pics-celeb{
+   height: 40%;
+   padding-top: 7px;
+   /* border: red solid; */
+  }
+  .pic-text h6{
+   font-size: 0.9rem;
+  }
+  .pic-text p{
+    font-size: 0.7rem;
+  }
+  
+  .star{
+   
+  }
+
+  .box-container{
+    display: none;
+  }
+}
+
 
 @media (min-width: 370px) and (max-width: 767px) {
   .main{

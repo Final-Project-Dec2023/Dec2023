@@ -54,6 +54,9 @@
 .m-card-btn .not-ava{
     background-color: #A3A3A3;
 }
+.link{
+    text-decoration: none;
+}
 
 /* Media Query for low resolution  Tablets, Ipads */
 @media (min-width: 300px) and (max-width: 320px) {
@@ -150,7 +153,6 @@
         justify-content: space-evenly;
         flex-direction: column;
         gap: 0px;
-        
     }
     .m-card-text{
         width: 100%;
@@ -192,13 +194,19 @@
    @media (min-width: 768px) and (max-width: 1124px){
     .m-card-Container{
         border: 1px solid #d7d7d7;
-        width: 320px;
-        height: 470px;
+        width: 240px;
+        height: 450px;
         border-radius: 8px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;    
+    }
+    .m-card-info{
+        padding: 0 8px;
+    }
+    .m-card-text{
+        padding: 0 10px;
     }
    }
    

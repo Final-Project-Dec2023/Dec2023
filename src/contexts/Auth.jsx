@@ -1,5 +1,8 @@
+import { Outlet, Navigate } from "react-router-dom";
 import { useState, createContext, useContext, useEffect } from "react";
 import axios from "axios";
+
+
 
 const AuthContext = createContext();
 
@@ -12,7 +15,7 @@ const AuthProvider = ({ children }) => {
 
   // axios config
   axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_API_URL;
-  // axios.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
+  // axios.defaults.headers.common["Authorization"] = Bearer ${auth?.token};
 
   // Update axios headers when auth changes
   useEffect(() => {
@@ -76,7 +79,11 @@ const AuthProvider = ({ children }) => {
       return data;
     } catch (error) {
       console.error("Signup Error:", error.message);
-      return { error: "Failed to register" };
+      if (error?.response && error?.response?.data && error?.response?.data?.error) {
+        throw new Error(error?.response?.data?.error); 
+      } else {
+        throw new Error("An error occurred while signing in");
+      }
     }
   };
 
@@ -86,26 +93,43 @@ const AuthProvider = ({ children }) => {
     setAuth({ user: null, token: "" });
   };
 
-  const PrivateRoutes = () => {
-    const data = localStorage.getItem("auth");
-    const parsedData = JSON.parse(data);
-    const isLoggedIn = parsedData;
+  
+// Private Route
+const PrivateRoutes = () => {
+const data = localStorage.getItem("auth");
+const parsedData = JSON.parse(data);
+const isLoggedIn = parsedData;
 
-    return isLoggedIn? <Outlet /> : <Navigate to="/login" />;
+  return isLoggedIn ? <Outlet/> : <Navigate to="/login"/>
 
 }
+
+const AdminRoutes = () => {
+  const data = localStorage.getItem("auth");
+  const parsedData = JSON.parse(data);
+  const isAdmin = parsedData.user.role === 1;
+
+    return isAdmin ? <Outlet/> : <Navigate to ="/"/>
+
+}
+
+
   // console.log(auth.user);
 
 
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, login, signup, logout, PrivateRoutes}}>
+    <AuthContext.Provider value={{ auth, setAuth, login, signup, logout, PrivateRoutes, AdminRoutes }}>
       {children}
     </AuthContext.Provider>
   );
+
 };
 
 // hook
 const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };
+
+
+

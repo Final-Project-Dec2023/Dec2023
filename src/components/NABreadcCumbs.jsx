@@ -16,7 +16,7 @@ function Breadcrumbs() {
                 <div className="breadscrumb-m">
                 {pathnames.length > 0 && <Link to='/'>Home</Link>}
                 {pathnames.map((name, index)=>{
-                    if (name === 'new-arrival') {
+                    if (name === 'new-arrivals') {
                         name = 'New Arrival' 
                     };
                     if (name === 'all-fragrances') {

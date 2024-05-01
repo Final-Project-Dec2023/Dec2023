@@ -1,30 +1,3 @@
-// import React from 'react'
-// import {data} from "../Db/TestimoniesDB"
-// import TestimoniesCard from './TestimoniesCard'
-
-// const Testimonies = () => {
-//     return (
-//       <div>
-//           <h1>Product Page</h1>
-//           <div className="d-flex justify-content-between flex-wrap gap-4">
-  
-//           {data.map((product) => {
-//               return (
-//                   <div className="" key={product.id}>
-//                       <TestimoniesCard product={product}/>
-//                   </div>
-//               )
-//           })}
-//       </div>
-  
-//       </div>
-//     )
-//   }
-
-//   export default Testimonies
-
-
-
 import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "../css/testimonies.css";
@@ -100,7 +73,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa
-                minima magni dolor delectus assumenda perspiciatis non ad
+                minima magni dolor delectus assumenda perspi
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -119,8 +92,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Excepturi illum itaque, asperiores vel cum atque repellendus
-                perferendis ab error ex.
+                Excepturi illum itaque, asperiores vel cum atque repellendus.
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -139,8 +111,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Excepturi illum itaque, asperiores vel cum atque repellendus
-                perferendis ab error ex.
+                Excepturi illum itaque, asperiores vel cum atque repellendu.
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -182,7 +153,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa
-                minima magni dolor delectus assumenda perspiciatis non ad
+                minima magni dolor delectus assumenda
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -201,8 +172,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Excepturi illum itaque, asperiores vel cum atque repellendus
-                perferendis ab error ex.
+                Excepturi illum itaque, asperiores vel cum atque repellendus.
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -221,8 +191,7 @@ const Testimonies = () => {
               </div>
               <p className="para">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Excepturi illum itaque, asperiores vel cum atque repellendus
-                perferendis ab error ex.
+                Excepturi illum itaque, asperiores vel cum atque repellendus.
               </p>
               <div className="pics-celeb">
                 <div className="pic-story">
@@ -236,23 +205,6 @@ const Testimonies = () => {
                 <div>*****</div>
               </div>
             </div>
-
-            {/* <div className="box">
-      <div className="icon">
-          <FaQuoteRight/>
-        </div>
-        <p className='para-four'>
-          LLorem ipsum dolor sit, amet consectetur adipisicing elit. Earum laborum alias
-        </p>
-      </div>
-      <div className="box">
-      <div className="icon">
-          <FaQuoteRight/>
-        </div>
-        <p className='para-five'>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum laborum alias
-        </p>
-      </div> */}
           </div>
         )}
 
