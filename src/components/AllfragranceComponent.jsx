@@ -4,8 +4,9 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCardLoading from "./ProductCardLoadingM";
-
 import "../css/AllfragranceComponent.css";
+
+
 const AllfragranceComponent = () => {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState();
@@ -50,7 +51,7 @@ const AllfragranceComponent = () => {
             ? Array.from({ length: 4 }).map((_, index) => (
                 <ProductCardLoading key={index} />
               ))
-            : allFragrance.map((product) => {
+            : allFragrance?.map((product) => {
                 const { _id, images, name, description, price, isAvailable } =
                   product;
                 let Price = price.toLocaleString(undefined, {
@@ -62,7 +63,7 @@ const AllfragranceComponent = () => {
                       <div key={_id}>
                         <div className="m-card-Container" key={_id}>
                           <div className="m-image">
-                            <img src={images[0].url} />
+                            <img src={images[0]?.url} />
                           </div>
                           <div className="m-card-info">
                             <div className="m-card-text">
