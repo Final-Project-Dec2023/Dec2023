@@ -19,7 +19,7 @@ const Home = () => {
       <Testimonies />
       <CountDownTimer/>
       <AllfragranceComponent/>
-      <NewArrivalComponent title="New Arrivals" link = "/new-arrivals"/>
+      <NewArrivalComponent  link = "/new-arrivals"/>
       <BlogCard />
       <Footer />
     </>

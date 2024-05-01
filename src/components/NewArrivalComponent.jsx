@@ -5,6 +5,8 @@ import "../css/Newarrival.css";
 import "../css/NAProductcard.css";
 import ProductCard from "../components/NAProductCard";
 import axios from "axios";
+import { FaArrowRightLong } from "react-icons/fa6";
+
 
 const NewArrivalComponent = ({ title, link }) => {
 
@@ -23,7 +25,7 @@ const NewArrivalComponent = ({ title, link }) => {
     try {
       const response = await axios.get(`/product/all?page=1&limit=${limit}`);
       setData(response?.data?.products);
-      console.log(response?.data?.products);
+      // console.log(response?.data?.products);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -35,8 +37,15 @@ const NewArrivalComponent = ({ title, link }) => {
 
   return (
     <>
-      <div className="d-flex justify-content-between home-new-arrival mx-3">
-        <div>
+           
+      <div className="">
+      <div className="container home-all-fragrance-header">
+          <span>New Arrivals</span>
+          <span>
+           <Link style={{textDecoration: 'none'}} to='/new-arrivals'>View all <FaArrowRightLong /></Link> 
+          </span>
+        </div>
+        {/* <div>
           <h5>{title}</h5>
         </div>
         <div>
@@ -50,12 +59,12 @@ const NewArrivalComponent = ({ title, link }) => {
               <img src={ThinArrow} alt="" />
             </span>
           </Link>
-        </div>
+        </div> */}
       </div>
 
       {/* Product Cards for Desktop */}
       <div>
-        <div className="d-md-flex d-lg-flex d-none d-md-none d-lg-block justify-content-lg-center align-items-lg-center gap-3 ">
+        <div className="d-md-flex d-lg-flex d-none d-md-none d-lg-block justify-content-lg-evenly align-items-lg-center gap-3 ">
           {limitedDataDesktop.map((product) => {
             return (
               <div className="" key={product._id}>

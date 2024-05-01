@@ -9,7 +9,7 @@
 .home-all-fragrance-header{
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    /* width: 90%; */
     height: 80px;
     align-items: center;
     justify-content: space-between;
@@ -24,7 +24,7 @@
     gap: 4px;
 }
 .home-all-fragrnace-product{
-    width: 90%;
+    /* width: 90%; */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
