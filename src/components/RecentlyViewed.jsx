@@ -28,9 +28,9 @@ const RecentlyViewed = ({limit}) => {
   const limitedRecentlyViewed = recentlyViewed.slice(0, limit);
  console.log(recentlyViewed);
   return (
-    <div>
+    <div className="d-flex justify-content mb-4 mt-4">
       <h2>Recently Viewed</h2>
-      <div className="recently-viewed-list d-flex gap-2">
+      <div className="rpG d-flex gap-2 border border-0 p-0" >
         {limitedRecentlyViewed.map(product => (
           <Link className="link" to={`/detail/${product._id}`}>
           <div key={product._id}>
