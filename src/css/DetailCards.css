@@ -181,7 +181,7 @@
     }
     }
 /* Media Query for low resolution  Tablets, Ipads */
-@media (min-width: 370px) and (max-width: 767px) {
+@media (min-width: 300px) and (max-width: 767px) {
 .productDetail{
     display: flex;
     justify-content: center;
