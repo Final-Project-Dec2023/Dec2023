@@ -29,7 +29,7 @@ const DetailPage = () => {
         const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
         if (!recentlyViewed.includes(productId)) {
           recentlyViewed.unshift(productId);
-          const maxLength = window.innerWidth <= 767 ? 8 : 4;
+          const maxLength = window.innerWidth <= 1024 ? 8 : 4;
           const updatedList = recentlyViewed.slice(0, maxLength);
           localStorage.setItem('recentlyViewed', JSON.stringify(updatedList));
         }

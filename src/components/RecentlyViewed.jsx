@@ -26,7 +26,7 @@ const RecentlyViewed = ({limit}) => {
   }, []);
    // Limit the number of recently viewed products displayed based on screen size
    let limitedRecentlyViewed = [];
-   if (window.innerWidth < 768) {
+   if (window.innerWidth < 1024) {
      limitedRecentlyViewed = recentlyViewed.slice(0, limit);
    } else {
      limitedRecentlyViewed = recentlyViewed.slice(0, limit / 2);
