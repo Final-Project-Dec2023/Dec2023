@@ -23,8 +23,6 @@ function SideNav() {
 
   const navigate = useNavigate();
 
-  
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -51,7 +49,9 @@ function SideNav() {
               <img src={Searchi} alt="Search" />
             </div>
             <div className="search">
-            {isSearchBarVisible && <Search toggleSearchBar={toggleSearchBar}/>}
+              {isSearchBarVisible && (
+                <Search toggleSearchBar={toggleSearchBar} />
+              )}
             </div>
 
             {!auth?.user ? (
@@ -71,77 +71,78 @@ function SideNav() {
             <Link to="/cart">
               <img src={Carti} alt="" />
             </Link>
-             <div className="cartcount-s">
-              0
-            </div>
-              </div>
-          </div>  
-        </div>
-
-        <Offcanvas className="w-75" show={show} onHide={handleClose}>
-          <div className="show-header ">
-            <div className="left-logo">
-              <Offcanvas.Header
-                closeButton
-                className="off-header"
-              ></Offcanvas.Header>
-              <img src={FragLogo} alt="" />
-            </div>
+            <div className="cartcount-s">0</div>
           </div>
-          <Offcanvas.Body className="off-main">
-            <div className="">
-              <ul className="first-li">
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Home</li>
-                </Link>
+        </div>
+      </div>
+      <Offcanvas
+        className="w-75 offcanvas-peace"
+        show={show}
+        onHide={handleClose}
+      >
+        <div className="show-header ">
+          <div className="left-logo">
+            <Offcanvas.Header
+              closeButton
+              className="off-header"
+            ></Offcanvas.Header>
+            <img src={FragLogo} alt="" />
+          </div>
+        </div>
+        <Offcanvas.Body className="off-main">
+          <div className="">
+            <ul className="first-li">
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Home</li>
+              </Link>
 
-                <Link
-                  to="/all-fragrances"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  <li>All Fragrance</li>
-                </Link>
+              <Link
+                to="/all-fragrances"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <li>All Fragrance</li>
+              </Link>
 
-                <Link
-                  to="/new-arrivals"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  <li>New Arrival</li>
-                </Link>
+              <Link
+                to="/new-arrivals"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <li>New Arrival</li>
+              </Link>
 
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Blogs</li>
-                </Link>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Blogs</li>
+              </Link>
 
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Contact Us</li>
-                </Link>
-              </ul>
-            </div>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Contact Us</li>
+              </Link>
+            </ul>
+          </div>
 
-            <div className="straight-line"></div>
+          <div className="straight-line"></div>
 
-            <div>
-              <ul className="last-li">
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>My Account</li>
-                </Link>
+          <div>
+            <ul className="last-li">
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>My Account</li>
+              </Link>
 
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Help</li>
-                </Link>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Help</li>
+              </Link>
 
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>FAG</li>
-                </Link>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>FAG</li>
+              </Link>
 
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                  <li>Shipping Information</li>
-                </Link>
-              </ul>
-            </div>
-          </Offcanvas.Body>
-        </Offcanvas>
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <li>Shipping Information</li>
+              </Link>
+            </ul>
+          </div>
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 }

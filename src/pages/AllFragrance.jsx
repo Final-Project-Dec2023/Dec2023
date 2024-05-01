@@ -79,8 +79,15 @@ useEffect(() => {
     setSelectedAvailability([]);
   };
 
-  // ---------------Pagination Start---------
-  const productsPerPage = 15;
+      // // Detecting device screen width
+      // const isMobile = window.innerWidth <= 768;
+      // const isTablet = window.innerWidth <= 1024;
+    
+      // // Setting the limit for related products
+      // const limit = isMobile ? 20 : 15 && isTablet ? 15 : 15;
+
+      // ---------------Pagination Start---------
+  const productsPerPage = 18;
   const totalPages = Math.ceil(currentProducts.length / productsPerPage);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -307,9 +314,12 @@ useEffect(() => {
                 ? Array.from({ length: 6 }).map((_, index) => (
                     <ProductCardLoading key={index} />
                   ))
-                : paginate.map((product) => (
+                : ( currentProducts.length > 0 ? paginate.map((product) => (
                     <ProductCard product={product} key={product._id} />
-                  ))}
+                    
+                  )):
+                  <h1>No Product Found</h1>
+                )}
             </div>
           </div>
 
