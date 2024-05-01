@@ -10,6 +10,7 @@ import Footer from "../components/Footer";
 import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
 import DetailCardLoading from "../components/DetailLoading";
+import RecentlyViewed from "../components/RecentlyViewed";
 
 const DetailPage = () => {
   const { productId } = useParams();
@@ -23,6 +24,15 @@ const DetailPage = () => {
         const response = await axios.get(`/product/${productId}`);
         // console.log("Fetched data:", response.data);
         setProductG(response.data.product);
+
+        // Store the viewed product in local storage
+        const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+        if (!recentlyViewed.includes(productId)) {
+          recentlyViewed.unshift(productId);
+          const maxLength = 4;
+          const updatedList = recentlyViewed.slice(0, maxLength);
+          localStorage.setItem('recentlyViewed', JSON.stringify(updatedList));
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -64,6 +74,9 @@ const DetailPage = () => {
             <div className="d-lg-none youtube-g">
               <YouTube />
             </div>
+          </div>
+          <div className="">
+            <RecentlyViewed limit={4} />
           </div>
         </>
       </div>

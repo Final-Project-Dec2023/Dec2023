@@ -59,7 +59,7 @@
             }
         }
     
-    @media (min-width: 370px) and (max-width: 767px) {
+    @media (min-width: 320px) and (max-width: 767px) {
        .rpB{
         width: 23.6rem !important;
         height: 23rem;
