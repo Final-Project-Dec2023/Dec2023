@@ -67,11 +67,11 @@
     font-size: 1.1rem;
   }
 }
-@media (min-width: 320px) and (max-width: 767px) {
-  .accord-header-g{
+@media (min-width: 300px) and (max-width: 767px) {
+  /* .accord-header-g{
     min-height: 50px;
     display: flex;
-  }
+  } */
   .accordionG {
     width: 100% !important;
   }

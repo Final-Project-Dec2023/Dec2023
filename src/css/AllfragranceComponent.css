@@ -45,7 +45,7 @@
     }
 }
 
-@media (min-width: 786px) and (max-width: 1100px) {
+@media (max-width: 1100px) {
     .home-all-fragrnace-product{
         grid-template-columns: repeat(3, 1fr);
     }

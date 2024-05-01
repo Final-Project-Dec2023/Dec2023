@@ -1,47 +1,3 @@
-/* DetailPage.css */
-
-/* DetailPage.css */
-
-.skeleton-loader {
-  background-color: #f0f0f0;
-  padding: 20px;
-  border-radius: 8px;
-  min-width: 800px;
-}
-
-.skeleton-detail-card{
-  width: 90%;
-  height: 485px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.skeleton-gaccrel{
-  width: 90%;
-  height: 100%;
-}
-
-.skeleton-accordion-detailG,
-.skeleton-related-prod
- {
-  width: 55%;
-  height: 150px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  margin-right: 10px;
-}
-
-.skeleton-youtube{
-  width: 55%;
-  height: 300px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  margin-right: 10px;
-}
-
-
-
 .all-details {
   height: 100%;
   display: flex;
@@ -70,26 +26,76 @@
 .youtube-g {
   width: 55%;
 }
+.recently{
+  width: 90%;
+}
 /* Media Query for low resolution  Tablets, Ipads */
-@media (min-width: 370px) and (max-width: 767px) {
+@media (min-width: 379px) and (max-width: 767px) {
  .detail-card {
     width: 90%;
   }
   .accordion-detailG {
-    width: 100%;
+    width: 24rem;
   }
   .relate-p {
+    /* border: 1px solid black; */
     width: 100%;
     margin-top: 40px;
     max-height: 100%;
   }
   .youtube-g {
-    width: 100%;
+    width: 97%;
     margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .recently{
+    width: 95%;
+  }
+}
+@media (min-width: 321px) and (max-width: 379px) {
+  .accordion-detailG {
+    width: 22rem;
+  }
+  .relate-p {
+    /* border: 1px solid blue; */
+    width: 100%;
+  }
+  .youtube-g {
+    width: 95%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .recently{
+    /* border: 1px solid blue; */
+    width: 95%;
+  }
+}
+@media(max-width: 320px) {
+  .detail-card {
+    width: 100%;
+  }
+  .accordion-detailG {
+    width: 19.5rem;
+  }
+  .relate-p {
+    width: 100%;
+  }
+  .youtube-g {
+    width: 95%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .recently{
+    width: 98%;
   }
 }
 @media (min-width: 767px) and (max-width: 1100px) {
@@ -102,7 +108,7 @@
         width: 90%;
       }
       .accordion-detailG {
-        width: 100%;
+        width: 46.5rem;
       }
       .relate-p {
         width: 100%;
@@ -117,4 +123,9 @@
         align-items: center;
         justify-content: center;
       }
+}
+@media (min-width: 1104px){
+  .accordion-detailG {
+    width: 51.5rem;
+  }
 }

@@ -77,7 +77,7 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="container-fluid mt-4">
+      <div className="milly container-fluid pt-4">
         <div className="col-md-6 offset-md-3">
           <div className="text-center">
             <Link to="/" className="">
@@ -166,31 +166,31 @@ const SignUp = () => {
               </p>
             </div>
 
-            <div className="black-milly">
-              <button onClick={handleSubmit}>
-                {loading ? (
-                  <>
-                    <span
-                      className="spinner-border spinner-border-sm"
-                      aria-hidden="true"
-                    ></span>
-                    <span role="status">Loading...</span>
-                  </>
-                ) : (
-                  "Submit"
-                )}
-              </button>
-            </div>
+            <div className="">
+            <button className={loading ? "btn btn-dark w-100 p-3 my-1" : "btn btn-outline-dark w-100 p-3 my-1" } onClick={handleSubmit} disabled={loading}>
+              {loading ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm me-1"
+                    aria-hidden="true"
+                  ></span>
+                  <span role="status">Loading...</span>
+                </>
+              ) : (
+                "Sign Up"
+              )}
+            </button>
+          </div>
             <div className="dis my-2">
               <div className="line"></div>
               <span>&nbsp;&nbsp; or &nbsp;&nbsp;</span>
               <div className="line"></div>
             </div>
 
-            <div className="white-milly">
-              <button>
+            <div className="">
+              <button className={!loading ? "btn btn-dark w-100 p-3 my-1" : "btn btn-outline-dark w-100 p-3 my-1" }>
                 <img className="pic mx-2" src={img2} alt="" />
-                <a href="https://www.google.com/">Continue with Google</a>
+                <a className="text-light text-decoration-none" href="https://www.google.com/">Continue with Google</a>
               </button>
             </div>
             <div className="bb">

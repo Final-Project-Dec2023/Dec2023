@@ -39,6 +39,10 @@ const AuthProvider = ({ children }) => {
       });
 
       if (!data?.error) {
+        // Clear the "recentlyViewed" data from local storage
+      localStorage.removeItem("recentlyViewed");
+
+
         // Login successful
         setAuth({ user: data.user, token: data.user.token });
         localStorage.setItem("auth", JSON.stringify(data));
