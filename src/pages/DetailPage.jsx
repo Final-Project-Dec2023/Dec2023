@@ -29,7 +29,7 @@ const DetailPage = () => {
         const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
         if (!recentlyViewed.includes(productId)) {
           recentlyViewed.unshift(productId);
-          const maxLength = 4;
+          const maxLength = window.innerWidth <= 767 ? 8 : 4;
           const updatedList = recentlyViewed.slice(0, maxLength);
           localStorage.setItem('recentlyViewed', JSON.stringify(updatedList));
         }
@@ -75,8 +75,8 @@ const DetailPage = () => {
               <YouTube />
             </div>
           </div>
-          <div className="">
-            <RecentlyViewed limit={4} />
+          <div className="recently">
+            <RecentlyViewed limit={8} />
           </div>
         </>
       </div>

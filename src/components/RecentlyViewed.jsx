@@ -24,13 +24,20 @@ const RecentlyViewed = ({limit}) => {
 
     fetchRecentlyViewedProducts();
   }, []);
-  // Limit the number of recently viewed products displayed
-  const limitedRecentlyViewed = recentlyViewed.slice(0, limit);
+   // Limit the number of recently viewed products displayed based on screen size
+   let limitedRecentlyViewed = [];
+   if (window.innerWidth < 768) {
+     limitedRecentlyViewed = recentlyViewed.slice(0, limit);
+   } else {
+     limitedRecentlyViewed = recentlyViewed.slice(0, limit / 2);
+   }
  console.log(recentlyViewed);
   return (
-    <div className="d-flex justify-content mb-4 mt-4">
+    <div className="mb-4 mt-4" >
+      <div className="">
       <h2>Recently Viewed</h2>
-      <div className="rpG d-flex gap-2 border border-0 p-0" >
+      </div>
+      <div className="rpG d-flex justify-content-start gap-4 border border-0 p-1" >
         {limitedRecentlyViewed.map(product => (
           <Link className="link" to={`/detail/${product._id}`}>
           <div key={product._id}>
