@@ -4,8 +4,9 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCardLoading from "./ProductCardLoadingM";
-
 import "../css/AllfragranceComponent.css";
+
+
 const AllfragranceComponent = () => {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState();
@@ -15,14 +16,14 @@ const AllfragranceComponent = () => {
     const isTablet = window.innerWidth <= 1024;
   
     // Setting the limit for related products
-    const limit = isMobile ? 17 : 17 && isTablet ? 18 : 17;
+    const limit = isMobile ? 8 : 8 && isTablet ? 9 : 8;
     // const limit = isMobile ? (isTablet ? 5 : 4) : 2;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/product/all?page=1&limit=200`);
+        const response = await axios.get(`/product/all?page=2&limit=${limit}`);
         setProduct(response?.data?.products);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -34,7 +35,7 @@ const AllfragranceComponent = () => {
     fetchData();
   }, []);
 
-  const allFragrance = product?.slice(9, limit);
+  const allFragrance = product
 
   return (
     <>
@@ -42,7 +43,7 @@ const AllfragranceComponent = () => {
         <div className="home-all-fragrance-header">
           <span>All Featured Fragrance</span>
           <span>
-            View all <FaArrowRightLong />
+           <Link style={{textDecoration: 'none'}} to='/all-fragrances'>View all <FaArrowRightLong /></Link> 
           </span>
         </div>
         <div className="home-all-fragrnace-product">
@@ -50,7 +51,7 @@ const AllfragranceComponent = () => {
             ? Array.from({ length: 4 }).map((_, index) => (
                 <ProductCardLoading key={index} />
               ))
-            : allFragrance.map((product) => {
+            : allFragrance?.map((product) => {
                 const { _id, images, name, description, price, isAvailable } =
                   product;
                 let Price = price.toLocaleString(undefined, {
@@ -62,7 +63,7 @@ const AllfragranceComponent = () => {
                       <div key={_id}>
                         <div className="m-card-Container" key={_id}>
                           <div className="m-image">
-                            <img src={images[0].url} />
+                            <img src={images[0]?.url} />
                           </div>
                           <div className="m-card-info">
                             <div className="m-card-text">
