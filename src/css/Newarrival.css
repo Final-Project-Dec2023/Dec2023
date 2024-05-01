@@ -104,6 +104,7 @@
     /* border: 1px solid red; */
     /* border: 1px solid rgb(176, 172, 172) !important; */
     border-radius: 5px !important;
+    z-index: 9999
   }
 
   .btn {

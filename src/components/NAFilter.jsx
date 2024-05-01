@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../css/FilterbyM.css"; // Create a CSS file for styling
 import { LuFilter } from "react-icons/lu";
 import { GoDotFill } from "react-icons/go";
-import NewAccordion from "./NAAccordion";
 import Button from 'react-bootstrap/Button';
 import Accord from "./AccordionM";
 
@@ -53,7 +52,7 @@ const OffCanvasButton = ({
           <button onClick={clearFilters}>Clear</button>
         </div>
         <p className="p-2 border px-3">FILTERS
-        {/* {selectedFilters.length > 0 && (
+        {selectedFilters.length > 0 && (
           <div className="selected-filters">
             {selectedFilters.map((filter, index) => (
               <span key={index} className="selected-filter">
@@ -61,7 +60,7 @@ const OffCanvasButton = ({
               </span>
             ))}
           </div>
-        )} */}
+        )}
         </p>
         <div className="accord-offcanvas">
           <Accord

@@ -293,7 +293,7 @@ const Newarrival = () => {
                 handleAvailabilityChange={handleAvailabilityChange}
                 handleSelectedFilter={handleSelectedFilter}
                 selectedFilters={selectedFilters}
-                clearFilters={clearFilters}
+                // clearFilters={clearFilters}
               />
             </div>
 
@@ -302,7 +302,7 @@ const Newarrival = () => {
           </div>
         </div>
 
-        {selectedFilters.length > 0 && (
+        {/* {selectedFilters.length > 0 && (
           <div className="selected-filters w-100">
             {selectedFilters.map((filter, index) => (
               <span key={index} className="selected-filter">
@@ -333,7 +333,7 @@ const Newarrival = () => {
               Clear
             </button>
           </div>
-        )}
+        )} */}
 
         <div className="arrival-products-div-mob d-flex justify-content-center align-items-center flex-wrap gap-3 ">
           {loading ? (
