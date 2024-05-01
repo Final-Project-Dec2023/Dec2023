@@ -21,7 +21,7 @@ const NewArrivalComponent = ({ title, link }) => {
   // axios
   const fetchData = async () => {
     try {
-      const response = await axios.get(`product/all?page=1&limit={limit}`);
+      const response = await axios.get(`/product/all?page=1&limit=${limit}`);
       setData(response?.data?.products);
       console.log(response?.data?.products);
     } catch (error) {
