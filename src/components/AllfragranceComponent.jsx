@@ -15,14 +15,14 @@ const AllfragranceComponent = () => {
     const isTablet = window.innerWidth <= 1024;
   
     // Setting the limit for related products
-    const limit = isMobile ? 17 : 17 && isTablet ? 18 : 17;
+    const limit = isMobile ? 8 : 8 && isTablet ? 9 : 8;
     // const limit = isMobile ? (isTablet ? 5 : 4) : 2;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/product/all?page=1&limit=200`);
+        const response = await axios.get(`/product/all?page=2&limit=${limit}`);
         setProduct(response?.data?.products);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -34,7 +34,7 @@ const AllfragranceComponent = () => {
     fetchData();
   }, []);
 
-  const allFragrance = product?.slice(9, limit);
+  const allFragrance = product
 
   return (
     <>
@@ -42,7 +42,7 @@ const AllfragranceComponent = () => {
         <div className="home-all-fragrance-header">
           <span>All Featured Fragrance</span>
           <span>
-            View all <FaArrowRightLong />
+           <Link style={{textDecoration: 'none'}} to='/all-fragrances'>View all <FaArrowRightLong /></Link> 
           </span>
         </div>
         <div className="home-all-fragrnace-product">

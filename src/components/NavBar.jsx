@@ -53,24 +53,26 @@ function Menu() {
                   <Dropdown.Menu>
                     {!auth.user ? (
                       <div className="text-center">
-                        <Dropdown.Item href="/login" className="first-drop">
-                          Login
+                        <Dropdown.Item  className="first-drop">
+                        <Link className="text-decoration-none" to="/login">Login</Link>
                         </Dropdown.Item>
-                        <Dropdown.Item href="/signup" className="first-drop">
-                          Sign Up
+                        <Dropdown.Item  className="first-drop">
+                          <Link className=" text-decoration-none" to="/signup">Sign Up</Link>
                         </Dropdown.Item>
                       </div>
                     ) : (
                       <div className="text-center">
                         <Dropdown.Item
                           className="first-drop"
-                          href={
+                        >
+                          <Link className=" text-decoration-none" to={
                             auth?.user.role === 1
                               ? "/dashboard/admin"
                               : "/dashboard/user"
-                          }
-                        >
-                          Dashboard
+                          }>
+                            Dashboard
+                          </Link>
+                          
                         </Dropdown.Item>
                         <Dropdown.Item
                           className="first-drop text-danger"
