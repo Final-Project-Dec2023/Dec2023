@@ -31,8 +31,7 @@ import UserOrders from "./pages/user/UserOrders";
 // WARNING: Do Not change anything in this pages.
 
 function App() {
-  const { PrivateRoutes, AdminRoutes } = useAuth();
-
+  const { PrivateRoutes, AdminRoutes} = useAuth();
   return (
     <>
       <Router>
