@@ -5,6 +5,7 @@ import "../css/Newarrival.css";
 import "../css/NAProductcard.css";
 import ProductCard from "../components/NAProductCard";
 import axios from "axios";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const NewArrivalComponent = ({ title, link }) => {
 
@@ -36,18 +37,21 @@ const NewArrivalComponent = ({ title, link }) => {
   return (
     <>
       <div className="d-flex justify-content-between home-new-arrival mx-3">
-        <div>
+        <div className="d-block d-md-block d-lg-none mt-1">
           <h5>{title}</h5>
         </div>
-        <div>
+        <div className="d-none d-md-none d-lg-block">
+          <h3>{title}</h3>
+        </div>
+        <div className="pt-1">
           <Link
             to={link}
-            className="text-decoration-none"
-            style={{ color: "teal" }}
+            className="text-decoration-none mt-2 mt-lg-0"
+            style={{ color: "#0098B8" }}
           >
             View All{" "}
-            <span>
-              <img src={ThinArrow} alt="" />
+            <span >
+              <FaArrowRightLong/>
             </span>
           </Link>
         </div>
@@ -66,13 +70,13 @@ const NewArrivalComponent = ({ title, link }) => {
         </div>
       </div>
 
-      {/* Product Cards for Mobile */}
+      {/* Product Cards for Mobile and Tablet*/}
       <div>
         <div className="d-flex d-md-flex d-block d-md-block d-lg-none home-new-products gap-3">
           {limitedData.map((product) => {
             return (
               <div className="" key={product._id}>
-                <ProductCard products={product} />
+                <ProductCard products={product}/>
               </div>
             );
           })}
