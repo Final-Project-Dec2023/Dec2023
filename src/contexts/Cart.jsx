@@ -1,19 +1,49 @@
-import { useState, createContext, useContext, useEffect } from "react";
+import React, { useState, useEffect, useReducer, createContext, useContext } from "react";
 
 const CartContext = createContext();
 
-// Anythng in the provider function is what we want to ship out
+const cartReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_TO_CART":
+      return [...state, action.payload];
+    case "REMOVE_FROM_CART":
+      return state.filter(item => item._id !== action.payload);
+    default:
+      return state;
+  }
+};
+
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cart, dispatch] = useReducer(cartReducer, [], () => {
+    const existingCart = localStorage.getItem("cart");
+    return existingCart ? JSON.parse(existingCart) : [];
+  });
 
   useEffect(() => {
-    let existingCart = localStorage.getItem("cart");
-    if (existingCart) setCart(JSON.parse(existingCart));
-  }, []);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  const addToCart = (product) => {
+    const existingProduct = cart.find((item) => item._id === product._id);
+    if (existingProduct) {
+      return;
+    }
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
+
+  const removeFromCart = (productId) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: productId });
+  };
+
+  const cartSubTotal = () => {
+    const subtotal = cart.reduce((total, item) => total + item.price, 0);
+    return subtotal;
+  };
   
-// Anything in the provider is what we want to ship out
+
+  // console.log("CART", cartSubTotal());
   return (
-    <CartContext.Provider value={{cart, setCart}}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, cartSubTotal }}>
       {children}
     </CartContext.Provider>
   );
@@ -21,5 +51,4 @@ const CartProvider = ({ children }) => {
 
 const useCart = () => useContext(CartContext);
 
-//CartProvider will wrap App in main.jsx
-export { useCart, CartProvider }; 
+export { useCart, CartProvider };
