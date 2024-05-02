@@ -7,13 +7,13 @@ const UserMenu = () =>{
 
       <ul className="list-group list-unstyled">
         <li>
-          <NavLink className="list-group-item" to="/dashboard/user/profile">
+          <NavLink className="list-group-item text-dark" to="/dashboard/user/profile">
             Profile
           </NavLink>
         </li>
 
         <li>
-          <NavLink className="list-group-item" to="/dashboard/user/orders">
+          <NavLink className="list-group-item text-dark" to="/dashboard/user/orders">
             Orders
           </NavLink>
         </li>

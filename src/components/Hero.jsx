@@ -9,6 +9,7 @@ import cusIcon from "../assets/icons/Customer service.png";
 import cardIcon from "../assets/icons/Online payment.png";
 import badgeIcon from "../assets/icons/Badge.png";
 
+
 function Hero() {
   const [index, setIndex] = useState(0);
 
@@ -21,7 +22,7 @@ function Hero() {
       <Carousel className="main-pb" activeIndex={index} onSelect={handleSelect} controls={false}>
         <Carousel.Item className="">
           <div className="img-pb">
-              <img src={img1} text="First slide" width="100%" height="450px" />
+              <img src={img3} text="First slide" width="100%" height="450px" />
           </div>
           <div className="main-b">
             <Carousel.Caption>

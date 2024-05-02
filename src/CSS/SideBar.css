@@ -67,6 +67,34 @@
     .right-icons img {
         width: 20px;
         height: 20px;
+        position: relative;
+    }
+    .search{
+        position: absolute;
+        left: 0%;
+        width: 70%;
+        z-index: 1000;
+    }
+    .real-search{
+        height: 55px !important;
+    }
+
+    .cart-imgs {
+        display: flex;
+    }
+
+    .cartcount-s {
+        position: relative;
+        height: 18px;
+        width: 18px;
+        bottom: 6px;
+        right: 6px;
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .show-header {
@@ -140,7 +168,13 @@
     ol, ul {
     padding-left: 0 !important;
     }
+
+/* .btn.show {
+        border-color: none !important; 
+    } */
 }
+
+
 
 
 

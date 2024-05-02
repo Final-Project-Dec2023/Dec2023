@@ -1,5 +1,4 @@
 
-
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -9,10 +8,9 @@ import Logo from "../assets/images/Frame 579.png";
 import Profileimg from "../assets/icons/humprofile.png";
 import Cartimg from "../assets/icons/blackcart.png";
 import Seicon from "../assets/icons/Vector (5).png";
-import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useAuth } from "../contexts/Auth.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Search from "./forms/Search.jsx";
 
 
@@ -55,24 +53,26 @@ function Menu() {
                   <Dropdown.Menu>
                     {!auth.user ? (
                       <div className="text-center">
-                        <Dropdown.Item href="/login" className="first-drop">
-                          Login
+                        <Dropdown.Item  className="first-drop">
+                        <Link className="text-decoration-none" to="/login">Login</Link>
                         </Dropdown.Item>
-                        <Dropdown.Item href="/signup" className="first-drop">
-                          Sign Up
+                        <Dropdown.Item  className="first-drop">
+                          <Link className=" text-decoration-none" to="/signup">Sign Up</Link>
                         </Dropdown.Item>
                       </div>
                     ) : (
                       <div className="text-center">
                         <Dropdown.Item
                           className="first-drop"
-                          href={
+                        >
+                          <Link className=" text-decoration-none" to={
                             auth?.user.role === 1
                               ? "/dashboard/admin"
                               : "/dashboard/user"
-                          }
-                        >
-                          Dashboard
+                          }>
+                            Dashboard
+                          </Link>
+                          
                         </Dropdown.Item>
                         <Dropdown.Item
                           className="first-drop text-danger"
@@ -99,17 +99,21 @@ function Menu() {
           </div>
           </div>
         </div>
-
-        <Navbar expand="lg" className="bg-body-primary fs-5" id="bottom">
+ 
+        <Navbar expand="lg" className="bg-body-primary fs-5 " id="bottom">
           <Container className="">
             <Navbar.Collapse id="basic-navbar-nav">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Nav className="me-auto">
                 <Nav.Link href="/" className="text-white">
-                  Home
+                <Link to="/" className="text-white text-decoration-none">
+                    Home
+                  </Link>
                 </Nav.Link>
                 <Nav.Link href="/all-fragrances" className="text-white">
-                  All Fragrance
+                  <Link to="/all-fragrances" className="text-white text-decoration-none">
+                    All Fragrance
+                  </Link>
                 </Nav.Link>
                 <NavDropdown
                   className="dropp text-white"
@@ -156,13 +160,19 @@ function Menu() {
                   <NavDropdown.Item href="#action/3.2">Zaien</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href="/new-arrivals" className="text-white">
-                  New Arrival
+                <Link to="/new-arrivals" className="text-white text-decoration-none">
+                    New Arrivals
+                  </Link>
                 </Nav.Link>
                 <Nav.Link href="/blog" className="text-white">
-                  Blog
+                <Link to="/blog" className="text-white text-decoration-none">
+                    Blog
+                  </Link>
                 </Nav.Link>
                 <Nav.Link href="/contact" className="text-white">
-                  Contact Us
+                <Link to="/contact" className="text-white text-decoration-none">
+                    Contact
+                  </Link>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
