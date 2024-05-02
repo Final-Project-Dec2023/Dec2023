@@ -29,9 +29,9 @@ const CartItems = () => {
           style={{ marginTop: "1rem", marginBottom: "2rem" }}
         >
           <div className="row">
-            <div className=" col-md-8">
+            <div className=" col-md-8 ">
               {cart.map((item) => (
-                <div className="card-kc" key={item._id}>
+                <div className="card-kc shadow" key={item._id}>
                   <div className="img-card-kc">
                     <div className="left-img-kc">
                       <div className="img-kc-kc">
@@ -82,7 +82,7 @@ const CartItems = () => {
                 </div>
                 <div className="text-center">
                   {auth?.token ? (
-                    <button className="btn btn-dark w-50 p-3">
+                    <button className="btn btn-dark w-100 p-3 mt-2">
                       <Link
                         className="text-decoration-none text-light"
                         to="/checkout"

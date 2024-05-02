@@ -13,6 +13,8 @@ import ShowingAllfilter from "../components/ShowingAllfilter";
 import SortBy from "../components/SortBy";
 import axios from "axios";
 import ProductCardLoading from "../components/ProductCardLoadingM";
+import moment from "moment";
+
 const AllFragrance = () => {
   //general data
   const [fetchProduct, setFetchProduct] = useState([]);
@@ -264,9 +266,40 @@ useEffect(() => {
       case "BestSeller":
         handleDefaultSort();
         break;
-      default:
-        break;
-    }
+        case "oldToNew":
+          setCurrentProducts(
+            [...currentProducts].sort(
+              (a, b) => moment(a.createdAt) - moment(b.createdAt)
+            )
+          );
+          break;
+        case "newToOld":
+          setCurrentProducts(
+            [...currentProducts].sort((a, b) =>
+              moment(b.createdAt).diff(moment(a.createdAt))
+            )
+          );
+          break;
+        case "BestSeller":
+          handleDefaultSort();
+          break;
+        case "OldToNew":
+          setCurrentProducts(
+            [...currentProducts].sort(
+              (a, b) => moment(a.createdAt) - moment(b.createdAt)
+            )
+          );
+          break;
+        case "NewToOld":
+          setCurrentProducts(
+            [...currentProducts].sort(
+              (a, b) => moment(b.createdAt) - moment(a.createdAt)
+            )
+          );
+          break;
+        default:
+          break;
+      }
   };
   const reverseArray = (array) => {
     return array.slice().reverse();
