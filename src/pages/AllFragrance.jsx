@@ -67,12 +67,10 @@ const AllFragrance = () => {
         `https://fragrancehubbe.onrender.com/api/v1/product/all?page=1&limit=1000000`
       );
 
-      // const {products} = response.data;
-      const shuffledProducts = shuffle(response?.data?.products);
-
-      setFetchProduct(shuffledProducts);
-      setCurrentProducts(shuffledProducts);
-      console.log(response?.data?.products);
+      const {products} = response.data;
+      setFetchProduct(products);
+      setCurrentProducts(products);
+      console.log(products);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -133,7 +131,7 @@ const AllFragrance = () => {
   }, []);
 
   // Pagination logic
-  const productsPerPage = 15;
+  const productsPerPage = limit;
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const paginate = currentProducts.slice(
