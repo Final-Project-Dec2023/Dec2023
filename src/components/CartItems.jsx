@@ -71,7 +71,6 @@
 
 // export default CartItems;
 
-
 import "../css/CartItems.css";
 import { useEffect } from "react";
 import { useCart } from "../contexts/Cart";
@@ -81,17 +80,20 @@ import SideNav from "./SideNav";
 import Footer from "./Footer";
 
 const CartItems = () => {
-  const { cart, cartSubTotal } = useCart();
+  const { cart, cartSubTotal, removeFromCart } = useCart();
 
-  useEffect(() => {
-    console.log("Cart Items:", cart);
-  }, [cart]);
+  // useEffect(() => {
+  //   console.log("Cart Items:", cart);
+  // }, [cart]);
 
   return (
     <>
       <Menu />
       <SideNav />
-      <div className="main-cont" style={{ marginTop: "1rem", marginBottom: "2rem" }}>
+      <div
+        className="main-cont"
+        style={{ marginTop: "1rem", marginBottom: "2rem" }}
+      >
         <div className="container-kc">
           <div className="left-cont">
             {cart.map((item) => (
@@ -104,7 +106,9 @@ const CartItems = () => {
                     <div className="text-card-kc">
                       <h5>{item.name}</h5>
                       <p>{item.description}</p>
-                      <p className="stock-kc">{item.isAvailable ? "In stock" : "Out of stock"}</p>
+                      <p className="stock-kc">
+                        {item.isAvailable ? "In stock" : "Out of stock"}
+                      </p>
                     </div>
                   </div>
                   <div className="btn-kc">
@@ -118,7 +122,9 @@ const CartItems = () => {
                   </div>
                   <div className="add-btn-kc">
                     <button className="btn-kc-kc">-</button>
-                    <span><b>0</b></span>
+                    <span>
+                      <b>0</b>
+                    </span>
                     <button className="btn-kc-kcee">+</button>
                   </div>
                 </div>
@@ -129,6 +135,38 @@ const CartItems = () => {
             <div className="kc-card">
               <div className="sum">
                 <h4>Cart Summary</h4>
+              </div>
+              <div className="">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cart?.length > 0 &&
+                      cart.map((product) => (
+                        <tr key={product._id}>
+                          <td>
+                            <img
+                              src={product.images[0].url}
+                              alt={product.name}
+                            />
+                          </td>
+                          <td>{product.name}</td>
+                          <td>&#8358;{product.price.toLocaleString()}</td>
+                          <td>
+                            <button onClick={() => removeFromCart(product._id)}>
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
               </div>
               <div className="kcee"></div>
               <div className="total">

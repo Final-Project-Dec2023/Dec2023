@@ -4,6 +4,7 @@ import visa from "../assets/icons/visa.png"
 import paypal from "../assets/icons/paypal.png"
 import master from "../assets/icons/master.png"
 import { useCart } from '../contexts/Cart';
+import Menu from './NavBar'
 
 
 
@@ -18,7 +19,7 @@ const CustomerDetails = () => {
 
   return (
     <div className='buni'>
-
+<Menu/>
       <div className="case-1">
         <div className="customer">
           <div className="heading">
