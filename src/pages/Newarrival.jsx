@@ -149,17 +149,17 @@ const Newarrival = () => {
   ]);
 
   console.log(currentProducts);
-  // useEffect(() => {
-  //   localStorage.setItem('currentProducts', JSON.stringify(currentProducts));
-  // }, [currentProducts]);
+  useEffect(() => {
+    localStorage.setItem('currentProducts', JSON.stringify(currentProducts));
+  }, [currentProducts]);
 
-  // // Load state on component mount
-  // useEffect(() => {
-  //   const savedCurrentProducts = JSON.parse(localStorage.getItem('currentProducts'));
-  //   if (savedCurrentProducts) {
-  //     setCurrentProducts(savedCurrentProducts);
-  //   }
-  // }, []);
+  // Load state on component mount
+  useEffect(() => {
+    const savedCurrentProducts = JSON.parse(localStorage.getItem('currentProducts'));
+    if (savedCurrentProducts) {
+      setCurrentProducts(savedCurrentProducts);
+    }
+  }, []);
 
   const handleCheckboxChange = (event, value, category) => {
     const isChecked = event.target.checked;
@@ -366,40 +366,6 @@ const Newarrival = () => {
             </div>
           </div>
         </div>
-
-        {/* {selectedFilters.length > 0 && (
-          <div className="selected-filters w-100">
-            {selectedFilters.map((filter, index) => (
-              <span key={index} className="selected-filter">
-                {filter}
-                <span
-                  className="bg-danger text-light p-1 mb-5 rounded-5 text-center mx-md-2"
-                  style={{
-                    position: "absolute",
-                    left: "13%",
-                    width: "20px",
-                    height: "20px",
-                    fontSize: "10px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    handleDelete(index);
-                  }}
-                >
-                  X
-                </span>
-              </span>
-            ))}
-            <button
-              onClick={clearFilters}
-              type="button"
-              className="btn btn-info"
-            >
-              Clear
-            </button>
-          </div>
-        )} */}
-
         <div className="arrival-products-div-mob d-flex justify-content-center align-items-center flex-wrap gap-3 ">
           {loading ? (
             Array.from({ length: 6 }).map((_, index) => (

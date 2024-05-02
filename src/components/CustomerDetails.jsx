@@ -32,6 +32,7 @@ const CustomerDetails = () => {
       if (data.success) {
         console.log("Order created");
         toast.success("Order created successfully");
+        localStorage.removeItem("cart");
         navigate("/order");
         setLoading(false);
       }

@@ -18,7 +18,7 @@ const Home = () => {
       <Hero />
       <BestSeller/>
       <Brands />
-      <NewArrivalComponent title="New Arrivals" link = "/new-arrivals"/>
+      <NewArrivalComponent/>
       <CountDownTimer/>
       <AllfragranceComponent/>
       <Testimonies />
