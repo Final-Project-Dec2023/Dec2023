@@ -59,22 +59,27 @@
             }
         }
     
-    @media (min-width: 370px) and (max-width: 767px) {
+    @media (min-width: 300px) and (max-width: 767px) {
        .rpB{
-        width: 23.6rem !important;
-        height: 23rem;
+        /* border: 1px solid blue; */
+        width: 21rem !important;
+        height: 21rem;
        
        }
         .rpG{
-        width: 23.4rem !important;
+        /* width: 21rem !important; */
         height: 100% !important;
         border: none !important;
-        width: 95%;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         padding: 20px 0;
         gap: 20px;
         overflow-x: scroll;
+        padding-top: 1rem !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        padding-bottom: 0 !important;
        }
        .cardG{ 
         width: 50% !important;
@@ -100,3 +105,8 @@
        }
        
     }   
+    @media(max-width: 320px) {
+        .rpB{
+            width: 18rem !important;
+        }
+    }

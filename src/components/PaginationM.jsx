@@ -1,41 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/paginationM.css'
-import { FaLessThan, FaGreaterThan } from "react-icons/fa";
 
-const Pagination = ({ currentPage, totalPages, onPageChange, totalProductsPerPage }) => {
-  const handlePageClick = (pageNumber) => {
-    onPageChange(pageNumber);
-  };
+function Pagination({ totalItems, itemsPerPage, onPageChange, currentPage, setCurrentPage }) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const renderPageNumbers = () => {
-    const pageNumbers = [];
-    // Add the current page and its adjacent pages (if they exist)
-    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-      if (i > 0 && i <= totalPages) {
-        pageNumbers.push(
-          <button key={i} onClick={() => handlePageClick(i)} className={currentPage === i ? 'active-m' : ''}>
-            {i}
-          </button>
-        );
-      }
-    }
-    return pageNumbers;
-  };
+    useEffect(() => {
+        // Check if there's a saved current page in localStorage
+        const savedPage = localStorage.getItem('currentPage');
+        if (savedPage) {
+            setCurrentPage(parseInt(savedPage));
+        }
+    }, []);
 
-  // Conditionally render pagination based on total products per page
-  if (totalPages <= totalProductsPerPage) {
-    return null; // If total pages are less than or equal to products per page, hide pagination
-  }
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        // Save current page to localStorage
+        localStorage.setItem('currentPage', page);
+        onPageChange(page);
+    };
 
-  return (
-    <div className="pagination-btn">
-      {/* <strong onClick={() => onPageChange(1)} className={currentPage === 1 ? 'disabled' : ''}>&lt;&lt;</strong> */}
-      {/* <strong onClick={() => onPageChange(currentPage - 1)} className={currentPage === 1 ? 'disabled' : ''}>&lt;&lt;</strong> */}
-      {renderPageNumbers()}
-      {/* <strong onClick={() => onPageChange(currentPage + 1)} className={currentPage === totalPages ? 'disabled' : 'disable'}>&gt;&gt;</strong> */}
-      {/* <strong onClick={() => onPageChange(totalPages)} className={currentPage === totalPages ? 'disabled' : 'disable'}></strong> */}
-    </div>
-  );
-};
+    const renderPaginationButtons = () => {
+        const buttons = [];
+        for (let i = 1; i <= totalPages; i++) {
+            buttons.push(
+                <button key={i} onClick={() => handlePageChange(i)} className={currentPage === i ? 'active-m' : ''}>
+                    {i}
+                </button>
+            );
+        }
+        return buttons;
+    };
+
+    return (
+        <div className="pagination-btn">
+            {renderPaginationButtons()}
+        </div>
+    );
+}
 
 export default Pagination;

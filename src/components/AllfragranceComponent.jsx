@@ -40,7 +40,7 @@ const AllfragranceComponent = () => {
   return (
     <>
       <section className="home-all-fragrance">
-        <div className="home-all-fragrance-header">
+        <div className=" container d-flex justify-content-between w-100 home-all-fragrance-header">
           <span>All Featured Fragrance</span>
           <span>
            <Link style={{textDecoration: 'none'}} to='/all-fragrances'>View all <FaArrowRightLong /></Link> 

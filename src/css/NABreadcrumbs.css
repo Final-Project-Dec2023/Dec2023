@@ -1,16 +1,18 @@
 .bread-container{
   display: flex;
   justify-content: center;
+  width: 100%;
   height: 40px;
 }
 .bread-container .breadscrumb-m{
-  width: 80%;
+  width: 90%;
   font-size: 18px;
   font-weight: 500;
   color: #777777;
 }
 .breadscrumb-m a{
   color: #777777;
+  text-decoration: none;
 }
 @media (min-width: 1px) and (max-width: 768px){
   .bread-container{

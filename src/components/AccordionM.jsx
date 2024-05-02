@@ -119,9 +119,11 @@ const scentType = Array.from(
             </div>
           </Accordion.Body>
           <Accordion.Body className="accord-input">
-            <div className="input-body">
+          <div className=''style={{ maxHeight: "260px", overflowY: 'auto', overflowX: "hidden",width:"230px", scrollbarGutter:"stable"}}>
+
+            <div className="input-body sticky-top">
               <input
-                type="text"
+                type="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search"
@@ -149,7 +151,10 @@ const scentType = Array.from(
                     />
                     {brand}
                   </label>
+                  
                 ))}
+             
+             </div>
             </div>
           </Accordion.Body>
         </Accordion.Item>

@@ -3,7 +3,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import '../css/SortByM.css'
 
-const SortBy = ({ handleSort }) => {
+const SortBy = ({ handleSort}) => {
   const [selectedOption, setSelectedOption] = useState("Best Seller");
 
   const handleSortClick = (option) => {
@@ -13,7 +13,7 @@ const SortBy = ({ handleSort }) => {
 
   return (
     <div className="sort-by">
-      <DropdownButton id="dropdown-item-button" title={selectedOption} className="drop-button">
+      <DropdownButton id="dropdown-item-button" title={selectedOption} className="drop-button">  
         <Dropdown.Item as="button" onClick={() => handleSortClick("BestSeller")}>
           Best Seller
         </Dropdown.Item>
@@ -40,6 +40,18 @@ const SortBy = ({ handleSort }) => {
             ? setSelectedOption("Price, high to low")
             : null}
           Price, high to low
+        </Dropdown.Item>
+        <Dropdown.Item as="button" onClick={() => handleSortClick("OldToNew")}>
+        {selectedOption === "OldToNew"
+            ? setSelectedOption("Date, old to new")
+            : null}
+          Date, old to new
+        </Dropdown.Item>
+        <Dropdown.Item as="button" onClick={() => handleSortClick("NewToOld")}>
+        {selectedOption === "NewToOld"
+            ? setSelectedOption("Date, new to old")
+            : null}
+          Date, new to old
         </Dropdown.Item>
         {/* Add more buttons for other sorting options if needed */}
       </DropdownButton>
