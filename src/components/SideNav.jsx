@@ -31,7 +31,7 @@ function SideNav({ name, ...props }) {
   };
 
   return (
-    <div className="side-top">
+    <div className="side-top sticky-top">
       <div className="off-body sticky-top">
         <div className="upNav " style={{ color: "white" }}>
           <div className="left-nav">

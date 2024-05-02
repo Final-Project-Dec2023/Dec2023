@@ -54,10 +54,10 @@ function Menu() {
                     {!auth.user ? (
                       <div className="text-center">
                         <Dropdown.Item  className="first-drop">
-                        <Link className="text-decoration-none" to="/login">Login</Link>
+                        <Link className="text-decoration-none text-dark" to="/login">Login</Link>
                         </Dropdown.Item>
                         <Dropdown.Item  className="first-drop">
-                          <Link className=" text-decoration-none" to="/signup">Sign Up</Link>
+                          <Link className=" text-decoration-none text-dark" to="/signup">Sign Up</Link>
                         </Dropdown.Item>
                       </div>
                     ) : (
@@ -100,7 +100,7 @@ function Menu() {
           </div>
         </div>
  
-        <Navbar expand="lg" className="bg-body-primary fs-5 " id="bottom">
+        <Navbar expand="md" className="blue-part bg-body-primary fs-5 " id="bottom">
           <Container className="">
             <Navbar.Collapse id="basic-navbar-nav">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
