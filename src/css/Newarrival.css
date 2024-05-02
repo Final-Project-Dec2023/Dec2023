@@ -9,13 +9,42 @@
 
   .arrival-top-div-mob {
     border: 1px solid rgb(236, 233, 233);
-    width: 22.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    margin-bottom: 20px;
     background-color: white;
     position: sticky;
     top: 50px;
     z-index: 999;
 
     /* border: 1px solid blue; */
+  }
+  .drawer{
+    box-shadow: 0 -2px 2px rgba(var(--border-color-rgb), .65);
+    width: 100%;
+    position: sticky;
+    bottom: 20px;
+    z-index: 9999;
+    background-color: white;
+    height: 20px;
+    margin-top: 200px
+  }
+  .chi-button{
+    background-color: black;
+    color: white;
+    width: 90%;
+    height: 40px;
+    margin-left: 15px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+   
   }
 
   .arrival-products-div-mob {
@@ -50,27 +79,53 @@
   }
 }
 @media (min-width: 320px) and (max-width: 768px) {
-  .arrival-top-div-mob {
-    width: 100%;
+  .arrival {
     height: 60px;
-    border: 1px solid rgb(236, 233, 233);width: 100%;
-    height: 60px;
-    border-top: 2px solid #E6E6E6 ;
-    border-bottom: 2px solid #E6E6E6 ;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 20px;
-    margin-bottom: 20px;
-    /* width: 24.3rem; */
-    /* width: 22.5rem; */
-    position: sticky;
-    top: 55px ;
-    z-index: 999;
+    position:sticky;
+    top:55px;
+    z-index:999999;
     background-color: white;
     /* border: 1px solid blue; */
   }
-
+  .offcanvas-menu {
+    position: fixed;
+    right: -100%; /* Start off canvas on the right side */
+    top: 0;
+    height: 100vh; /* Full height of the screen */
+    width: 80%; /* Adjust width as needed */
+    max-width: 400px; /* Set maximum width for the offcanvas menu */
+    overflow-y: auto;
+    background-color: #ffffff;
+    transition: right 0.3s ease; /* Transition from right to left */
+    z-index: 9999999;
+    /* padding: 20px; */
+    box-sizing: border-box;
+ /* Adjust border radius to match the sliding direction */
+}
+.drawer{
+  box-shadow: 0 -2px 2px rgba(var(--border-color-rgb), .65);
+  width: 100%;
+  position: sticky;
+  bottom: 20px;
+  z-index: 9999;
+  background-color: white;
+  height: 20px;
+  margin-top: 200px
+}
+.chi-button{
+  background-color: black;
+  color: white;
+  width: 90%;
+  height: 40px;
+  margin-left: 15px;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+ 
+}
   .home-new-products {
     width: 390px;
     height: 280px;
@@ -117,13 +172,37 @@
   .card {
     width: 9rem !important;
   }
-
+  .drawer{
+    box-shadow: 0 -2px 2px rgba(var(--border-color-rgb), .65);
+    width: 100%;
+    position: sticky;
+    bottom: 25px;
+    z-index: 9999;
+    background-color: white;
+    height: 20px;
+    margin-top: 550px
+  }
+  .chi-button{
+    background-color: black;
+    color: white;
+    width: 90%;
+    height: 40px;
+    margin-left: 15px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+   
+  }
   .arrival-top-div-mob {
-    border: 1px solid rgb(208, 207, 207);
-    height: 45px;
+    /* border: 2px solid rgb(208, 207, 207); */
+    height: 60px;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     /* margin-left: 0px; */
     position: sticky;
     top: 55px;
@@ -131,7 +210,29 @@
     z-index: 999;
     /* border: 1px solid blue; */
   }
-
+  .arrival {
+    height: 60px;
+    position:sticky;
+    top:150px;
+    z-index:9000;
+    background-color: white;
+    /* border: 1px solid blue; */
+  }
+  .offcanvas-menu {
+    position: fixed;
+    right: -100%; /* Start off canvas on the right side */
+    top: 0;
+    height: 100vh; /* Full height of the screen */
+    width: 80%; /* Adjust width as needed */
+    max-width: 400px; /* Set maximum width for the offcanvas menu */
+    overflow-y: auto;
+    background-color: #ffffff;
+    transition: right 0.3s ease; /* Transition from right to left */
+    z-index: 9999999;
+    /* padding: 20px; */
+    box-sizing: border-box;
+ /* Adjust border radius to match the sliding direction */
+}
   /* .home-new-arrival{
     margin: 0px 10px 0px 10px;
 } */
@@ -159,10 +260,10 @@
   }
 
   .arrival-filter-div {
-    width: 30%;
+    /* width: 30%;
     margin-left: 20px;
     height: 100%;
-    border-right: 1px solid rgb(91, 90, 90) !important;
+    border-right: 1px solid rgb(91, 90, 90) !important; */
     /* border-radius: 10px !important; */
   }
 

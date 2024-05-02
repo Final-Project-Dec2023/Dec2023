@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../css/FilterbyM.css"; // Create a CSS file for styling
+import "../css/FilterbyM.css";
+import "../css/Newarrival.css";
 import { LuFilter } from "react-icons/lu";
 import { GoDotFill } from "react-icons/go";
 import Button from 'react-bootstrap/Button';
@@ -13,7 +14,6 @@ const OffCanvasButton = ({
   clearFilters
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [filtered, setFiltered] = useState();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -49,7 +49,7 @@ const OffCanvasButton = ({
               Filters {selectedFilters.length > 0 && (<span>({selectedFilters.length})</span>)}
             </span>
           </div>
-          <button onClick={clearFilters}>Clear</button>
+          {/* <button onClick={clearFilters}>Clear</button> */}
         </div>
         <p className="p-2 border px-3">FILTERS
         {selectedFilters.length > 0 && (
@@ -71,9 +71,12 @@ const OffCanvasButton = ({
           />
         </div>
 
-        <Button className="btn-primary w-100" onClick={closeMenu}>
+<div className="drawer">
+<button className="chi-button" onClick={closeMenu}>
                   View Results
-        </Button>
+        </button>
+</div>
+       
 
       </div>
      
