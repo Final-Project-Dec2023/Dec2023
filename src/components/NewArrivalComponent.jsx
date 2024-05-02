@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCardLoading from "./ProductCardLoadingM";
 import "../css/AllfragranceComponent.css";
+// import { FaArrowRightLong } from "react-icons/fa6";
 
 const NewArrivalComponent = ({ title, link }) => {
   const [product, setProduct] = useState([]);
@@ -38,56 +39,52 @@ const NewArrivalComponent = ({ title, link }) => {
 
   return (
     <>
-      <section className="home-all-fragrance">
-        <div className="home-all-fragrance-header">
-          <span>New Arrival</span>
-          <span>
-          <Link style={{textDecoration: 'none'}} to='/new-arrivals'>View all <FaArrowRightLong /></Link> 
-          </span>
+      <div className="d-flex justify-content-between home-new-arrival mx-3">
+        <div className="d-block d-md-block d-lg-none mt-1">
+          <h5>{title}</h5>
         </div>
-        <div className="best-seller-product">
-          {loading
-            ? Array.from({ length: limitLoading }).map((_, index) => (
-                <ProductCardLoading key={index} />
-              ))
-            : newArrival?.map((product) => {
-                const { _id, images, name, description, price, isAvailable } =
-                  product;
-                let Price = price.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                });
-                return (
-                  <>
-                    <Link className="link" to={`/detail/${product._id}`}>
-                      <div key={_id}>
-                        <div className="m-card-Container" key={_id}>
-                          <div className="m-image">
-                            <img src={images[0]?.url} />
-                          </div>
-                          <div className="m-card-info">
-                            <div className="m-card-text">
-                              <h4>{name}</h4>
-                              <p>{description}</p>
-                              <h2>&#x20A6;{Price}</h2>
-                            </div>
-                            <div className="m-card-btn">
-                              {isAvailable ? (
-                                <button>Add to cart</button>
-                              ) : (
-                                <button className="not-ava" disabled>
-                                  Sold Out
-                                </button>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </>
-                );
-              })}
+        <div className="d-none d-md-none d-lg-block">
+          <h3>{title}</h3>
         </div>
-      </section>
+        <div className="pt-1">
+          <Link
+            to={link}
+            className="text-decoration-none mt-2 mt-lg-0"
+            style={{ color: "#0098B8" }}
+          >
+            View All{" "}
+            <span >
+              <FaArrowRightLong/>
+            </span>
+          </Link>
+        </div>
+      </div>
+
+      {/* Product Cards for Desktop */}
+      <div>
+        <div className="d-md-flex d-lg-flex d-none d-md-none d-lg-block justify-content-lg-center align-items-lg-center gap-3 ">
+          {limitedDataDesktop.map((product) => {
+            return (
+              <div className="" key={product._id}>
+                <ProductCard products={product} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Product Cards for Mobile and Tablet*/}
+      <div>
+        <div className="d-flex d-md-flex d-block d-md-block d-lg-none home-new-products gap-3">
+          {limitedData.map((product) => {
+            return (
+              <div className="" key={product._id}>
+                <ProductCard products={product}/>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };

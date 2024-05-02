@@ -4,7 +4,7 @@ import '../../css/ProductM.css'
 const SearchProductCard = ({product}) => {
   const {name, description, price, images, isAvailable, _id} = product
   return (
-    <div key={_id}>
+    <div   key={_id}>
       <div className='m-card-Container' key={_id}>
         <div className='m-image'>
             <img src={images ? images[0]?.url : null}/>

@@ -123,18 +123,20 @@
   font-size: 16px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  
+  align-items: center;  
  
 }
   .home-new-products {
     width: 390px;
     height: 300px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     overflow: auto;
-    border: 1px solid rgb(236, 233, 233);
-    width: 2rem;
+    padding: 20px 50px 0px 20px;
+
   }
+  .home-new-arrival{
+    padding: 10px 0px 0px 6px ;
+}
 
   .arrival-products-div-mob {
     width: 100%;
@@ -237,13 +239,14 @@
     box-sizing: border-box;
  /* Adjust border radius to match the sliding direction */
 }
-  /* .home-new-arrival{
-    margin: 0px 10px 0px 10px;
-} */
+  .home-new-arrival{
+    padding: 30px 0px 10px 35px ;
+}
   .home-new-products {
-    width: 50rem;
-    height: 400px;
-    border: 1px solid red;
+    padding: 0px 50px 0px 50px;
+    width: 800px;
+    height: 500px;
+    /* border: 1px solid red; */
     overflow: auto;
   }
 
