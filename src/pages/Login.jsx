@@ -5,12 +5,13 @@ import signinIcon from "../assets/icons/signinIcon.png";
 import signin from "../assets/images/Signindan.png";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
-import { Link } from "react-router-dom";
 import img2 from "../assets/images/download-removebg-preview.png";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { IoEyeOutline } from "react-icons/io5";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+
+
 
 const Login = () => {
   // hooks/
@@ -20,7 +21,10 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const location = useLocation();
+  const { auth, login } = useAuth();
+  const isAdmin = auth?.user?.role
+
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -44,14 +48,16 @@ const Login = () => {
     }
     try {
       setLoading(true);
-      const success = await login(email, password);
+      const data = await login(email, password);
       setLoading(false);
 
-      if (success) {
+      if (data) {
+        console.log(data);
         toast.success("Login successful");
-        setTimeout(() => {
-          navigate("/");
-        }, 5000);
+        navigate(
+          location.state ||
+            `/dashboard/${ isAdmin === 1 ? "admin" : "user"}`
+        );
       } else {
         toast.error("Login failed. try again..");
       }

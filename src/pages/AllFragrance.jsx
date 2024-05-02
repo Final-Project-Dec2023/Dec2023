@@ -37,13 +37,15 @@ const AllFragrance = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [loading, setLoading] = useState();
 
+
 // Fetching from database
 const fetchData = async () => {
   setLoading(true);
   try {
-    const response = await axios.get(`/product/all?page=1&limit=100000`);
-    setFetchProduct(response?.data?.products);
-    setCurrentProducts(response?.data?.products)
+const response = await axios.get(`https://fragrancehubbe.onrender.com/api/v1/product/all?page=1&limit=1000000`);
+      const { products} = response.data;
+    setFetchProduct(products);
+    setCurrentProducts(products)
     console.log(response?.data?.products);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -59,8 +61,11 @@ useEffect(() => {
 
 
 
+
   // Function to handle adding and removing selected filters
   const handleSelectedFilter = (filter) => {
+    setCurrentPage(1);
+
     setSelectedFilters((prevFilters) => {
       if (prevFilters.includes(filter)) {
         return prevFilters.filter((f) => f !== filter);
@@ -80,26 +85,41 @@ useEffect(() => {
   };
 
       // // Detecting device screen width
-      // const isMobile = window.innerWidth <= 768;
-      // const isTablet = window.innerWidth <= 1024;
+      const isMobile = window.innerWidth <= 768;
+      const isTablet = window.innerWidth <= 1024;
     
-      // // Setting the limit for related products
-      // const limit = isMobile ? 20 : 15 && isTablet ? 15 : 15;
+      // Setting the limit for related products
+      const limit = isMobile ? 20 : 15 && isTablet ? 15 : 15;
 
       // ---------------Pagination Start---------
-  const productsPerPage = 18;
-  const totalPages = Math.ceil(currentProducts.length / productsPerPage);
-  const handlePageChange = (pageNumber) => {
+   // Function to handle page change
+   const handlePageChange = (pageNumber) => {
+    console.log("Changing page to:", pageNumber);
     setCurrentPage(pageNumber);
+    localStorage.setItem("currentPage", pageNumber);
   };
 
+  useEffect(() => {
+    // Retrieve current page from local storage
+    const storedPage = localStorage.getItem("currentPage");
+    if (storedPage) {
+      console.log(storedPage);
+      setCurrentPage(parseInt(storedPage));
+    } else {
+      setCurrentPage(1); // Set default page to 1 if not found in local storage
+    }
+  }, []);
+
+  // Pagination logic
+  const productsPerPage = 15;
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-
   const paginate = currentProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
+
+  
   // ---------------Pagination End---------
 
   useEffect(() => {
@@ -264,7 +284,7 @@ useEffect(() => {
             <div className="title-left">
               <h4>All Featured Fragrance</h4>
               <p>
-                Showing {indexOfFirstProduct + 1} - {indexOfLastProduct} of{" "}
+                Showing {productsPerPage} of{" "}
                 {currentProducts.length} Products
               </p>
             </div>
@@ -325,11 +345,13 @@ useEffect(() => {
 
         </div>
         <div className="m-pagination">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+        <Pagination
+          totalItems={currentProducts.length}
+          itemsPerPage={productsPerPage}
+          onPageChange={handlePageChange}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
         </div>
       </div>
       <Footer />

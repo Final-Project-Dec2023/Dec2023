@@ -7,8 +7,9 @@ import { Link } from 'react-router-dom';
 
 const BlogCard = ({ product }) => {
     return(
-        <div className="blogs container-fluid m-4">
-            <h2 className='blog-head'>Blogs</h2>
+        <div className='blog-conatiner'>
+        <div className="blogs">
+            <h2 className='blog-head mb-4'>Blog Posts</h2>
             <div className="blog-display ">
             <div className="blog-card">
                 <div className="blog-img">
@@ -95,6 +96,7 @@ const BlogCard = ({ product }) => {
                 </div>
             </div>
             </div>
+        </div>
         </div>
     )
 }

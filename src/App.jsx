@@ -31,8 +31,7 @@ import UserOrders from "./pages/user/UserOrders";
 // WARNING: Do Not change anything in this pages.
 
 function App() {
-  const { PrivateRoutes, AdminRoutes } = useAuth();
-
+  const { PrivateRoutes, AdminRoutes} = useAuth();
   return (
     <>
       <Router>
@@ -44,7 +43,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/all-fragrances" element={<AllFragance />} />
           <Route path="/cart-empty" element={<CartEmpty />} />
-          <Route path="/customer-details" element={<CustomerDetails />} />
+          <Route path="/checkout" element={<CustomerDetails />} />
           <Route path="/cart" element={<CartItems />} />
           <Route path="/all-fragrances" element={<AllFragance />} />
           <Route path="/new-arrivals" element={<Newarrival />} />
