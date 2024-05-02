@@ -23,7 +23,7 @@ const SearchProductCard = ({product}) => {
             </div>
           </Link>
             
-            <Link to="/cart">
+            <Link to={`/cart/${product._id}`}>
             <div className="m-card-btn">
               {isAvailable ? <button>Add to cart</button> : <button className='not-ava' disabled>Sold Out</button> }
             </div>
