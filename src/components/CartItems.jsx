@@ -91,11 +91,11 @@ const CartItems = () => {
       <Menu />
       <SideNav />
       <div
-        className="main-cont"
+        className=" container-fluid"
         style={{ marginTop: "1rem", marginBottom: "2rem" }}
       >
-        <div className="container-kc">
-          <div className="left-cont">
+        <div className="row">
+          <div className=" col-md-8">
             {cart.map((item) => (
               <div className="card-kc" key={item._id}>
                 <div className="img-card-kc">
@@ -131,44 +131,14 @@ const CartItems = () => {
               </div>
             ))}
           </div>
-          <div className="right-cont">
+          <div className="col-md-4">
             <div className="kc-card">
               <div className="sum">
                 <h4>Cart Summary</h4>
               </div>
-              <div className="">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Image</th>
-                      <th>Name</th>
-                      <th>Price</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cart?.length > 0 &&
-                      cart.map((product) => (
-                        <tr key={product._id}>
-                          <td>
-                            <img
-                              src={product.images[0].url}
-                              alt={product.name}
-                            />
-                          </td>
-                          <td>{product.name}</td>
-                          <td>&#8358;{product.price.toLocaleString()}</td>
-                          <td>
-                            <button onClick={() => removeFromCart(product._id)}>
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className="kcee"></div>
+              
+              {/* <div className="kcee"></div> */}
+              
               <div className="total">
                 <div className="tot">
                   <h5>Subtotal</h5>
