@@ -13,11 +13,12 @@ import ShowingAllfilter from "../components/ShowingAllfilter";
 import SortBy from "../components/SortBy";
 import axios from "axios";
 import ProductCardLoading from "../components/ProductCardLoadingM";
+
 const AllFragrance = () => {
   //general data
   const [fetchProduct, setFetchProduct] = useState([]);
   const [currentProducts, setCurrentProducts] = useState([]);
-  //   
+  //
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
   //gender
@@ -37,30 +38,50 @@ const AllFragrance = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [loading, setLoading] = useState();
 
+  const shuffle = (array) => {
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
 
-// Fetching from database
-const fetchData = async () => {
-  setLoading(true);
-  try {
-const response = await axios.get(`https://fragrancehubbe.onrender.com/api/v1/product/all?page=1&limit=1000000`);
-      const { products} = response.data;
-    setFetchProduct(products);
-    setCurrentProducts(products)
-    console.log(response?.data?.products);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  } finally {
-    setLoading(false); // Set loading to false regardless of success or error
-  }
-};
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
 
-useEffect(() => {
-  fetchData();
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
 
-}, []);
+    return array;
+  };
 
+  // Fetching from database
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://fragrancehubbe.onrender.com/api/v1/product/all?page=1&limit=1000000`
+      );
 
+      // const {products} = response.data;
+      const shuffledProducts = shuffle(response?.data?.products);
 
+      setFetchProduct(shuffledProducts);
+      setCurrentProducts(shuffledProducts);
+      console.log(response?.data?.products);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // Set loading to false regardless of success or error
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   // Function to handle adding and removing selected filters
   const handleSelectedFilter = (filter) => {
@@ -84,16 +105,16 @@ useEffect(() => {
     setSelectedAvailability([]);
   };
 
-      // // Detecting device screen width
-      const isMobile = window.innerWidth <= 768;
-      const isTablet = window.innerWidth <= 1024;
-    
-      // Setting the limit for related products
-      const limit = isMobile ? 20 : 15 && isTablet ? 15 : 15;
+  // // Detecting device screen width
+  const isMobile = window.innerWidth <= 768;
+  const isTablet = window.innerWidth <= 1024;
 
-      // ---------------Pagination Start---------
-   // Function to handle page change
-   const handlePageChange = (pageNumber) => {
+  // Setting the limit for related products
+  const limit = isMobile ? 20 : 15 && isTablet ? 15 : 15;
+
+  // ---------------Pagination Start---------
+  // Function to handle page change
+  const handlePageChange = (pageNumber) => {
     console.log("Changing page to:", pageNumber);
     setCurrentPage(pageNumber);
     localStorage.setItem("currentPage", pageNumber);
@@ -119,16 +140,15 @@ useEffect(() => {
     indexOfLastProduct
   );
 
-  
   // ---------------Pagination End---------
 
   useEffect(() => {
     let filteredProducts = fetchProduct;
 
     console.log("Selected Gender:", selectedGender);
-  console.log("Selected Brand:", selectedBrand);
+    console.log("Selected Brand:", selectedBrand);
     //filter for Gender
-     if (selectedGender.length > 0) {
+    if (selectedGender.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
         selectedGender.includes(product.gender)
       );
@@ -284,8 +304,7 @@ useEffect(() => {
             <div className="title-left">
               <h4>All Featured Fragrance</h4>
               <p>
-                Showing {productsPerPage} of{" "}
-                {currentProducts.length} Products
+                Showing {productsPerPage} of {currentProducts.length} Products
               </p>
             </div>
             <div className="title-right">
@@ -297,7 +316,7 @@ useEffect(() => {
             <ShowingAllfilter
               clearFilters={clearFilters}
               selectedFilters={selectedFilters}
-            /> 
+            />
           </div>
           <div className="m-content">
             <div className="m-controls">
@@ -330,28 +349,28 @@ useEffect(() => {
               </h3>
             </div>
             <div className="m-products">
-              {loading
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <ProductCardLoading key={index} />
-                  ))
-                : ( currentProducts.length > 0 ? paginate.map((product) => (
-                    <ProductCard product={product} key={product._id} />
-                    
-                  )):
-                  <h1>No Product Found</h1>
-                )}
+              {loading ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <ProductCardLoading key={index} />
+                ))
+              ) : currentProducts.length > 0 ? (
+                paginate.map((product) => (
+                  <ProductCard product={product} key={product._id} />
+                ))
+              ) : (
+                <h1>No Product Found</h1>
+              )}
             </div>
           </div>
-
         </div>
         <div className="m-pagination">
-        <Pagination
-          totalItems={currentProducts.length}
-          itemsPerPage={productsPerPage}
-          onPageChange={handlePageChange}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+          <Pagination
+            totalItems={currentProducts.length}
+            itemsPerPage={productsPerPage}
+            onPageChange={handlePageChange}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </div>
       <Footer />
