@@ -18,32 +18,22 @@
 
 .offcanvas-menu {
     position: fixed;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    max-height: 80vh; /* Limit the maximum height of the off-canvas menu */
-    overflow-y: auto; /* Enable vertical scrolling */
+    right: -100%; /* Start off canvas on the right side */
+    top: 0;
+    height: 100vh; /* Full height of the screen */
+    width: 80%; /* Adjust width as needed */
+    max-width: 400px; /* Set maximum width for the offcanvas menu */
+    overflow-y: auto;
     background-color: #ffffff;
-    transition: bottom 0.3s ease;
-    z-index: 999;
-    padding: 20px;
-    
+    transition: right 0.3s ease; /* Transition from right to left */
+    z-index: 9999999;
+    /* padding: 20px; */
     box-sizing: border-box;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+ /* Adjust border radius to match the sliding direction */
 }
 
 .offcanvas-menu.open {
-    bottom: 0;
-}
-
-.offcanvas-menu ul {
-    list-style: none;
-    padding: 0;
-}
-
-.offcanvas-menu li {
-    margin-bottom: 10px;
+    right: 0;
 }
 
 .backdrop {
@@ -57,9 +47,6 @@
 }
 
 .close-button {
-    position: absolute;
-    top: 10px;
-    right: 40px;
     background: none;
     border: none;
     font-size: 20px;
@@ -69,4 +56,41 @@
 }
 .accord-offcanvas{
     margin-top: 30px;
+}
+.filter-info{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: #555;
+    height: 60px;
+    gap: 20px;
+    border-bottom: 1px solid gray;
+    padding: 5px 20px;
+    justify-content: space-between;
+
+}
+.filter-info .info-left-f{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 20px;
+}
+.filter-info button{
+    border: 1px solid #555;
+    padding: 2px 8px;
+    background-color: #ffffff;
+}
+.filter-info p{
+    display: flex;
+    padding: 10px 20px;
+}
+.filter-iconM{
+    position: relative;
+}
+.offcanvas-container .red-dotM{
+    position: absolute; 
+    color: red;
+    top: -5px;
+    left: 5px;
+
 }

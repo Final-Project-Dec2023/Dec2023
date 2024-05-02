@@ -8,6 +8,7 @@ import img4 from "../assets/images/Frame 1171276220.png";
 import cusIcon from "../assets/icons/Customer service.png";
 import cardIcon from "../assets/icons/Online payment.png";
 import badgeIcon from "../assets/icons/Badge.png";
+import { Link } from "react-router-dom";
 
 function Hero() {
   const [index, setIndex] = useState(0);
@@ -28,17 +29,20 @@ function Hero() {
               <div className="text-body1">
                 <h1>Classic Elegance</h1>
                 <p className="hero-p">
-                  <b>Discover timeless fragrances that exude sophistication and
-                  charm.</b>
+                  Discover timeless fragrances that exude sophistication and
+                  charm.
                 </p>
               </div>
 
+              <Link to='/all-fragrances' style={{textDecoration: "none"}}>
               <button type="button" className="btn-pb btn-dark btn-p">
                 Shop Now
               </button>
               <button type="button" className="btn-mobile btn-dark ">
                 Shop Now
               </button>
+              </Link>
+              
             </Carousel.Caption>
           </div>
         </Carousel.Item>
@@ -55,12 +59,15 @@ function Hero() {
               </p>
             </div>
 
+            <Link to="/all-fragrances" style={{textDecoration: "none"}}>
             <button type="button" className="btn-pb btn-dark">
               Shop Now
             </button>
             <button type="button" className="btn-mobile btn-dark ">
               Shop Now
             </button>
+            </Link>
+            
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -77,12 +84,15 @@ function Hero() {
               </p>
             </div>
 
+            <Link to="/all-fragrances" style={{textDecoration: "none"}}>
             <button type="button" className="btn-pb btn-dark">
               Shop Now
             </button>
             <button type="button" className="btn-mobile btn-dark ">
               Shop Now
             </button>
+            </Link>
+            
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -98,12 +108,15 @@ function Hero() {
               </p>
             </div>
 
+            <Link to="/all-fragrances" style={{textDecoration: "none"}}>
             <button type="button" className="btn-pb btn-dark">
               Shop Now
             </button>
             <button type="button" className="btn-mobile btn-dark ">
               Shop Now
             </button>
+            </Link>
+            
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

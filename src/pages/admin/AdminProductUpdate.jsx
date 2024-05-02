@@ -2,17 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../contexts/Auth";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Jumbotron from "../../components/cards/Jumbotron";
 import { IoImages } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
-import { TiDelete } from "react-icons/ti";
 import "../../css/Admin.css";
 import AdminMenu from "../../components/nav/AdminMenu";
 import Menu from "../../components/NavBar";
 import Footer from "../../components/Footer";
 
-const AdminProduct = () => {
+const AdminProductUpdate = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -30,9 +29,11 @@ const AdminProduct = () => {
   const [fragranceType, setFragranceType] = useState("");
   const [size, setSize] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [id, setId] = useState("");
   const { auth } = useAuth();
   const fileInputRef = useRef(null);
+  const { slug } = useParams();
+  const navigate = useNavigate();
 
   // /fetch categories
   const fetchCategories = async () => {
@@ -43,9 +44,36 @@ const AdminProduct = () => {
       console.log(err);
     }
   };
+
   useEffect(() => {
     fetchCategories();
+    loadProduct();
   }, []);
+
+  const loadProduct = async () => {
+    try {
+      const { data } = await axios.get(`/product/slug/${slug}`);
+      const pd = data?.product;
+      setName(pd.name);
+      setDescription(pd.description);
+      setPrice(pd.price);
+      setQuantity(pd.quantity);
+      setCategory(pd.category?._id);
+      setShipping(pd.shipping);
+      setImages(pd.images);
+      setGender(pd.gender);
+      setUsage(pd.usage);
+      setAbout(pd.about);
+      setBrand(pd.brand);
+      setScentType(pd.scentType);
+      setScentProfile(pd.scentProfile);
+      setFragranceType(pd.fragranceType);
+      setSize(pd.size);
+      setId(pd._id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // handleFormSubmit
   const handleFormSubmit = async (e) => {
@@ -72,7 +100,7 @@ const AdminProduct = () => {
 
     try {
       setLoading(true);
-      const { data } = await axios.post("/product/create", productData);
+      const { data } = await axios.put(`/product/update/${id}`, productData);
 
       if (data?.success) {
         fetchCategories();
@@ -90,12 +118,15 @@ const AdminProduct = () => {
         setScentType("");
         setFragranceType("");
         setSize("");
-        toast.success("Product created successfully");
+        toast.success("Product updated successfully");
         setLoading(false);
+        setTimeout(() => {
+          navigate("/dashboard/admin-products");
+        }, 5000);
       }
     } catch (err) {
       console.log(err);
-      const msg = err?.response?.data;
+      const msg = err?.response?.data?.error;
       toast.error(msg);
       setLoading(false);
     }
@@ -113,7 +144,7 @@ const AdminProduct = () => {
 
   return (
     <div>
-      <Menu/>
+      <Menu />
       <Jumbotron
         title={`Hello ${auth?.user?.name}`}
         subTitle="Admin Dashboard"
@@ -125,51 +156,48 @@ const AdminProduct = () => {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <div className="p-3 mt-2 mb-2 h4 bg-light">Create Products</div>
+            <div className="p-3 mt-2 mb-2 h4 bg-light">Update Products</div>
 
             <div className="pt-2">
-                {/* Display uploaded images */}
-                <div className="mb-3" style={{ position: "relative" }}>
-                  {images &&
-                    images.map((image, index) => (
-                      <>
-                        {images && images.length > 0 && (
-                          <span
-                            className="bg-danger text-light p-1 rounded-5 text-center"
-                            style={{
-                              position: "absolute",
-                              left: "13 %",
-                              width: "20px",
-                              height: "20px",
-                              fontSize: "10px",
-                              cursor: "pointer",
-                            }}
-                            onClick={() => handleDelete(index)}
-                          >
-                            X
-                          </span>
-                        )}
-                        <img
-                          key={index}
-                          src={URL.createObjectURL(image)}
-                          alt={`Image ${index + 1}`}
-                          className="img-thumbnail mr-2 mx-2"
-                          style={{ width: "100px", height: "100px" }}
-                        />
-                      </>
-                    ))}
-                    {images && images.length > 0 && (
-                          <span className="text-center text-dark p-2">
-                            Add
-                            <FaPlus
-                              className="ms-1"
-                              onClick={handleAddMoreImages}
-                            />
-                          </span>
-                        )}
-                </div>
+              {/* Display uploaded images */}
+              <div className="mb-3" style={{ position: "relative" }}>
+                {images &&
+                  images.map((image, index) => (
+                    <>
+                      {images && images.length > 0 && (
+                        <span
+                          className="bg-danger text-light p-1 rounded-5 text-center"
+                          style={{
+                            position: "absolute",
+                            left: "13 %",
+                            width: "20px",
+                            height: "20px",
+                            fontSize: "10px",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => handleDelete(index)}
+                        >
+                          X
+                        </span>
+                      )}
+                      <img
+                        key={image.imagePublicId || index}
+                        src={image.url || URL.createObjectURL(image)}
+                        alt={`Image ${index + 1}`}
+                        className="img-thumbnail mr-2 mx-2"
+                        style={{ width: "100px", height: "100px" }}
+                      />
+                    </>
+                  ))}
+                {images && images.length > 0 && (
+                  <span className="text-center text-dark p-2">
+                    Add
+                    <FaPlus className="ms-1" onClick={handleAddMoreImages} />
+                  </span>
+                )}
+              </div>
 
-                <label className="btn btn-outline-dark mb-3">
+              <label className="btn btn-outline-dark mb-3">
                 <IoImages /> Upload images
                 <input
                   type="file"
@@ -182,7 +210,7 @@ const AdminProduct = () => {
                   ref={fileInputRef}
                 />
               </label>
-              </div>
+            </div>
 
             <div className="col-md-6" style={{ marginTop: "1rem" }}>
               <div className="">
@@ -220,7 +248,6 @@ const AdminProduct = () => {
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
-              
 
               <div className="row">
                 <div className="col-md-5">
@@ -363,9 +390,9 @@ const AdminProduct = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
 
-export default AdminProduct;
+export default AdminProductUpdate;

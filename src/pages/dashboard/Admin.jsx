@@ -24,12 +24,6 @@ const AdminDashboard = () => {
           </div>
           <div className="col-md-9">
             <div className="p-3 mt-2 mb-2 h4 bg-light">Admin Information</div>
-
-            {/* <ul className="list-group">
-              <li className="list-group">{auth?.user?.name}</li>
-              <li className="list-group">{auth?.user?.email}</li>
-              <li className="list-group">Admin</li>
-            </ul> */}
             <table class="table table-striped">
               <thead>
                 <tr>

@@ -6,9 +6,9 @@ import registerImg from "../assets/images/signin.png";
 import img2 from "../assets/images/download-removebg-preview.png";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { IoEyeOutline } from "react-icons/io5";
-import axios from "axios";
 import { useNavigate } from "react-router";
 import { useAuth } from "../contexts/Auth";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   // hooks
@@ -80,7 +80,9 @@ const SignUp = () => {
       <div className="container-milly">
         <div className="left-side-milly">
           <div className="top-section-milly ">
+            <Link to='/'>
             <img src={img1} alt="" />
+            </Link>
             <p>
               <b>Join Us To Discover The Perfect Scent For You!.</b>
             </p>
@@ -192,9 +194,12 @@ const SignUp = () => {
               </button>
             </div>
             <div className="bb">
+              <Link to="/login">
               <p>
                 Already have an account? <a href="">Sign in</a>
               </p>
+              </Link>
+             
             </div>
           </div>
         </div>

@@ -14,7 +14,6 @@ import Newarrival from "./pages/Newarrival";
 import DetailPages from "./pages/DetailPage";
 import Login from "./pages/Login";
 import Breadcrumbs from "./components/NABreadcCumbs";
-import Footer from "./components/Footer";
 import Search from "./pages/Search";
 import UserDashboard from "./pages/dashboard/User";
 import AdminDashboard from "./pages/dashboard/Admin";
@@ -24,6 +23,10 @@ import AdminCategory from "./pages/admin/Category";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import AdminProduct from "./pages/admin/AdminProduct";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminProductDetail from "./pages/admin/AdminProductDetail";
+import AdminProductUpdate from "./pages/admin/AdminProductUpdate";
+import PageNotFound from "./pages/404Page";
 
 // WARNING: Do Not change anything in this pages.
 
@@ -41,42 +44,26 @@ function App() {
         <ScrollToTop />
         <ToastContainer />
         <Routes>
-          {/* these are the following pages that should have navbar and footer page */}
-        
-            <Route path="/" element={<Home />} />
-            <Route path="/all-fragrances" element={<AllFragance />} />
-            <Route path="/cart-empty" element={<CartEmpty />} />
-            <Route path="/customer-details" element={<CustomerDetails />} />
-            <Route path="/cart" element={<CartItems />} />
-            <Route path="/new-arrivals" element={<Newarrival />} />
-            <Route path="/detail/:productId" element={<DetailPages />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/admin-category" element={<AdminCategory />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            {/* Private Routes */}
-            <Route path="/dashboard" element={<PrivateRoutes />}>
-              <Route path="user" element={<UserDashboard />} />
-              <Route path="order" element={<Order />} />
-              {/* Admin Routes */}
-              <Route path="" element={<AdminRoutes />}>
-                <Route path="admin" element={<AdminDashboard />} />
-                <Route path="admin-category" element={<AdminCategory />} />
-              </Route>
-            </Route>
+          <Route element={<Menu />}> 
           
-
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
+          
+          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/all-fragrances" element={<AllFragance />} />
+          <Route path="/cart-empty" element={<CartEmpty />} />
           <Route path="/customer-details" element={<CustomerDetails />} />
           <Route path="/cart" element={<CartItems />} />
           <Route path="/new-arrivals" element={<Newarrival />} />
           <Route path="/detail/:productId" element={<DetailPages />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/blog" element={<Blog/>} />
-          <Route path="/contact" element={<Contact/>} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path='/*' element={<PageNotFound/>}/>
           <Route path="/admin-category" element={<AdminCategory />} />
-          <Route path="/dashboard/admin-product" element={<AdminProduct />} />
+          <Route path="admin-product" element={<AdminProduct />} />
+
+
+
 
           {/* Private Routes */}
           <Route path="/dashboard" element={<PrivateRoutes />}>
@@ -87,11 +74,16 @@ function App() {
             <Route path="" element={<AdminRoutes />}>
               <Route path="admin" element={<AdminDashboard />} />         
                <Route path="admin-category" element={<AdminCategory/>} />
-               <Route path="admin-product" element={<AdminCategory/>} />
+               <Route path="admin-product" element={<AdminProduct/>} />
+               <Route path="admin-product/detail/:slug" element={<AdminProductDetail/>} />
+               <Route path="admin-products" element={<AdminProducts/>} />
+               <Route path="admin-product/update/:slug" element={<AdminProductUpdate/>} />
             </Route>
           </Route>
+
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
-        <Footer/>
       </Router>
     </>
   );

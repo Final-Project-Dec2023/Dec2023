@@ -7,6 +7,7 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   // hooks/
@@ -64,10 +65,13 @@ const Login = () => {
     <div>
       <div className="dan">
         <div className="top-section">
+          <Link to="/">
           <img className="ww" src={signinIcon} alt="" />
+          </Link>
           <h2>
             <b>Welcome to FragranceHub</b>
           </h2>
+         
 
           <div className="middle-section">
             <p>Enter your details to access your account</p>
@@ -146,9 +150,12 @@ const Login = () => {
             </button>
           </div>
           <div className="dd">
+            <Link to= "/signup">
             <p>
               New User? <a href="">Sign Up</a>
             </p>
+            </Link>
+            
           </div>
         </div>
         <div className="right-side">

@@ -1,3 +1,5 @@
+import Footer from "../components/Footer";
+import Menu from "../components/NavBar";
 import useCategory from "../hooks/useCategory";
 // import Jumbotron from "../components/cards/Jumbotron";
 import { Link } from "react-router-dom";
@@ -7,6 +9,7 @@ export default function CategoriesList() {
 
   return (
     <>
+    <Menu/>
       {/* <Jumbotron title="Categories" subTitle="List of all categories" /> */}
 
       <div className="container overflow-hidden">
@@ -20,6 +23,7 @@ export default function CategoriesList() {
           ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
