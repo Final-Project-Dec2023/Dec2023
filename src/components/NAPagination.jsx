@@ -1,40 +1,41 @@
-import ForwardArrowImg from "../assets/images/NA Vector Forward.png";
+import React, { useState, useEffect } from 'react';
+import '../css/paginationM.css'
 
+function NAPagination({ totalItems, itemsPerPage, onPageChange, currentPageCh, setCurrentPageCh }) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-export const RenderPaginationButtons = ({numbers, currentPage,changeCurrentPage, nPage, nextPage}) => {
-    return (
-      <div className="d-flex justify-content-between flex-wrap gap-3">
-        <nav className="">
-          <ul className="pagination justify-content-center">
-            {numbers.map((number, index) => (
-              <li
-                className={`page-item ${currentPage === number ? "active" : ""
-                  }`}
-                key={index}
-              >
-                <button
-                  className="page-link mx-2"
-                  onClick={() => changeCurrentPage(number)}
-                >
-                  {number}
+    useEffect(() => {
+        // Check if there's a saved current page in localStorage
+        const savedPage = localStorage.getItem('currentPageCh');
+        if (savedPage) {
+          setCurrentPageCh(parseInt(savedPage));
+        }
+    }, []);
+
+    const handlePageChange = (page) => {
+      setCurrentPageCh(page);
+        // Save current page to localStorage
+        localStorage.setItem('currentPageCh', page);
+        onPageChange(page);
+    };
+
+    const renderPaginationButtons = () => {
+        const buttons = [];
+        for (let i = 1; i <= totalPages; i++) {
+            buttons.push(
+                <button key={i} onClick={() => handlePageChange(i)} className={currentPageCh === i ? 'active-m' : ''}>
+                    {i}
                 </button>
-              </li>
-            ))}
+            );
+        }
+        return buttons;
+    };
 
-            <li className="page-item">
-              <button
-                className="page-link"
-                onClick={nextPage}
-                disabled={currentPage === nPage}
-              >
-                <a href="#">
-                  <img src={ForwardArrowImg} alt="" />
-                </a>
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    return (
+        <div className="pagination-btn">
+            {renderPaginationButtons()}
+        </div>
     );
-  };
+}
 
+export default NAPagination;

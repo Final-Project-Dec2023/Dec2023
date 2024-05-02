@@ -17,11 +17,12 @@ import ShowingAllfilter from "../components/ShowingAllfilter";
 import ProductCardLoading from "../components/ProductCardLoadingM";
 import Accord from "../components/AccordionM";
 import moment from "moment";
+import NAPagination from "../components/NAPagination";
 
 const Newarrival = () => {
   const [fetchProduct, setFetchProduct] = useState([]);
   const [currentProducts, setCurrentProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPageCh, setCurrentPageCh] = useState(1);
   const [selectedGender, setSelectedGender] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState([]);
   const [selectedAlphabet, setSelectedAlphabet] = useState("");
@@ -63,24 +64,24 @@ const Newarrival = () => {
   // Function to handle page change
   const handlePageChange = (pageNumber) => {
     console.log("Changing page to:", pageNumber);
-    setCurrentPage(pageNumber);
-    localStorage.setItem("currentPage", pageNumber);
+    setCurrentPageCh(pageNumber);
+    localStorage.setItem("currentPageCh", pageNumber);
   };
 
   useEffect(() => {
     // Retrieve current page from local storage
-    const storedPage = localStorage.getItem("currentPage");
+    const storedPage = localStorage.getItem("currentPageCh");
     if (storedPage) {
       console.log(storedPage);
-      setCurrentPage(parseInt(storedPage));
+      setCurrentPageCh(parseInt(storedPage));
     } else {
-      setCurrentPage(1); // Set default page to 1 if not found in local storage
+      setCurrentPageCh(1); // Set default page to 1 if not found in local storage
     }
   }, []);
 
   // Pagination logic
   const productsPerPage = 15;
-  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfLastProduct = currentPageCh * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const paginate = currentProducts.slice(
     indexOfFirstProduct,
@@ -148,17 +149,17 @@ const Newarrival = () => {
   ]);
 
   console.log(currentProducts);
-  // useEffect(() => {
-  //   localStorage.setItem('currentProducts', JSON.stringify(currentProducts));
-  // }, [currentProducts]);
+  useEffect(() => {
+    localStorage.setItem('currentProducts', JSON.stringify(currentProducts));
+  }, [currentProducts]);
 
-  // // Load state on component mount
-  // useEffect(() => {
-  //   const savedCurrentProducts = JSON.parse(localStorage.getItem('currentProducts'));
-  //   if (savedCurrentProducts) {
-  //     setCurrentProducts(savedCurrentProducts);
-  //   }
-  // }, []);
+  // Load state on component mount
+  useEffect(() => {
+    const savedCurrentProducts = JSON.parse(localStorage.getItem('currentProducts'));
+    if (savedCurrentProducts) {
+      setCurrentProducts(savedCurrentProducts);
+    }
+  }, []);
 
   const handleCheckboxChange = (event, value, category) => {
     const isChecked = event.target.checked;
@@ -350,7 +351,7 @@ const Newarrival = () => {
                 handleAvailabilityChange={handleAvailabilityChange}
                 handleSelectedFilter={handleSelectedFilter}
                 selectedFilters={selectedFilters}
-                // clearFilters={clearFilters}
+              // clearFilters={clearFilters}
               />
             </div>
 
@@ -365,40 +366,6 @@ const Newarrival = () => {
             </div>
           </div>
         </div>
-
-        {/* {selectedFilters.length > 0 && (
-          <div className="selected-filters w-100">
-            {selectedFilters.map((filter, index) => (
-              <span key={index} className="selected-filter">
-                {filter}
-                <span
-                  className="bg-danger text-light p-1 mb-5 rounded-5 text-center mx-md-2"
-                  style={{
-                    position: "absolute",
-                    left: "13%",
-                    width: "20px",
-                    height: "20px",
-                    fontSize: "10px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    handleDelete(index);
-                  }}
-                >
-                  X
-                </span>
-              </span>
-            ))}
-            <button
-              onClick={clearFilters}
-              type="button"
-              className="btn btn-info"
-            >
-              Clear
-            </button>
-          </div>
-        )} */}
-
         <div className="arrival-products-div-mob d-flex justify-content-center align-items-center flex-wrap gap-3 ">
           {loading ? (
             Array.from({ length: 6 }).map((_, index) => (
@@ -426,13 +393,13 @@ const Newarrival = () => {
           )}
         </div>
         <div className="pagination d-block d-md-block d-lg-none ">
-        <Pagination
-          totalItems={currentProducts.length}
-          itemsPerPage={productsPerPage}
-          onPageChange={handlePageChange}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+          <NAPagination
+            totalItems={currentProducts.length}
+            itemsPerPage={productsPerPage}
+            onPageChange={handlePageChange}
+            currentPageCh={currentPageCh}
+            setCurrentPageCh={setCurrentPageCh}
+          />
         </div>
         <div className="d-none d-md-block d-lg-block ms-5 w-50">
           <ShowingAllfilter
@@ -483,13 +450,13 @@ const Newarrival = () => {
             )}
 
             <div className="d-none d-md-none d-lg-block m-pagination">
-              <Pagination
-                totalItems={currentProducts.length}
-                itemsPerPage={productsPerPage}
-                onPageChange={handlePageChange}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-              />
+            <NAPagination
+            totalItems={currentProducts.length}
+            itemsPerPage={productsPerPage}
+            onPageChange={handlePageChange}
+            currentPageCh={currentPageCh}
+            setCurrentPageCh={setCurrentPageCh}
+          />
             </div>
 
             {/* Sort by for desktop drop down is in a dropdown component */}

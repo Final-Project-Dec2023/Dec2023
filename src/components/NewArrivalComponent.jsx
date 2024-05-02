@@ -6,7 +6,7 @@ import axios from "axios";
 import ProductCardLoading from "./ProductCardLoadingM";
 import "../css/AllfragranceComponent.css";
 
-const NewArrivalComponent = ({ title, link }) => {
+const NewArrivalComponent = () => {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState();
 
