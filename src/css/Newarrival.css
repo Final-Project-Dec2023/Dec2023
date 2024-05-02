@@ -82,9 +82,9 @@
 @media (min-width: 320px) and (max-width: 768px) {
   .arrival {
     height: 60px;
-    position:sticky;
-    top:55px;
-    z-index:999999;
+    /* position:sticky;
+    top:55px; */
+    /* z-index:999999; */
     background-color: white;
     /* border: 1px solid blue; */
   }
@@ -106,10 +106,6 @@
 .drawer{
   box-shadow: 0 -2px 2px rgba(var(--border-color-rgb), .65);
   width: 100%;
-  position: sticky;
-  bottom: 20px;
-  z-index: 9999;
-  background-color: white;
   height: 20px;
   margin-top: 200px
 }
@@ -178,9 +174,7 @@
   .drawer{
     box-shadow: 0 -2px 2px rgba(var(--border-color-rgb), .65);
     width: 100%;
-    position: sticky;
     bottom: 25px;
-    z-index: 9999;
     background-color: white;
     height: 20px;
     margin-top: 550px
@@ -210,16 +204,16 @@
     height: 45px;
     /* width: 24.3rem; */
     /* margin-left: 0px; */
-    position: sticky;
+    /* position: sticky;
     top: 55px;
     background-color: white;
-    z-index: 999;
+    z-index: 999; */
     /* border: 1px solid blue; */
   }
   .arrival {
     height: 60px;
-    position:sticky;
-    top:150px;
+    /* position:sticky;
+    top:150px; */
     z-index:9000;
     background-color: white;
     /* border: 1px solid blue; */
