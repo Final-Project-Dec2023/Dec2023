@@ -3,12 +3,22 @@ import '../css/CustomerDetails.css'
 import visa from "../assets/icons/visa.png"
 import paypal from "../assets/icons/paypal.png"
 import master from "../assets/icons/master.png"
+import { useCart } from '../contexts/Cart';
+
+
 
 
 
 const CustomerDetails = () => {
+    const { cart, cartSubTotal } = useCart();
+
+    const itemsIncart = cart.length ? cart.length : 0;
+    const shipping = 2000
+    const total = cartSubTotal() + shipping
+
   return (
     <div className='buni'>
+
       <div className="case-1">
         <div className="customer">
           <div className="heading">
@@ -50,19 +60,25 @@ const CustomerDetails = () => {
               <label>City</label>
               <select className="sect" id="city">
                 <option value="">Select City</option>
+                <option value="LAGOS">Lagos</option>
+                <option value="IBADAN">IBADAN</option>
+                <option value="">PORTHARCOURT</option>
               </select>
             </div>
           </div>
         </div>
 
         <div className="id d-none d-md-block">
-          <h3>Total Items(1)</h3>
+          <h3>Total Items({itemsIncart})</h3>
+          <div className="">
+            {cart?.length > 0 && cart.map((p)=>p.name) }
+          </div>
           <div className="id-1">
-            <p>Subtotal <b> &#8358;46,000.00</b></p>
-            <p>Delivery Cost <b>&#8358;1000.00</b> </p>
+            <p>Subtotal <b> &#8358;{cartSubTotal()}</b></p>
+            <p>Delivery Cost <b>&#8358;{shipping}</b> </p>
           </div>
           <div className="id-2">
-            <p>Total <b>&#8358;47,000.00</b></p>
+            <p>Total <b>&#8358;{total}</b></p>
           </div>
           <div className="firm">
             <div className="firm-botn">
@@ -134,13 +150,13 @@ const CustomerDetails = () => {
         </div>
       </div>
       <div className="total-m d-lg-none">
-        <h3>Total Items(1)</h3>
+        <h3>Total Items({itemsIncart})</h3>
         <div className="total-1">
-          <p>Subtotal <b> &#8358;46,000.00</b></p>
-          <p>Delivery Cost <b>&#8358;1000.00</b> </p>
+          <p>Subtotal <b> &#8358;{cartSubTotal()}</b></p>
+          <p>Delivery Cost <b>&#8358;{shipping}</b> </p>
         </div>
         <div className="total-2">
-          <p>Total <b>&#8358;47,000.00</b></p>
+          <p>Total <b>&#8358;{total}</b></p>
         </div>
         <div className="firm">
           <div className="firm-botn">
@@ -154,3 +170,4 @@ const CustomerDetails = () => {
 }
 
 export default CustomerDetails
+
