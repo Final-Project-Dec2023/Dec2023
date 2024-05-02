@@ -358,7 +358,7 @@ const AllFragrance = () => {
                   <ProductCard product={product} key={product._id} />
                 ))
               ) : (
-                <h1>No Product Found</h1>
+                <h1>No Products Found</h1>
               )}
             </div>
           </div>

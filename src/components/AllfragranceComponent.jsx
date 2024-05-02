@@ -19,11 +19,6 @@ const AllfragranceComponent = () => {
     const limit = isMobile ? 8 : 8 && isTablet ? 9 : 8;
     // const limit = isMobile ? (isTablet ? 5 : 4) : 2;
 
-    const handleAddToCart = (event) => {
-      event.stopPropagation(); 
-      addToCart(product); 
-    };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -64,40 +59,31 @@ const AllfragranceComponent = () => {
                 });
                 return (
                   <>
-                    <div key={_id}>
-                      <div className="m-card-Container" key={_id}>
-                        <div className="m-image">
-                          <Link className="link" to={`/detail/${product._id}`}>
+                    <Link className="link" to={`/detail/${product._id}`}>
+                      <div key={_id}>
+                        <div className="m-card-Container" key={_id}>
+                          <div className="m-image">
                             <img src={images[0]?.url} />
-                          </Link>
-                        </div>
-                        <div className="m-card-info">
-                          <Link
-                            className="text-decoration-none"
-                            to={`/detail/${product._id}`}
-                          >
+                          </div>
+                          <div className="m-card-info">
                             <div className="m-card-text">
                               <h4>{name}</h4>
                               <p>{description}</p>
                               <h2>&#x20A6;{Price}</h2>
                             </div>
-                          </Link>
-
-                          <div className="m-card-btn">
-                            <Link>
-                            {isAvailable ? (
-                              <button onClick={handleAddToCart}>Add to cart</button>
-                            ) : (
-                              <button className="not-ava" disabled>
-                                Sold Out
-                              </button>
-                            )}
-                            </Link>
-                            
+                            <div className="m-card-btn">
+                              {isAvailable ? (
+                                <button>Add to cart</button>
+                              ) : (
+                                <button className="not-ava" disabled>
+                                  Sold Out
+                                </button>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </>
                 );
               })}

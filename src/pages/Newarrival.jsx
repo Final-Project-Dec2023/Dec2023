@@ -377,7 +377,7 @@ const Newarrival = () => {
             </>
           )}
         </div>
-        <div className="pagination d-block d-md-block d-lg-none ">
+        <div className="pagination d-block d-md-block d-lg-none mb-3 me-md-5">
         <Pagination
           totalItems={currentProducts.length}
           itemsPerPage={productsPerPage}
@@ -434,7 +434,13 @@ const Newarrival = () => {
               </>
             )}
 
-            <div className="d-none d-md-none d-lg-block m-pagination">
+           
+
+            {/* Sort by for desktop drop down is in a dropdown component */}
+          </div>
+        </div>   
+      </div>
+       <div className="d-none d-md-none d-lg-block m-pagination mt-4 ">
               <Pagination
                 totalItems={currentProducts.length}
                 itemsPerPage={productsPerPage}
@@ -443,11 +449,6 @@ const Newarrival = () => {
                 setCurrentPage={setCurrentPage}
               />
             </div>
-
-            {/* Sort by for desktop drop down is in a dropdown component */}
-          </div>
-        </div>
-      </div>
       <Footer />
     </>
   );
