@@ -1,12 +1,22 @@
 import React from "react";
 import "../css/ProductM.css";
 import { Link } from "react-router-dom";
+import { useCart } from "../contexts/Cart";
+
 
 const ProductCard = ({ products }) => {
   const { _id, images, name, description, price, isAvailable } = products;
+  const { addToCart, cart } = useCart();
+
   let Price = price.toLocaleString(undefined, {
     minimumFractionDigits: 2,
   });
+
+  const handleAddToCart = (event) => {
+    event.stopPropagation(); 
+    addToCart(products); 
+  };
+
   return (
     
       <div key={_id}>
@@ -30,7 +40,7 @@ const ProductCard = ({ products }) => {
            <Link to={`/cart/${products._id}`}>
            <div className="m-card-btn">
               {isAvailable ? (
-                <button>Add to cart</button>
+                <button onClick={handleAddToCart}>Add to cart</button>
               ) : (
                 <button className="not-ava" disabled>
                   Sold Out

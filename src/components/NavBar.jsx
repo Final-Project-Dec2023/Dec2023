@@ -12,6 +12,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useAuth } from "../contexts/Auth.jsx";
 import { useNavigate, Link } from "react-router-dom";
 import Search from "./forms/Search.jsx";
+import { useCart } from "../contexts/Cart";
+
 
 
 
@@ -19,8 +21,10 @@ import Search from "./forms/Search.jsx";
 
 function Menu() {
   const { auth, logout } = useAuth();
+  const { cart } = useCart();
 
   const navigate = useNavigate();
+
 
   const handleLogout = () => {
     logout();
@@ -94,7 +98,7 @@ function Menu() {
               </Link>
             </div>
             <div className="cartcount">
-              <span>3</span>
+              <span>{cart.length > 0 ? cart.length : 0}</span>
             </div>
           </div>
           </div>
