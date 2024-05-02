@@ -35,7 +35,7 @@ const CartItems = () => {
                   <div className="img-card-kc">
                     <div className="left-img-kc">
                       <div className="img-kc-kc">
-                        <img src={item.images[0].url} alt={item.name} />
+                        <img src={item.images ? item?.images[0]?.url : null} alt={item?.name} />
                       </div>
                       <div className="text-card-kc">
                         <h5>{item.name}</h5>

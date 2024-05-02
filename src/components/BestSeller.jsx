@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCardLoading from "./ProductCardLoadingM";
 import "../css/AllfragranceComponent.css";
+import { useCart } from "../contexts/Cart";
 
 const BestSeller = () => {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState();
+  const { addToCart, cart } = useCart();
 
   // Detecting device screen width
   const isMobile = window.innerWidth <= 768;
@@ -22,8 +24,10 @@ const BestSeller = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/product/all?page=3&limit=${limit}`);
-        setProduct(response?.data?.products);
+        const { data } = await axios.get(`/product/all?page=3&limit=${limit}`);
+        if (data?.products) {
+          setProduct(data.product);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -34,7 +38,13 @@ const BestSeller = () => {
     fetchData();
   }, []);
 
-  const allFragrance = product;
+  console.log(product);
+  // const allFragrance = product;
+
+  const handleAddToCart = (event) => {
+    event.stopPropagation();
+    addToCart(product);
+  };
 
   return (
     <>
@@ -50,31 +60,36 @@ const BestSeller = () => {
             ? Array.from({ length: limitLoading }).map((_, index) => (
                 <ProductCardLoading key={index} />
               ))
-            : allFragrance?.map((product) => {
+            : product?.map((p) => {
                 const { _id, images, name, description, price, isAvailable } =
-                  product;
+                  p;
                 let Price = price.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                 });
                 return (
                   <>
                     <div key={_id}>
-                      <div className="m-card-Container" key={_id}>
-                        <div className="m-image">
-                          <Link className="link" to={`/detail/${product._id}`}>
+                      <Link className="link" to={`/detail/${product._id}`}>
+                        <div className="m-card-Container" key={_id}>
+                          <div className="m-image">
                             <img src={images[0]?.url} />
-                          </Link>
-                        </div>
-                        <div className="m-card-info">
-                          <Link className="link" to={`/detail/${product._id}`}>
+                          </div>
+                          <div className="m-card-info">
                             <div className="m-card-text">
-                              <h4>{name}</h4>
-                              <p>{description}</p>
-                              <h2>&#x20A6;{Price}</h2>
+                              <Link
+                                className="link"
+                                to={`/detail/${product._id}`}
+                                style={{
+                                  textDecoration: "none",
+                                  color: "black",
+                                }}
+                              >
+                                <h4>{name}</h4>
+                                <p>{description}</p>
+                                <h2>&#x20A6;{Price}</h2>
+                              </Link>
                             </div>
-                          </Link>
-                          <div className="m-card-btn">
-                            <Link to={`/cart/${products._id}`}>
+                            <div className="m-card-btn">
                               {isAvailable ? (
                                 <button onClick={handleAddToCart}>
                                   Add to cart
@@ -84,10 +99,10 @@ const BestSeller = () => {
                                   Sold Out
                                 </button>
                               )}
-                            </Link>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     </div>
                   </>
                 );
