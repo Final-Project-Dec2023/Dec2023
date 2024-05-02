@@ -3,7 +3,6 @@ import { BiSort } from "react-icons/bi";
 import "../css/Newarrival.css";
 import "../css/NAProductcard.css";
 import BreadCrumb from "../components/NABreadcCumbs";
-import { data } from "../Db/ProductDb";
 import ProductCard from "../components/NAProductCard";
 import Footer from "../components/Footer";
 import OffCanvasButton from "../components/NAFilter";
@@ -280,7 +279,7 @@ const Newarrival = () => {
       <SideNav />
       <div className="arrival-desk-div ">
         <div className="arrival-top-div-desk ">
-          <div className="d-none d-md-block d-lg-block ms-md-2">
+          <div className="d-none d-md-block d-lg-block ms-md-2 ms-lg-4">
             <BreadCrumb />
           </div>
           <div className="d-flex justify-content-between ">
@@ -314,7 +313,7 @@ const Newarrival = () => {
             </div>
 
             {/* Sort by desktop  */}
-            <div className="d-none d-md-none d-lg-block mt-2 d-lg-flex">
+            <div className="d-none d-md-none d-lg-block mt-lg-5 d-lg-flex">
               <div className="me-3 mt-2">Sort By</div>
               <div className="">
                 <SortBy handleSort={handleSort} />

@@ -9,12 +9,14 @@ import Footer from "../../components/Footer";
 import AdminProductCard from "../../components/cards/AdminProductCard";
 import { toast } from "react-toastify";
 import AdminMenu from "../../components/nav/AdminMenu";
+import DetailCardLoading from "../../components/DetailLoading";
 
 const AdminProductDetail = () => {
   // context
   const { auth, setAuth } = useAuth();
   const { slug } = useParams();
   const [loading, setLoading] = useState(false);
+  const [loadings, setLoadings] = useState(false);
 
   // state
   const [product, setProduct] = useState(null);
@@ -26,11 +28,15 @@ const AdminProductDetail = () => {
   }, []);
 
   const loadProducts = async () => {
+    setLoadings(true);
     try {
       const { data } = await axios.get(`/product/slug/${slug}`);
       setProduct(data?.product);
     } catch (err) {
       console.log(err);
+    }
+    finally{
+      setLoadings(false)
     }
   };
 
@@ -70,12 +76,21 @@ const AdminProductDetail = () => {
             <AdminMenu />
           </div>
           <div className="col-md-9">
+
+          <div className="mb-4 detail-card ">
+            {loadings ? (
+              <DetailCardLoading />
+            ) : (
+
               <AdminProductCard
-                product={product}
-                slug={slug}
-                handleDelete={handleDelete}
-                loading={loading}
-              />
+              product={product}
+              slug={slug}
+              handleDelete={handleDelete}
+              loading={loading}
+            />
+            )}
+          </div>
+              
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import UserMenu from "../../components/nav/UserMenu";
 import Menu from "../../components/NavBar";
 import SideNav from "../../components/SideNav";
 
-export default function UserDashboard() {
+const UserDashboard = () => {
   // context
   const { auth, setAuth } = useAuth();
 
@@ -32,3 +32,5 @@ export default function UserDashboard() {
     </>
   );
 }
+
+export default UserDashboard

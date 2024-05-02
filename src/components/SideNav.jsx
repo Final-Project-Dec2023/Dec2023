@@ -14,26 +14,24 @@ import FragLogo from "../assets/images/Frame 579.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
 import Search from "./forms/Search";
-// import Search from "./forms/Search";
-// import { useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import HandleShow from "./HandleShow";
 
-function SideNav() {
+function SideNav({ name, ...props }) {
   const [show, setShow] = useState(false);
-  const { auth, login } = useAuth();
-
-  const navigate = useNavigate();
+  const { auth, login, logout } = useAuth();
+  
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
-
-  const toggleSearchBar = () => {
-    setIsSearchBarVisible((prev) => !prev);
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
 
   return (
-    <>
+    <div className="side-top">
       <div className="off-body sticky-top">
         <div className="upNav " style={{ color: "white" }}>
           <div className="left-nav">
@@ -45,14 +43,7 @@ function SideNav() {
           </div>
 
           <div className="right-icons">
-            <div className="search-icon" onClick={toggleSearchBar}>
-              <img src={Searchi} alt="Search" />
-            </div>
-            <div className="search">
-              {isSearchBarVisible && (
-                <Search toggleSearchBar={toggleSearchBar} />
-              )}
-            </div>
+           <HandleShow/>
 
             {!auth?.user ? (
               <Link to="/login">
@@ -69,17 +60,16 @@ function SideNav() {
             )}
 
             <Link to="/cart">
+              <div className="cartiee">
               <img src={Carti} alt="" />
+              </div>
             </Link>
             <div className="cartcount-s">0</div>
           </div>
         </div>
       </div>
-      <Offcanvas
-        className="w-75 offcanvas-peace"
-        show={show}
-        onHide={handleClose}
-      >
+
+      <Offcanvas className="w-75" show={show} onHide={handleClose}>
         <div className="show-header ">
           <div className="left-logo">
             <Offcanvas.Header
@@ -110,11 +100,11 @@ function SideNav() {
                 <li>New Arrival</li>
               </Link>
 
-              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              <Link to="/blog" style={{ textDecoration: "none", color: "white" }}>
                 <li>Blogs</li>
               </Link>
 
-              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              <Link to="/contact" style={{ textDecoration: "none", color: "white" }}>
                 <li>Contact Us</li>
               </Link>
             </ul>
@@ -124,9 +114,56 @@ function SideNav() {
 
           <div>
             <ul className="last-li">
-              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                <li>My Account</li>
-              </Link>
+              <Dropdown>
+                <Dropdown.Toggle
+                  variant="none"
+                  id="dropdown-basic"
+                  className="text-light"
+                  size="lg"
+                >
+                  My Account
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {auth.user ? (
+                    <div>
+                      <Dropdown.Item>
+                        <Link
+                          to={
+                            auth?.user.role === 1
+                              ? "/dashboard/admin"
+                              : "/dashboard/user"
+                          }
+                          className="text-decoration-none text-dark"
+                        >
+                          Dashboard
+                        </Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={handleLogout}>
+                        Logout
+                      </Dropdown.Item>
+                    </div>
+                  ) : (
+                    <div>
+                      <Dropdown.Item>
+                        <Link
+                          to="/signup"
+                          className="text-decoration-none text-dark"
+                        >
+                          Sign Up
+                        </Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <Link
+                          to="/login"
+                          className="text-decoration-none text-dark"
+                        >
+                          Login
+                        </Link>
+                      </Dropdown.Item>
+                    </div>
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
 
               <Link to="/" style={{ textDecoration: "none", color: "white" }}>
                 <li>Help</li>
@@ -143,7 +180,8 @@ function SideNav() {
           </div>
         </Offcanvas.Body>
       </Offcanvas>
-    </>
+      {/* </div> */}
+    </div>
   );
 }
 
