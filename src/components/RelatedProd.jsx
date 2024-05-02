@@ -5,11 +5,18 @@ import "../css/RelatedProd.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useCart } from "../contexts/Cart";
 
 
 const RelatedProd = () => {
   const { productId } = useParams();
+  const { addToCart, cart } = useCart();
   const [relatedProducts, setRelatedProducts] = useState([]);
+
+  const handleAddToCart = (event) => {
+    event.stopPropagation(); 
+    addToCart(productId); 
+  };
 
   // Detecting device screen width
   const isMobile = window.innerWidth <= 768;
@@ -79,7 +86,7 @@ const RelatedProd = () => {
                       </div>
                       <div className="m-card-btn pb-2">
                         {isAvailable ? (
-                          <button className="">Add to cart</button>
+                          <button onClick={handleAddToCart} className="">Add to cart</button>
                         ) : (
                           <button className="not-ava" disabled>
                             Sold Out
