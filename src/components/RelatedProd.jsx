@@ -56,7 +56,7 @@ const RelatedProd = () => {
         <div className="">
           <h3>Related Products</h3>
         </div>
-        <div className="rpG  rounded px-lg-4  pt-lg-4 d-flex flex-row flex-lg-column justify-content-md-between gap-2">
+        <div className="rpG  rounded px-lg-4  pt-lg-4 d-flex flex-row flex-lg-column justify-content-md-between gap-2 ">
           {relatedProducts
           .slice(0, limit )
           .map((product) =>{ 
