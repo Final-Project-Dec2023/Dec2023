@@ -45,7 +45,7 @@ function App() {
           <Route path="/all-fragrances" element={<AllFragance />} />
           <Route path="/cart-empty" element={<CartEmpty />} />
           <Route path="/customer-details" element={<CustomerDetails />} />
-          <Route path="/cart" element={<CartItems />} />
+          <Route path="/cart/:productId" element={<CartItems />} />
           <Route path="/all-fragrances" element={<AllFragance />} />
           <Route path="/new-arrivals" element={<Newarrival />} />
           <Route path="/detail/:productId" element={<DetailPages />} />
