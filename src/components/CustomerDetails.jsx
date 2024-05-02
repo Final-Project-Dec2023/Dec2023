@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/CustomerDetails.css";
 import visa from "../assets/icons/visa.png";
 import paypal from "../assets/icons/paypal.png";
 import master from "../assets/icons/master.png";
 import { useCart } from "../contexts/Cart";
 import Menu from "./NavBar";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const CustomerDetails = () => {
   const { cart, cartSubTotal, removeFromCart } = useCart();
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState();
 
   const itemsIncart = cart.length ? cart.length : 0;
   const shipping = 2000;
   const total = cartSubTotal() + shipping;
+  const paymentRef = true;
+  const cartItems = cart.filter((item) => item._id);
+
+  const handlePay = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.post("/product/payment", {
+        paymentRef,
+        cartItems,
+      });
+
+      if (data.success) {
+        console.log("Order created");
+        toast.success("Order created successfully");
+        navigate("/order");
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Login error:", error.message);
+      toast.error("Error creating order");
+    }
+  };
 
   return (
     <>
@@ -130,11 +158,13 @@ const CustomerDetails = () => {
               </p>
             </div>
             <div className="firm">
-              <div className="firm-botn">
-                <a className="" href="" id="">
-                  Confirm order
-                </a>
-              </div>
+              <button
+                to="/order"
+                className="btn btn-dark w-50"
+                onClick={handlePay}
+              >
+                {loading ? "Loading..." : "Confirm Order"}
+              </button>
               <h6>(complete the steps in order to proceed)</h6>
             </div>
           </div>
