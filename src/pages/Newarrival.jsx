@@ -17,11 +17,12 @@ import ShowingAllfilter from "../components/ShowingAllfilter";
 import ProductCardLoading from "../components/ProductCardLoadingM";
 import Accord from "../components/AccordionM";
 import moment from "moment";
+import NAPagination from "../components/NAPagination";
 
 const Newarrival = () => {
   const [fetchProduct, setFetchProduct] = useState([]);
   const [currentProducts, setCurrentProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPageCh, setCurrentPageCh] = useState(1);
   const [selectedGender, setSelectedGender] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState([]);
   const [selectedAlphabet, setSelectedAlphabet] = useState("");
@@ -63,24 +64,24 @@ const Newarrival = () => {
   // Function to handle page change
   const handlePageChange = (pageNumber) => {
     console.log("Changing page to:", pageNumber);
-    setCurrentPage(pageNumber);
-    localStorage.setItem("currentPage", pageNumber);
+    setCurrentPageCh(pageNumber);
+    localStorage.setItem("currentPageCh", pageNumber);
   };
 
   useEffect(() => {
     // Retrieve current page from local storage
-    const storedPage = localStorage.getItem("currentPage");
+    const storedPage = localStorage.getItem("currentPageCh");
     if (storedPage) {
       console.log(storedPage);
-      setCurrentPage(parseInt(storedPage));
+      setCurrentPageCh(parseInt(storedPage));
     } else {
-      setCurrentPage(1); // Set default page to 1 if not found in local storage
+      setCurrentPageCh(1); // Set default page to 1 if not found in local storage
     }
   }, []);
 
   // Pagination logic
   const productsPerPage = 15;
-  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfLastProduct = currentPageCh * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const paginate = currentProducts.slice(
     indexOfFirstProduct,
@@ -350,7 +351,7 @@ const Newarrival = () => {
                 handleAvailabilityChange={handleAvailabilityChange}
                 handleSelectedFilter={handleSelectedFilter}
                 selectedFilters={selectedFilters}
-                // clearFilters={clearFilters}
+              // clearFilters={clearFilters}
               />
             </div>
 
@@ -426,13 +427,13 @@ const Newarrival = () => {
           )}
         </div>
         <div className="pagination d-block d-md-block d-lg-none ">
-        <Pagination
-          totalItems={currentProducts.length}
-          itemsPerPage={productsPerPage}
-          onPageChange={handlePageChange}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+          <NAPagination
+            totalItems={currentProducts.length}
+            itemsPerPage={productsPerPage}
+            onPageChange={handlePageChange}
+            currentPageCh={currentPageCh}
+            setCurrentPageCh={setCurrentPageCh}
+          />
         </div>
         <div className="d-none d-md-block d-lg-block ms-5 w-50">
           <ShowingAllfilter
@@ -483,13 +484,13 @@ const Newarrival = () => {
             )}
 
             <div className="d-none d-md-none d-lg-block m-pagination">
-              <Pagination
-                totalItems={currentProducts.length}
-                itemsPerPage={productsPerPage}
-                onPageChange={handlePageChange}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-              />
+            <NAPagination
+            totalItems={currentProducts.length}
+            itemsPerPage={productsPerPage}
+            onPageChange={handlePageChange}
+            currentPageCh={currentPageCh}
+            setCurrentPageCh={setCurrentPageCh}
+          />
             </div>
 
             {/* Sort by for desktop drop down is in a dropdown component */}
