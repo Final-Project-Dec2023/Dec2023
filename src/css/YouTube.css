@@ -5,7 +5,7 @@
 } */
 .youtubeG{
     width:100% !important;
-    height:30rem !important;
+    height:32rem !important;
 }
 .gvideo{
     width: 100% !important;
@@ -21,15 +21,20 @@
         height: 27rem !important;
     }
     }
-@media (min-width: 370px) and (max-width: 767px) {
+@media (min-width: 300px) and (max-width: 767px) {
     .youtubeG{
-        width:21.5rem !important;
+        width:22.3rem !important;
         height:27rem !important;
         /* border: 1px solid black !important; */
        
     }
     .gvideo{
-        width: 20rem !important;
+        width: 22rem !important;
         height: 24rem !important;
     }
-}   
+}  
+@media(max-width: 320px) {
+    .gvideo{
+        width: 19rem !important ;
+    }
+}

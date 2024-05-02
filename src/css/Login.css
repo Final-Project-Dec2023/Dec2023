@@ -1,11 +1,21 @@
-.dan{
+.dan-login {
+    background-image: url("../assets/images/Signindan.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    min-height: 100%;
+    
+  }
+  
+  .dan {
     width: 100%;
     height: 100vh;
+    max-height: 100%;
     display: flex;
     justify-content: space-between;
-}
-
-.top-section{
+  }
+  
+  .top-section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -13,105 +23,85 @@
     padding-left: 40px;
     height: 80%;
     padding-top: 20px;
-}
-.top-section h2{
+  }
+  .top-section h2 {
     font-size: 2rem;
     margin-top: 20px;
-}
-
-.top-section p{
+  }
+  
+  .top-section p {
     font-size: 15px;
-}
-.top-section img{
+  }
+  .top-section img {
     height: 16px;
-    width: 10rem
-    
-}
-.form-dan{
+    width: 10rem;
+  }
+  .form-dan {
     display: flex;
     flex-direction: column;
     gap: 13.72px;
     padding: 0px;
-   
-    
-
-}
-.form-action{
-    display:flex;
+  }
+  .form-action {
+    display: flex;
     flex-direction: column;
-   
-
-}
-.form-control{
+  }
+  .form-control {
     outline: none !important;
     box-shadow: none !important;
     border: 1px solid whitesmoke;
     padding: 15px 20px !important;
-}
-.password-input-wrapper{
+  }
+  .password-input-wrapper {
     position: relative;
-  
   }
   .password-input-wrapper span {
     position: absolute;
-    top: 15%;
+    top: 22%;
     right: 3%;
+    font-size: 1.2rem;
   }
-
   
-.right-side{
-    width: 50%;
-    height: 100%;
-    background-color: aliceblue;
-}
-.right-side img{
-    width: 100%;
-    height: 100%;
-}
-.ddd{
+  .ddd {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 2rem;
     width: 100%;
     margin-right: 10px;
-}
-
-.ddd .yp{
+  }
+  
+  .ddd .yp {
     display: flex;
     gap: 1rem;
     margin-top: 0.6rem;
-}
-.ddd .yp input{
+  }
+  .ddd .yp input {
     margin-top: -0.4rem;
-}
-
-
-.ddd .span-dan{
+  }
+  
+  .ddd .span-dan {
     color: rgba(0, 152, 184, 1);
-}
-.ddd p{
+  }
+  .ddd p {
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 10px;
     color: red;
-}
-.ddd a{
+  }
+  .ddd a {
     text-decoration: none;
-}
-.ddd input{
-  
-    
-    border: 1px solid rgba(0, 152, 184, 1)r;
+  }
+  .ddd input {
+    border: 1px solid rgba(0, 152, 184, 1) r;
     /* border-radius: 5px; */
     /* padding-right: 10px; */
-}
-.pic{
+  }
+  .pic {
     width: 24px;
     height: 24px;
-    
-}
-.black button{
+  }
+  .black button {
     width: 100%;
     height: 8vh;
     border-radius: 5px;
@@ -120,9 +110,9 @@
     color: white;
     margin-top: 40px;
     margin-bottom: 20px;
-}
-
-.white button{
+  }
+  
+  .white button {
     width: 100%;
     height: 8vh;
     border-radius: 5px;
@@ -130,65 +120,59 @@
     background-color: white;
     gap: 2rem;
     margin-top: 20px;
-    
-}
-
-.white button a{
+  }
+  
+  .white button a {
     text-decoration: none;
     color: black;
     font-size: 18px;
-    
-}
-.dd{
+  }
+  .dd {
     margin-top: 10px;
-}
-.dd p a{
+  }
+  .dd p a {
     text-decoration: none;
     color: rgba(0, 152, 184, 1);
-    
-}
-span{
+  }
+  span {
     justify-content: center;
-}
-.dat{
+  }
+  .dat {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-.line1{
+  }
+  .line1 {
     width: 40%;
     height: 1px;
     background-color: lightgrey;
-}
-.line2{
+  }
+  .line2 {
     width: 45%;
     height: 1px;
     background-color: lightgrey;
-}
-.icon{
+  }
+  .icon {
     padding-top: 9px !important;
-}
-
-
-@media( max-width: 600px){
-    .logo{
-        display: none;
-    
+  }
+  
+  @media (max-width: 600px) {
+    .logo {
+      display: none;
     }
-    .top-section{
-        width: 100% !important;
-        padding-right: 40px !important;        
+    .top-section {
+      width: 100% !important;
+      padding-right: 40px !important;
     }
-    .top-section .ww{
-        width: 50% !important;
+    .top-section .ww {
+      width: 50% !important;
     }
-    .top-section h2{
-        padding-top: 20px !important;
+    .top-section h2 {
+      padding-top: 20px !important;
     }
-    .right-side{
-        width: 1px;
+    .right-side {
+      width: 1px;
     }
-
-   
-}
+  }
+  

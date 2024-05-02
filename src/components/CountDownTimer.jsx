@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import "../css/Countdown.css";
 import flash from "../assets/icons/flash logo.png";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { data } from "../Db/ProductDb";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import ProductCardLoading from "./ProductCardLoadingM";
 
 const CountDownTimer = () => {
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
+  const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState();
 
   function calculateTimeRemaining() {
     const now = new Date();
@@ -34,7 +37,23 @@ const CountDownTimer = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const flashProduct = data.slice(4, 8);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const response = await axios.get(`/product/all`);
+        setProduct(response?.data?.products);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }finally {
+        setLoading(false); // Set loading to false regardless of success or error
+      }
+      console.log(product);
+    };
+    fetchData();
+  }, []);
+
+  const flashProduct = product?.slice(4, 8);
 
   return (
     <>
@@ -53,41 +72,46 @@ const CountDownTimer = () => {
           </span>
         </div>
         <div className="flash-product">
-          {flashProduct.map((product) => {
-            const {_id, image, name, description,priceCents, isavailability} = product
-            let price = (priceCents / 100).toLocaleString(undefined, {
-                minimumFractionDigits: 2,
-              });
-            return (
-              <>
-              <Link className="link" to={`/detail/${product._id}`}>
-                <div key={_id}>
-                  <div className="m-card-Container" key={_id}>
-                    <div className="m-image">
-                      <img src={image} />
-                    </div>
-                    <div className="m-card-info">
-                      <div className="m-card-text">
-                        <h4>{name}</h4>
-                        <p>{description}</p>
-                        <h2>&#x20A6;{price}</h2>
+          {loading
+            ? Array.from({ length: 4 }).map((_, index) => (
+                <ProductCardLoading key={index} />
+              ))
+            : flashProduct.map((product) => {
+                const { _id, images, name, description, price, isAvailable } =
+                  product;
+                let Price = price.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                });
+                return (
+                  <>
+                    <Link className="link" to={`/detail/${product._id}`}>
+                      <div key={_id}>
+                        <div className="m-card-Container" key={_id}>
+                          <div className="m-image">
+                            <img src={images[0].url} />
+                          </div>
+                          <div className="m-card-info">
+                            <div className="m-card-text">
+                              <h4>{name}</h4>
+                              <p>{description}</p>
+                              <h2>&#x20A6;{Price}</h2>
+                            </div>
+                            <div className="m-card-btn">
+                              {isAvailable ? (
+                                <button>Add to cart</button>
+                              ) : (
+                                <button className="not-ava" disabled>
+                                  Sold Out
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="m-card-btn">
-                        {isavailability ? (
-                          <button>Add to cart</button>
-                        ) : (
-                          <button className="not-ava" disabled>
-                            Sold Out
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-              </>
-            );
-          })}
+                    </Link>
+                  </>
+                );
+              })}
         </div>
       </section>
     </>

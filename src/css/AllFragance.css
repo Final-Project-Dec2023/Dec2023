@@ -29,7 +29,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
 }
 .m-title .title-left{
     height: 100%;
@@ -113,7 +112,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        padding-top: 20px;
+        padding-top: 10px;
         /* border: 1px solid black; */
     
     }

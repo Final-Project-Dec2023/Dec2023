@@ -1,29 +1,59 @@
-import React from 'react'
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import "../css/NAProductcard.css"
+import React from "react";
+import "../css/ProductM.css";
+import { Link } from "react-router-dom";
+import { useCart } from "../contexts/Cart";
 
-const ProductCard = ({ products, index }) => {
-// margin: top left bottom right
-const {name,price, image, availability,weight, fragranceType} = products
-// let priceNaira = (price/100).toLocaleString(undefined, {minimumFractionDigits: 2})
-    return (
-        <div >
-            <div className='d-flex justify-content-between flex-wrap gap-3'>
-            <Card className= "card">
-                <Card.Img variant="top" src={image}className='NA-card-image' />
-                <Card.Body className='NA-card-body'>
-                    <Card.Title className="NA-card-title">{name}</Card.Title>
-                    <Card.Text>{fragranceType} <span>{weight}</span></Card.Text>
-                    <Card.Text><span>₦</span>{price}</Card.Text>
-                   {availability ?  <Button variant="dark" className='text-light p-2 NA-card-btn'>Add to Cart</Button> : <Button variant="secondary" className='text-light p-2 NA-card-btn'>Sold Out</Button>}
-                </Card.Body>
-            </Card>
+
+const ProductCard = ({ products }) => {
+  const { _id, images, name, description, price, isAvailable } = products;
+  const { addToCart, cart } = useCart();
+
+  let Price = price.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+  });
+
+  const handleAddToCart = (event) => {
+    event.stopPropagation(); 
+    addToCart(products); 
+  };
+
+  return (
+    
+      <div key={_id}>
+        <div className="m-card-Container" key={_id}>
+          
+          <div className="m-image">
+            <Link className="" to={`/detail/${products._id}`}>
+            <img src={images[0].url} alt={name} />
+
+            </Link>
+          </div>
+          <div className="m-card-info">
+            <Link className="text-decoration-none" to={`/detail/${products._id}`}>
+            <div className="m-card-text">
+              <h4>{name}</h4>
+              <p>{description}</p>
+              <h2>&#x20A6;{Price}</h2>
             </div>
+            </Link>
            
+           <Link to={`/cart/${products._id}`}>
+           <div className="m-card-btn">
+              {isAvailable ? (
+                <button onClick={handleAddToCart}>Add to cart</button>
+              ) : (
+                <button className="not-ava" disabled>
+                  Sold Out
+                </button>
+              )}
+            </div>
+           </Link>
+            
+          </div>
         </div>
+      </div>
+    
+  );
+};
 
-    )
-}
-
-export default ProductCard
+export default ProductCard;

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "../css/AllFragance.css";
 import ProductCard from "../components/ProductCardM";
-import { data } from "../Db/ProductDb";
 import Accord from "../components/AccordionM";
 import Pagination from "../components/PaginationM";
 import { BiSort } from "react-icons/bi";
@@ -12,10 +11,15 @@ import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
 import ShowingAllfilter from "../components/ShowingAllfilter";
 import SortBy from "../components/SortBy";
-import CountDownTimer from "../components/CountDownTimer";
+import axios from "axios";
+import ProductCardLoading from "../components/ProductCardLoadingM";
+import moment from "moment";
+
 const AllFragrance = () => {
   //general data
-  const [currentProducts, setCurrentProducts] = useState(data);
+  const [fetchProduct, setFetchProduct] = useState([]);
+  const [currentProducts, setCurrentProducts] = useState([]);
+  //
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
   //gender
@@ -33,9 +37,57 @@ const AllFragrance = () => {
 
   //Showing the selected in the page
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [loading, setLoading] = useState();
+
+  const shuffle = (array) => {
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  };
+
+  // Fetching from database
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://fragrancehubbe.onrender.com/api/v1/product/all?page=1&limit=1000000`
+      );
+
+      // const {products} = response.data;
+      const shuffledProducts = shuffle(response?.data?.products);
+
+      setFetchProduct(shuffledProducts);
+      setCurrentProducts(shuffledProducts);
+      console.log(response?.data?.products);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // Set loading to false regardless of success or error
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   // Function to handle adding and removing selected filters
   const handleSelectedFilter = (filter) => {
+    setCurrentPage(1);
+
     setSelectedFilters((prevFilters) => {
       if (prevFilters.includes(filter)) {
         return prevFilters.filter((f) => f !== filter);
@@ -54,25 +106,48 @@ const AllFragrance = () => {
     setSelectedAvailability([]);
   };
 
+  // // Detecting device screen width
+  const isMobile = window.innerWidth <= 768;
+  const isTablet = window.innerWidth <= 1024;
+
+  // Setting the limit for related products
+  const limit = isMobile ? 20 : 15 && isTablet ? 15 : 15;
+
   // ---------------Pagination Start---------
-  const productsPerPage = 15;
-  const totalPages = Math.ceil(data.length / productsPerPage);
+  // Function to handle page change
   const handlePageChange = (pageNumber) => {
+    console.log("Changing page to:", pageNumber);
     setCurrentPage(pageNumber);
+    localStorage.setItem("currentPage", pageNumber);
   };
 
+  useEffect(() => {
+    // Retrieve current page from local storage
+    const storedPage = localStorage.getItem("currentPage");
+    if (storedPage) {
+      console.log(storedPage);
+      setCurrentPage(parseInt(storedPage));
+    } else {
+      setCurrentPage(1); // Set default page to 1 if not found in local storage
+    }
+  }, []);
+
+  // Pagination logic
+  const productsPerPage = 15;
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-
   const paginate = currentProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
+
   // ---------------Pagination End---------
 
   useEffect(() => {
-    let filteredProducts = data;
+    let filteredProducts = fetchProduct;
 
+    console.log("Selected Gender:", selectedGender);
+    console.log("Selected Brand:", selectedBrand);
     //filter for Gender
     if (selectedGender.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
@@ -89,25 +164,25 @@ const AllFragrance = () => {
     //filter for Fragrance Type
     if (selectedFragranceTypes.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
-        selectedFragranceTypes.includes(product.fragrance_type)
+        selectedFragranceTypes.includes(product.fragranceType)
       );
     }
 
     //filter for Scent Type
     if (selectedScentType.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
-        selectedScentType.includes(product.scent_type)
+        selectedScentType.includes(product.scentType)
       );
     }
     //filter for Price
     if (selectedPrice.length > 0) {
       filteredProducts = filteredProducts.filter((product) => {
         if (selectedPrice.includes("Under10K")) {
-          return product.priceCents <= 1000000;
+          return product.price <= 10000;
         } else if (selectedPrice.includes("10kTo50K")) {
-          return product.priceCents >= 1000000 && product.priceCents <= 5000000;
+          return product.price >= 10000 && product.price <= 50000;
         } else if (selectedPrice.includes("Over50k")) {
-          return product.priceCents >= 5000000;
+          return product.price >= 50000;
         }
       });
     }
@@ -116,11 +191,11 @@ const AllFragrance = () => {
     if (selectedAvailability !== null) {
       if (selectedAvailability === "true") {
         filteredProducts = filteredProducts.filter(
-          (product) => product.isavailability === true
+          (product) => product.isAvailable === true
         );
       } else {
         filteredProducts = filteredProducts.filter(
-          (product) => product.isavailability === false
+          (product) => product.isAvailable === false
         );
       }
     }
@@ -183,7 +258,7 @@ const AllFragrance = () => {
   };
 
   const handleDefaultSort = () => {
-    setCurrentProducts([...data]);
+    setCurrentProducts([...fetchProduct]);
   };
   const handleSort = (option) => {
     switch (option) {
@@ -199,39 +274,74 @@ const AllFragrance = () => {
         break;
       case "LowToHigh":
         setCurrentProducts(
-          [...currentProducts].sort((a, b) => a.priceCents - b.priceCents)
+          [...currentProducts].sort((a, b) => a.price - b.price)
         );
         break;
       case "HighToLow":
         setCurrentProducts(
-          [...currentProducts].sort((a, b) => b.priceCents - a.priceCents)
+          [...currentProducts].sort((a, b) => b.price - a.price)
         );
         break;
+      case "BestSeller":
+        handleDefaultSort();
+        break;
+        case "oldToNew":
+          setCurrentProducts(
+            [...currentProducts].sort(
+              (a, b) => moment(a.createdAt) - moment(b.createdAt)
+            )
+          );
+          break;
+        case "newToOld":
+          setCurrentProducts(
+            [...currentProducts].sort((a, b) =>
+              moment(b.createdAt).diff(moment(a.createdAt))
+            )
+          );
+          break;
         case "BestSeller":
           handleDefaultSort();
           break;
-      default:
-        break;
-    }
+        case "OldToNew":
+          setCurrentProducts(
+            [...currentProducts].sort(
+              (a, b) => moment(a.createdAt) - moment(b.createdAt)
+            )
+          );
+          break;
+        case "NewToOld":
+          setCurrentProducts(
+            [...currentProducts].sort(
+              (a, b) => moment(b.createdAt) - moment(a.createdAt)
+            )
+          );
+          break;
+        default:
+          break;
+      }
   };
+  const reverseArray = (array) => {
+    return array.slice().reverse();
+  };
+  const reversedProducts = reverseArray(paginate);
 
   return (
     <>
       <Menu />
       <SideNav />
+      <Breadcrumbs />
       <div className="m-section">
         <div className="m-main">
           <div className="m-title">
             <div className="title-left">
               <h4>All Featured Fragrance</h4>
               <p>
-                Showing {indexOfFirstProduct + 1} - {indexOfLastProduct} of{" "}
-                {currentProducts.length} Products
+                Showing {productsPerPage} of {currentProducts.length} Products
               </p>
             </div>
             <div className="title-right">
-              <span>Sort by</span>        
-            <SortBy handleSort={handleSort} />
+              <span>Sort by</span>
+              <SortBy handleSort={handleSort} />
             </div>
           </div>
           <div className="show-filterM">
@@ -252,6 +362,7 @@ const AllFragrance = () => {
                   handleAvailabilityChange={handleAvailabilityChange}
                   selectedFilters={selectedFilters}
                   handleSelectedFilter={handleSelectedFilter}
+                  currentProducts={currentProducts}
                 />
                 {/* Accordion ends */}
               </div>
@@ -269,23 +380,31 @@ const AllFragrance = () => {
                 <SortBy handleSort={handleSort} />
               </h3>
             </div>
-
             <div className="m-products">
-              {paginate.map((product, index) => (
-                <ProductCard product={product} key={product._id} />
-              ))}
+              {loading ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <ProductCardLoading key={index} />
+                ))
+              ) : currentProducts.length > 0 ? (
+                paginate.map((product) => (
+                  <ProductCard product={product} key={product._id} />
+                ))
+              ) : (
+                <h1>No Product Found</h1>
+              )}
             </div>
           </div>
         </div>
         <div className="m-pagination">
           <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
+            totalItems={currentProducts.length}
+            itemsPerPage={productsPerPage}
             onPageChange={handlePageChange}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         </div>
       </div>
-      <CountDownTimer/>
       <Footer />
     </>
   );

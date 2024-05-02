@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import "../css/AccordionM.css";
 import { IoSearch } from "react-icons/io5";
-import { data } from "../Db/ProductDb";
+// import { data } from "../Db/ProductDb";
 import { GoDotFill } from "react-icons/go";
+import axios from "axios";
 
 const Accord = ({
   handleCheckboxChange,
@@ -11,56 +12,58 @@ const Accord = ({
   handleSelectedFilter,
 }) => {
   const [search, setSearch] = useState("");
-  //
+  const [data, setData] = useState([]);
 
-  // const [selectedFilters, setSelectedFilters] = useState([]);
+// Fetching from database
+const fetchData = async () => {
+  try {
+    const response = await axios.get(`product/all?page=1&limit=100000`);
+    setData(response?.data?.products);
+    console.log(response?.data?.products);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 
-  // // Function to handle adding and removing selected filters
-  // const handleSelectedFilter = (filter) => {
-  //   setSelectedFilters((prevFilters) => {
-  //     if (prevFilters.includes(filter)) {
-  //       return prevFilters.filter((f) => f !== filter);
-  //     } else {
-  //       return [...prevFilters, filter];
-  //     }
-  //   });
-  // };
+useEffect(() => {
+  fetchData();
+}, []);
 
-  // console.log(search)
-  //All Gender
-  const genderList = Array.from(
-    new Set(
-      data.map((product) => {
-        return product.gender;
-      })
-    )
-  ).sort();
+// All Gender
+const genderList = Array.from(
+  new Set(
+    data.map((product) => {
+      return product.gender;
+    })
+  )
+).sort();
 
-  //All brand
-  const brandList = Array.from(
-    new Set(
-      data.map((product) => {
-        return product.brand;
-      })
-    )
-  ).sort();
-  //All Fragrant Type
-  const fragrantType = Array.from(
-    new Set(
-      data.map((product) => {
-        return product.fragrance_type;
-      })
-    )
-  ).sort();
-  //ALL scent type
-  const scentType = Array.from(
-    new Set(
-      data.map((product) => {
-        return product.scent_type;
-      })
-    )
-  ).sort();
+// All brand
+const brandList = Array.from(
+  new Set(
+    data.map((product) => {
+      return product.brand;
+    })
+  )
+).sort();
 
+// All Fragrant Type
+const fragrantType = Array.from(
+  new Set(
+    data.map((product) => {
+      return product.fragranceType;
+    })
+  )
+).sort();
+
+// All scent type
+const scentType = Array.from(
+  new Set(
+    data.map((product) => {
+      return product.scentType;
+    })
+  )
+).sort();
   // console.log(genderList);
 
   //Alphabet
@@ -116,9 +119,11 @@ const Accord = ({
             </div>
           </Accordion.Body>
           <Accordion.Body className="accord-input">
-            <div className="input-body">
+          <div className=''style={{ maxHeight: "260px", overflowY: 'auto', overflowX: "hidden",width:"230px", scrollbarGutter:"stable"}}>
+
+            <div className="input-body sticky-top">
               <input
-                type="text"
+                type="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search"
@@ -146,7 +151,10 @@ const Accord = ({
                     />
                     {brand}
                   </label>
+                  
                 ))}
+             
+             </div>
             </div>
           </Accordion.Body>
         </Accordion.Item>

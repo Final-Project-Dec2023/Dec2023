@@ -61,9 +61,9 @@ const SignUp = () => {
       if (!data?.error) {
         toast.success("Registration successful");
         setLoading(false);
-        setTimeout(() =>{
-          navigate("/")
-        }, 5000)
+        setTimeout(() => {
+          navigate("/");
+        }, 5000);
       } else {
         toast.error("Registration failed");
       }
@@ -76,21 +76,21 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <div className="container-milly">
-        <div className="left-side-milly">
-          <div className="top-section-milly ">
-            <Link to='/'>
-            <img src={img1} alt="" />
+    <>
+      <div className="milly container-fluid pt-4">
+        <div className="col-md-6 offset-md-3">
+          <div className="text-center">
+            <Link to="/" className="">
+              <img src={img1} alt="" />
             </Link>
             <p>
               <b>Join Us To Discover The Perfect Scent For You!.</b>
             </p>
           </div>
 
-          <div className="middle-section-milly">
+          {/* <div className="middle-section-milly">
             <p>Let's get started by filling the information below:</p>
-          </div>
+          </div> */}
           <div className="">
             <form className="form-milly" onSubmit={handleSubmit}>
               <div className="form-action">
@@ -166,48 +166,45 @@ const SignUp = () => {
               </p>
             </div>
 
-            <div className="black-milly">
-              <button onClick={handleSubmit}>
-                {loading ? (
-                  <>
-                    <span
-                      className="spinner-border spinner-border-sm"
-                      aria-hidden="true"
-                    ></span>
-                    <span role="status">Loading...</span>
-                  </>
-                ) : (
-                  "Submit"
-                )}
-              </button>
-            </div>
+            <div className="">
+            <button className={loading ? "btn btn-dark w-100 p-3 my-1" : "btn btn-outline-dark w-100 p-3 my-1" } onClick={handleSubmit} disabled={loading}>
+              {loading ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm me-1"
+                    aria-hidden="true"
+                  ></span>
+                  <span role="status">Loading...</span>
+                </>
+              ) : (
+                "Sign Up"
+              )}
+            </button>
+          </div>
             <div className="dis my-2">
               <div className="line"></div>
               <span>&nbsp;&nbsp; or &nbsp;&nbsp;</span>
               <div className="line"></div>
             </div>
 
-            <div className="white-milly">
-              <button>
+            <div className="">
+              <button className={!loading ? "btn btn-dark w-100 p-3 my-1" : "btn btn-outline-dark w-100 p-3 my-1" }>
                 <img className="pic mx-2" src={img2} alt="" />
-                <a href="https://www.google.com/">Continue with Google</a>
+                <a className="text-light text-decoration-none" href="https://www.google.com/">Continue with Google</a>
               </button>
             </div>
             <div className="bb">
-              <Link to="/login">
-              <p>
-                Already have an account? <a href="">Sign in</a>
+              <p className="text-dark">
+                Already have an account? <Link to="/login">Sign in</Link>
               </p>
-              </Link>
-             
             </div>
           </div>
         </div>
-        <div className="right-side-milly">
+        {/* <div className="right-side-milly">
           <img src={registerImg} className="image-fluid" />
-        </div>
+        </div> */}
       </div>
-    </div>
+    </>
   );
 };
 

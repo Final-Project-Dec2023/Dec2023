@@ -30,7 +30,7 @@ const AdminDashboard = () => {
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
-                  <th scope="col">Phone</th>
+                  <th scope="col">Designation</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,19 +38,19 @@ const AdminDashboard = () => {
                   <th scope="row">1</th>
                   <td>{auth?.user?.name}</td>
                   <td>admin@demo.com</td>
-                  <td>090885530123</td>
+                  <td>Super Admin</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>--</td>
+                  <td>Ademola Kuku</td>
+                  <td>admin2@email.com</td>
+                  <td>Marketing Head</td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
-                  <td>Larry the Bird</td>
-                  <td>--</td>
-                  <td>--</td>
+                  <td>Larry Gaga</td>
+                  <td>adminhr@email.com</td>
+                  <td>Human resource</td>
                 </tr>
               </tbody>
             </table>

@@ -5,9 +5,13 @@ import signinIcon from "../assets/icons/signinIcon.png";
 import signin from "../assets/images/Signindan.png";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
-import { Link } from "react-router-dom";
+import img2 from "../assets/images/download-removebg-preview.png";
+import { IoEyeOffOutline } from "react-icons/io5";
+import { IoEyeOutline } from "react-icons/io5";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+
+
 
 const Login = () => {
   // hooks/
@@ -17,7 +21,10 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const location = useLocation();
+  const { auth, login } = useAuth();
+  const isAdmin = auth?.user?.role
+
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -41,15 +48,16 @@ const Login = () => {
     }
     try {
       setLoading(true);
-      const success = await login(email, password);
+      const data = await login(email, password);
       setLoading(false);
 
-      if (success) {
-        setTimeout(() => {
+      if (data) {
+        console.log(data);
         toast.success("Login successful");
-        navigate("/");
-        }, 5000)
-        
+        navigate(
+          location.state ||
+            `/dashboard/${ isAdmin === 1 ? "admin" : "user"}`
+        );
       } else {
         toast.error("Login failed. try again..");
       }
@@ -62,20 +70,21 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="dan">
-        <div className="top-section">
-          <Link to="/">
-          <img className="ww" src={signinIcon} alt="" />
-          </Link>
-          <h2>
-            <b>Welcome to FragranceHub</b>
-          </h2>
-         
-
-          <div className="middle-section">
-            <p>Enter your details to access your account</p>
+    <div className="dan-login container-fluid">
+      <div className="col-md-6 offset-md-3 pt-4">
+        <div className="">
+          <div className="text-center">
+            <Link to="/">
+              <img className="ww " src={signinIcon} alt="" />
+            </Link>
+            <h2>
+              <b>Welcome to FragranceHub</b>
+            </h2>
           </div>
+
+          {/* <div className="middle-section">
+            <p>Enter your details to access your account</p>
+          </div> */}
           <form className="form-dan" onSubmit={handleSubmit}>
             <div className="form-action">
               <label>Email</label>
@@ -100,9 +109,9 @@ const Login = () => {
                 />
                 <span onClick={() => setShowPassword(!showPassword)}>
                   {showPassword ? (
-                    <FaRegEye className="icon-d" />
+                    <IoEyeOutline className="icon-m" />
                   ) : (
-                    <FaRegEyeSlash className="icon-d" />
+                    <IoEyeOffOutline className="icon-m" />
                   )}
                 </span>
               </div>
@@ -122,12 +131,12 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="black">
-            <button onClick={handleSubmit}>
+          <div className="">
+            <button className={loading ? "btn btn-dark w-100 p-3 my-1" : "btn btn-outline-dark w-100 p-3 my-1" } onClick={handleSubmit} disabled={loading}>
               {loading ? (
                 <>
                   <span
-                    className="spinner-border spinner-border-sm"
+                    className="spinner-border spinner-border-sm me-1"
                     aria-hidden="true"
                   ></span>
                   <span role="status">Loading...</span>
@@ -143,26 +152,23 @@ const Login = () => {
             <div className="line2"></div>
           </div>
 
-          <div className="white">
-            <button>
-              {/* <img className='pic mx-2' src={img2}alt="" /> */}
-              <a href="https://www.google.com/">Continue with Google</a>
-            </button>
-          </div>
+          <div className="">
+              <button className={!loading ? "btn btn-dark w-100 p-3 my-1" : "btn btn-outline-dark w-100 p-3 my-1" }>
+                <img className="pic mx-2" src={img2} alt="" />
+                <a className="text-light text-decoration-none" href="https://www.google.com/">Continue with Google</a>
+              </button>
+            </div>
           <div className="dd">
-            <Link to= "/signup">
-            <p>
-              New User? <a href="">Sign Up</a>
+            <p className="text-dark">
+              New User? <Link to="/signup">Sign Up</Link>
             </p>
-            </Link>
-            
           </div>
         </div>
-        <div className="right-side">
+        {/* <div className="right-side">
           <div className="logo ">
             <img src={signin} alt="" />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
