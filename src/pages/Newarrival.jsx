@@ -298,37 +298,23 @@ const Newarrival = () => {
       <SideNav />
       <div className="arrival-desk-div ">
         <div className="arrival-top-div-desk ">
-          <div className="d-none d-md-block d-lg-block ms-md-2 ms-lg-4">
+          <div className="d-none d-md-block d-lg-block ms-md-4 ms-lg-4">
             <BreadCrumb />
           </div>
           <div className="d-flex justify-content-between ">
             <div className="d-block d-md-none d-lg-none mx-3 my-3">
               <h3>New Arrivals</h3>
-              {/* {currentProducts.length == lastIndex ? (
                 <span>
-                  Showing {firstIndex + 1} - {currentProducts.length} of{" "}
-                  {currentProducts.length} Products Products
-                </span>
-              ) : (
-                <span>
-                  Showing {firstIndex + 1} - {lastIndex} of{" "}
+                  Showing {productsPerPage} of{" "}
                   {currentProducts.length} Products
                 </span>
-              )} */}
             </div>
-            <div className="d-none d-md-block d-lg-block w-lg-75 ms-lg-4 mx-md-5 my-md-4">
+            <div className="d-none d-md-block d-lg-block w-lg-75 ms-lg-4 mx-md-4 my-md-4">
               <h3>New Arrivals</h3>
-              {/* {currentProducts.length == lastIndex ? (
-                <span>
-                  Showing {firstIndex + 1} - {currentProducts.length} of{" "}
-                  {currentProducts.length} Products Products
-                </span>
-              ) : (
-                <span>
-                  Showing {firstIndex + 1} - {lastIndex} of{" "}
+              <span>
+                  Showing {productsPerPage} of{" "}
                   {currentProducts.length} Products
                 </span>
-              )} */}
             </div>
 
             {/* Sort by desktop  */}
@@ -343,7 +329,7 @@ const Newarrival = () => {
         </div>
 
         <div className="arrival d-block d-md-block d-lg-none mb-3 border border-2">
-          <div className="arrival-top-div-mob px-md-5 d-flex mx-3 mb-2 mx-md-0 mb-md-0">
+          <div className="arrival-top-div-mob px-md-4 d-flex mx-3 mb-2 mx-md-0 mb-md-0">
             <div className="arrival-filter-div ">
               <OffCanvasButton
                 handleCheckboxChange={handleCheckboxChange}

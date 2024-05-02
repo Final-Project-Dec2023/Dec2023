@@ -14,17 +14,20 @@ import { useParams } from "react-router-dom";
 const CartItems = () => {
   const { cart, cartSubTotal } = useCart();
 
-  useEffect(() => {
-    console.log("Cart Items:", cart);
-  }, [cart]);
+  // useEffect(() => {
+  //   console.log("Cart Items:", cart);
+  // }, [cart]);
 
   return (
     <>
       <Menu />
       <SideNav />
-      <div className="main-cont" style={{ marginTop: "1rem", marginBottom: "2rem" }}>
-        <div className="container-kc">
-          <div className="left-cont">
+      <div
+        className=" container-fluid"
+        style={{ marginTop: "1rem", marginBottom: "2rem" }}
+      >
+        <div className="row">
+          <div className=" col-md-8">
             {cart.map((item) => (
               <div className="card-kc" key={item._id}>
                 <div className="img-card-kc">
@@ -35,7 +38,9 @@ const CartItems = () => {
                     <div className="text-card-kc">
                       <h5>{item.name}</h5>
                       <p>{item.description}</p>
-                      <p className="stock-kc">{item.isAvailable ? "In stock" : "Out of stock"}</p>
+                      <p className="stock-kc">
+                        {item.isAvailable ? "In stock" : "Out of stock"}
+                      </p>
                     </div>
                   </div>
                   <div className="btn-kc">
@@ -49,19 +54,23 @@ const CartItems = () => {
                   </div>
                   <div className="add-btn-kc">
                     <button className="btn-kc-kc">-</button>
-                    <span><b>0</b></span>
+                    <span>
+                      <b>0</b>
+                    </span>
                     <button className="btn-kc-kcee">+</button>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="right-cont">
+          <div className="col-md-4">
             <div className="kc-card">
               <div className="sum">
                 <h4>Cart Summary</h4>
               </div>
-              <div className="kcee"></div>
+              
+              {/* <div className="kcee"></div> */}
+              
               <div className="total">
                 <div className="tot">
                   <h5>Subtotal</h5>
