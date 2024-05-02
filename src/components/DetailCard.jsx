@@ -58,7 +58,7 @@ const DetailCard = ({ product }) => {
   return (
     <>
       <div className="productDetail ">
-        <div className="productCont"> 
+        <div className="productCont mt-2"> 
           <div className="productImg">
             <div className="selectImg">
               {/* Loop through images and show the selected image */}
