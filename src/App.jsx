@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import AllFragance from "./pages/AllFragrance";
 import Menu from "./components/NavBar";
@@ -27,6 +27,7 @@ import AdminProductUpdate from "./pages/admin/AdminProductUpdate";
 import AdminOrders from "./pages/admin/AdminOrders";
 import UserProfile from "./pages/user/UserProfile";
 import UserOrders from "./pages/user/UserOrders";
+import PageNotFound from "./pages/404Page";
 
 // WARNING: Do Not change anything in this pages.
 
@@ -52,6 +53,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/*" element={<PageNotFound/>} />
           {/* Protected Routes */}
           <Route path="/dashboard" element={<PrivateRoutes />}>
             <Route path="user" element={<UserDashboard />} />
