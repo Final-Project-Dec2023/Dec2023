@@ -16,10 +16,12 @@ import { useAuth } from "../contexts/Auth";
 import Search from "./forms/Search";
 import Dropdown from "react-bootstrap/Dropdown";
 import HandleShow from "./HandleShow";
+import { useCart } from "../contexts/Cart"
 
 function SideNav({ name, ...props }) {
   const [show, setShow] = useState(false);
   const { auth, login, logout } = useAuth();
+  const { cart } = useCart();
   
 
   const handleClose = () => setShow(false);
@@ -31,7 +33,7 @@ function SideNav({ name, ...props }) {
   };
 
   return (
-    <div className="side-top">
+    <div className="side-top sticky-top">
       <div className="off-body sticky-top">
         <div className="upNav " style={{ color: "white" }}>
           <div className="left-nav">
@@ -64,7 +66,7 @@ function SideNav({ name, ...props }) {
               <img src={Carti} alt="" />
               </div>
             </Link>
-            <div className="cartcount-s">0</div>
+            <div className="cartcount-s">{cart.length > 0 ? cart.length : 0}</div>
           </div>
         </div>
       </div>
