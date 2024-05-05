@@ -1,5 +1,5 @@
 import React from 'react'
-import img from '../assets/images/404.svg'
+import img from '../assets/images/page404.svg'
 import "../css/404Page.css"
 import { Link } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ const PageNotFound = () => {
       
       <div className="pb-bt">
         <Link to='/'>
-        <button>Back to Home</button>
+        <button className='btn btn-outline-info text-light'>Back to Home</button>
         </Link>
       </div>
       
