@@ -64,7 +64,7 @@ const AllFragrance = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://fragrancehubbe.onrender.com/api/v1/product/all?page=1&limit=1000000`
+        `/product/all?page=1&limit=1000000`
       );
 
       // const {products} = response.data;
@@ -298,9 +298,6 @@ const AllFragrance = () => {
               moment(b.createdAt).diff(moment(a.createdAt))
             )
           );
-          break;
-        case "BestSeller":
-          handleDefaultSort();
           break;
         case "OldToNew":
           setCurrentProducts(
