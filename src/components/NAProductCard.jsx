@@ -31,18 +31,14 @@ const ProductCard = ({ products }) => {
               <p>{description}</p>
               <h2>&#x20A6;{Price}</h2>
             </div>
-          </Link>
-
-          <div className="m-card-btn">
-            <Link to={`/cart/${products._id}`}>
+            </Link>
+           
+           <div className="m-card-btn">
               {isAvailable ? (
                 <button onClick={handleAddToCart}>Add to cart</button>
               ) : (
-                <button className="not-ava" disabled>
-                  Sold Out
-                </button>
+                <button className="not-ava" disabled>Sold Out</button>
               )}
-            </Link>
           </div>
         </div>
       </div>
