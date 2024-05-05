@@ -5,12 +5,14 @@ import Star from "../assets/images/Vector star.png";
 import StarHalf from "../assets/icons/icons8-star-half-48.png";
 import Plus from "../assets/images/ic_sharp-plus.png";
 import Minus from "../assets/images/ic_sharp-minus.png";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useParams, Link } from "react-router-dom";
+import { useCart } from "../contexts/Cart";
 
 const DetailCard = ({ product }) => {
   const { productId } = useParams();
+  const { addToCart } = useCart();
+
+
   const {
     name,
     description,
@@ -28,35 +30,9 @@ const DetailCard = ({ product }) => {
 
   const [selectedImage, setSelectedImage] = useState(images[0]?.url);
 
-  // const [rating, setRating] = useState(0); // State variable to store user's rating
-  // const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // const handleRatingChange = (newRating) => {
-  //   setRating(newRating);
-  // };
-
-  // const handleSubmitRating = async () => {
-  //   setIsSubmitting(true);
-  //   try {
-  // Make a POST request to the backend rating endpoint
-  // const response = await axios.post(`/rating/${productId}`,{
-  //   productId: product._id,
-  //   userId: "user123", // Replace with actual user ID
-  //   rating: rating,
-  // });
-  // console.log("Rating submitted:", response.data);
-  // Optionally, update UI or provide feedback to the user
-  // } catch (error) {
-  //   console.error("Error submitting rating:", error);
-  // Optionally, handle errors or provide feedback to the user
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
+  
 
   useEffect(() => {
-    // Set the selected image to the first image in the array when component mounts
-
     setSelectedImage(images[0]?.url);
   }, [images]);
   const [count, setCount] = useState(1);
@@ -91,7 +67,7 @@ const DetailCard = ({ product }) => {
   return (
     <>
       <div className="productDetail ">
-        <div className="productCont">
+        <div className="productCont mt-2"> 
           <div className="productImg">
             <div className="selectImg">
               {/* Loop through images and show the selected image */}
@@ -101,6 +77,7 @@ const DetailCard = ({ product }) => {
                     className={`simg ${
                       selectedImage === image?.url ? "selected" : ""
                     }`}
+                    key={image._id}
                   >
                     <img
                       key={image?._id}
@@ -128,25 +105,6 @@ const DetailCard = ({ product }) => {
             <p style={{ fontSize: "1.13rem", fontWeight: "400" }}>
               {description}
             </p>
-
-            {/* Rating component */}
-            {/* <div> */}
-            {/* Display rating UI here (e.g., star rating component) */}
-            {/* Example: */}
-            {/* <select value={rating} onChange={(e) => handleRatingChange(parseInt(e.target.value))}>
-          <option value={0}>Select Rating</option>
-          <option value={1}>1 Star</option>
-          <option value={2}>2 Stars</option>
-          <option value={3}>3 Stars</option>
-          <option value={4}>4 Stars</option>
-          <option value={5}>5 Stars</option>
-        </select>
-      </div> */}
-
-            {/* Button to submit rating */}
-            {/* <button onClick={handleSubmitRating} disabled={rating === 0 || isSubmitting}>
-        {isSubmitting ? "Submitting..." : "Submit Rating"}
-      </button> */}
 
             <div style={{ display: "flex", alignItems: "center" }} className="">
               <span className="imgG d-flex gap-1" style={{ width: "5rem" }}>
@@ -254,13 +212,13 @@ const DetailCard = ({ product }) => {
 
             <div className="d-flex flex-column">
               {isAvailable ? (
-                <Button
-                  variant="dark"
-                  className="buttonG mb-3"
-                  style={{ backgroundColor: "black", fontSize: "20px" }}
-                >
-                  Buy Now
-                </Button>
+                // <Button
+                //   variant="dark"
+                //   className="buttonG mb-3"
+                //   style={{ backgroundColor: "black", fontSize: "1.2rem" }}
+                // >
+                  <Link className="btn btn-dark text-light text-decoration-none mb-3 p-3" to="/cart">Buy Now</Link>
+                // </Button>
               ) : (
                 <Button
                   variant="dark"
