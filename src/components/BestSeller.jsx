@@ -10,7 +10,7 @@ import { useCart } from "../contexts/Cart";
 const BestSeller = () => {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState();
-  const { addToCart, cart } = useCart();
+  const { addToCart } = useCart();
 
   // Detecting device screen width
   const isMobile = window.innerWidth <= 768;
@@ -26,19 +26,20 @@ const BestSeller = () => {
         setLoading(true);
         const { data } = await axios.get(`/product/all?page=3&limit=${limit}`);
         if (data?.products) {
-          setProduct(data.product);
+          setProduct(data.products);
+          // console.log(data.products);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoading(false); // Set loading to false regardless of success or error
+        setLoading(false);
       }
-      console.log(product);
+      // console.log(product);
     };
     fetchData();
   }, []);
 
-  console.log(product);
+  // console.log(product);
   // const allFragrance = product;
 
   const handleAddToCart = (event) => {
@@ -52,7 +53,10 @@ const BestSeller = () => {
         <div className="home-all-fragrance-header">
           <span>BestSeller</span>
           <span>
-            <Link></Link>
+            <Link className="text-decoration-none" to="/new-arrivals">
+              View all
+              <FaArrowRightLong />
+            </Link>
           </span>
         </div>
         <div className="best-seller-product">

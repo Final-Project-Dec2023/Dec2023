@@ -48,7 +48,7 @@ const Newarrival = () => {
       const response = await axios.get(`/product/all?page=1&limit=100000`);
       setFetchProduct(response?.data?.products);
       setCurrentProducts(response?.data?.products);
-      console.log(response?.data?.products);
+      // console.log(response?.data?.products);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -75,7 +75,7 @@ const Newarrival = () => {
       console.log(storedPage);
       setCurrentPageCh(parseInt(storedPage));
     } else {
-      setCurrentPageCh(1); // Set default page to 1 if not found in local storage
+      setCurrentPageCh(1);
     }
   }, []);
 
@@ -383,8 +383,8 @@ const Newarrival = () => {
           totalItems={currentProducts.length}
           itemsPerPage={productsPerPage}
           onPageChange={handlePageChange}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          currentPage={currentPageCh}
+          setCurrentPage={setCurrentPageCh}
         />
         </div>
         <div className="d-none d-md-block d-lg-block ms-5 w-50">
@@ -446,8 +446,8 @@ const Newarrival = () => {
                 totalItems={currentProducts.length}
                 itemsPerPage={productsPerPage}
                 onPageChange={handlePageChange}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
+                currentPage={currentPageCh}
+                setCurrentPage={setCurrentPageCh}
               />
             </div>
       <Footer />

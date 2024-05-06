@@ -21,7 +21,7 @@ const Search = ({toggleSearchBar})=> {
   };
 
   return (
-    <form className="d-flex" onSubmit={handleSubmit}>
+    <form className=" container-fluid d-flex" onSubmit={handleSubmit}>
       <input
         type="text"
         style={{ borderRadius: "0px" }}
@@ -31,9 +31,9 @@ const Search = ({toggleSearchBar})=> {
         value={values.keyword}
       />
       <button
-        className="btn real-search"
+        className="btn real-search bg-dark"
         type="submit"
-        style={{ borderRadius: "0px", backgroundColor: "#0098B8"}}
+        style={{ borderRadius: "0px"}}
       >
         <img src={Seicon} alt="" onClick={toggleSearchBar} />
       </button>
