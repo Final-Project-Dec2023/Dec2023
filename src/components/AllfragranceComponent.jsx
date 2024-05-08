@@ -46,7 +46,7 @@ const AllfragranceComponent = () => {
            <Link style={{textDecoration: 'none'}} to='/all-fragrances'>View all <FaArrowRightLong /></Link> 
           </span>
         </div>
-        <div className="home-all-fragrnace-product">
+        <div className="home-all-fragrnace-product container">
           {loading
             ? Array.from({ length: 4 }).map((_, index) => (
                 <ProductCardLoading key={index} />

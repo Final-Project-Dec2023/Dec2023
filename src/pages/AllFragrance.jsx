@@ -38,6 +38,7 @@ const AllFragrance = () => {
   //Showing the selected in the page
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [loading, setLoading] = useState();
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   const shuffle = (array) => {
     let currentIndex = array.length,
@@ -109,7 +110,7 @@ const AllFragrance = () => {
   const isTablet = window.innerWidth <= 1024;
 
   // Setting the limit for related products
-  const limit = isMobile ? 20 : 15 && isTablet ? 15 : 15;
+  const limit = isMobile ? 20 : 18 && isTablet ? 15 : 20;
 
   // ---------------Pagination Start---------
   // Function to handle page change
@@ -254,6 +255,34 @@ const AllFragrance = () => {
   const handleAvailabilityChange = (availability) => {
     setSelectedAvailability(availability);
   };
+  const updateSelectedProductsInLocalStorage = (products) => {
+    localStorage.setItem("selectedProducts", JSON.stringify(products));
+  };
+
+  const handleProductSelection = (productId, selected) => {
+    if (selected) {
+      setSelectedProducts((prevSelectedProducts) => [
+        ...prevSelectedProducts,
+        productId,
+      ]);
+    } else {
+      setSelectedProducts((prevSelectedProducts) =>
+        prevSelectedProducts.filter((id) => id !== productId)
+      );
+    }
+  };
+
+  useEffect(() => {
+    updateSelectedProductsInLocalStorage(selectedProducts);
+  }, [selectedProducts]);
+
+  useEffect(() => {
+    // Retrieve selected products from local storage
+    const storedSelectedProducts = localStorage.getItem("selectedProducts");
+    if (storedSelectedProducts) {
+      setSelectedProducts(JSON.parse(storedSelectedProducts));
+    }
+  }, []);
 
   const handleDefaultSort = () => {
     setCurrentProducts([...fetchProduct]);
@@ -375,7 +404,7 @@ const AllFragrance = () => {
                 <SortBy handleSort={handleSort} />
               </h3>
             </div>
-            <div className="m-products">
+            <div className="m-products container">
               {loading ? (
                 Array.from({ length: 6 }).map((_, index) => (
                   <ProductCardLoading key={index} />

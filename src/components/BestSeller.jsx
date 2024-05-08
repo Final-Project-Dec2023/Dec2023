@@ -26,7 +26,7 @@ const BestSeller = () => {
         setLoading(true);
         const { data } = await axios.get(`/product/all?page=3&limit=${limit}`);
         if (data?.products) {
-          setProduct(data.product);
+          setProduct(data?.products);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -55,7 +55,7 @@ const BestSeller = () => {
             <Link></Link>
           </span>
         </div>
-        <div className="best-seller-product">
+        <div className="best-seller-product container">
           {loading
             ? Array.from({ length: limitLoading }).map((_, index) => (
                 <ProductCardLoading key={index} />
@@ -69,25 +69,16 @@ const BestSeller = () => {
                 return (
                   <>
                     <div key={_id}>
-                      <Link className="link" to={`/detail/${product._id}`}>
+                    <Link className="link" to={`/detail/${product._id}`}>
                         <div className="m-card-Container" key={_id}>
                           <div className="m-image">
                             <img src={images[0]?.url} />
                           </div>
                           <div className="m-card-info">
                             <div className="m-card-text">
-                              <Link
-                                className="link"
-                                to={`/detail/${product._id}`}
-                                style={{
-                                  textDecoration: "none",
-                                  color: "black",
-                                }}
-                              >
-                                <h4>{name}</h4>
-                                <p>{description}</p>
-                                <h2>&#x20A6;{Price}</h2>
-                              </Link>
+                              <h4>{name}</h4>
+                              <p>{description}</p>
+                              <h2>&#x20A6;{Price}</h2>
                             </div>
                             <div className="m-card-btn">
                               {isAvailable ? (

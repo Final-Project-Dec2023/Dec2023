@@ -45,7 +45,7 @@ const NewArrivalComponent = () => {
           <Link style={{textDecoration: 'none'}} to='/new-arrivals'>View all <FaArrowRightLong /></Link> 
           </span>
         </div>
-        <div className="best-seller-product">
+        <div className="best-seller-product container">
           {loading
             ? Array.from({ length: limitLoading }).map((_, index) => (
                 <ProductCardLoading key={index} />

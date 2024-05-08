@@ -71,7 +71,7 @@ const CountDownTimer = () => {
             View all <FaArrowRightLong />
           </span>
         </div>
-        <div className="flash-product">
+        <div className="flash-product container">
           {loading
             ? Array.from({ length: 4 }).map((_, index) => (
                 <ProductCardLoading key={index} />

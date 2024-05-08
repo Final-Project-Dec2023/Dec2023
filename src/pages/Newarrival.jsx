@@ -9,7 +9,6 @@ import OffCanvasButton from "../components/NAFilter";
 import Menu from "../components/NavBar";
 import SideNav from "../components/SideNav";
 import axios from "axios";
-import Pagination from "../components/PaginationM";
 import SortBy from "../components/SortBy";
 // import Skeleton from "react-loading-skeleton";
 import ShowingAllfilter from "../components/ShowingAllfilter";
@@ -150,12 +149,14 @@ const Newarrival = () => {
 
   console.log(currentProducts);
   useEffect(() => {
-    localStorage.setItem('currentProducts', JSON.stringify(currentProducts));
+    localStorage.setItem("currentProducts", JSON.stringify(currentProducts));
   }, [currentProducts]);
 
   // Load state on component mount
   useEffect(() => {
-    const savedCurrentProducts = JSON.parse(localStorage.getItem('currentProducts'));
+    const savedCurrentProducts = JSON.parse(
+      localStorage.getItem("currentProducts")
+    );
     if (savedCurrentProducts) {
       setCurrentProducts(savedCurrentProducts);
     }
@@ -305,19 +306,16 @@ const Newarrival = () => {
           <div className="d-flex justify-content-between ">
             <div className="d-block d-md-none d-lg-none mx-3 my-3">
               <h3>New Arrivals</h3>
-                <span>
-                  Showing {productsPerPage} of{" "}
-                  {currentProducts.length} Products
-                </span>
+              <span>
+                Showing {productsPerPage} of {currentProducts.length} Products
+              </span>
             </div>
             <div className="d-none d-md-block d-lg-block w-lg-75 ms-lg-4 mx-md-4 my-md-4">
               <h3>New Arrivals</h3>
               <span>
-                  Showing {productsPerPage} of{" "}
-                  {currentProducts.length} Products
-                </span>
+                Showing {productsPerPage} of {currentProducts.length} Products
+              </span>
             </div>
-
             {/* Sort by desktop  */}
             <div className="d-none d-md-none d-lg-block mt-lg-5 d-lg-flex">
               <div className="me-3 mt-2">Sort By</div>
@@ -337,7 +335,7 @@ const Newarrival = () => {
                 handleAvailabilityChange={handleAvailabilityChange}
                 handleSelectedFilter={handleSelectedFilter}
                 selectedFilters={selectedFilters}
-              // clearFilters={clearFilters}
+                // clearFilters={clearFilters}
               />
             </div>
 
@@ -379,13 +377,13 @@ const Newarrival = () => {
           )}
         </div>
         <div className="pagination d-block d-md-block d-lg-none mb-3 me-md-5">
-        <Pagination
-          totalItems={currentProducts.length}
-          itemsPerPage={productsPerPage}
-          onPageChange={handlePageChange}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+          <NAPagination
+            totalItems={currentProducts.length}
+            itemsPerPage={productsPerPage}
+            onPageChange={handlePageChange}
+            currentPageCh={currentPageCh}
+            setCurrentPageCh={setCurrentPageCh}
+          />
         </div>
         <div className="d-none d-md-block d-lg-block ms-5 w-50">
           <ShowingAllfilter
@@ -435,21 +433,19 @@ const Newarrival = () => {
               </>
             )}
 
-           
-
             {/* Sort by for desktop drop down is in a dropdown component */}
           </div>
-        </div>   
+        </div>
       </div>
-       <div className="d-none d-md-none d-lg-block m-pagination mt-4 ">
-              <Pagination
-                totalItems={currentProducts.length}
-                itemsPerPage={productsPerPage}
-                onPageChange={handlePageChange}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-              />
-            </div>
+      <div className="d-none d-md-none d-lg-block m-pagination mt-4 ">
+        <NAPagination
+          totalItems={currentProducts.length}
+          itemsPerPage={productsPerPage}
+          onPageChange={handlePageChange}
+          currentPageCh={currentPageCh}
+          setCurrentPageCh={setCurrentPageCh}
+        />
+      </div>
       <Footer />
     </>
   );
