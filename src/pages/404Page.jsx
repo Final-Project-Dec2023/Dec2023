@@ -8,13 +8,11 @@ const PageNotFound = () => {
     <div className='err-pb'>
       <img src={img} alt="" />
       
-      
       <div className="pb-bt">
         <Link to='/'>
         <button className='btn btn-outline-info text-light'>Back to Home</button>
         </Link>
       </div>
-      
       
     </div>
   )
